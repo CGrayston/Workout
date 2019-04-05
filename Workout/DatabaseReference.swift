@@ -10,4 +10,6 @@ import Foundation
 
 struct DatabaseReference {
     static let userDatabase = "userTestDB1"
+    static let programDatabase = "programTestDB1"
+    static let workoutDatabase = "workoutTestDB1"
 }
