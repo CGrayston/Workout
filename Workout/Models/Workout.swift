@@ -1,5 +1,5 @@
 //
-//  Program.swift
+//  Workout.swift
 //  Workout
 //
 //  Created by Chris Grayston on 4/4/19.
@@ -9,42 +9,40 @@
 import Foundation
 import Firebase
 
-class Program {
+class Workout {
     // MARK: - Properties
-    let creatorUID: String
+    let programUID: String
     var name: String
     var description: String
-    var photoURL: String
     let uid: String
     
     // MARK: - Memberwise initilizer
-    init(creatorUID: String, name: String, description: String, photoURL: String, uid: String = UUID.init().uuidString) {
-        self.creatorUID = creatorUID
+    init(programUID: String, name: String, description: String, uid: String = UUID.init().uuidString) {
+        self.programUID = programUID
         self.name = name
         self.description = description
-        self.photoURL = photoURL
         self.uid = uid
     }
     
     // MARK: - Failable initilizer
     init?(document: QueryDocumentSnapshot) {
-        guard let creatorUID = document["creatorUID"] as? String,
+        guard let programUID = document["programUID"] as? String,
             let name = document["name"] as? String,
             let description = document["description"] as? String,
-            let photoURL = document["photoURL"] as? String,
             let uid = document["uid"] as? String
             else { return nil }
         
-        self.creatorUID = creatorUID
+        self.programUID = programUID
         self.name = name
         self.description = description
-        self.photoURL = photoURL
         self.uid = uid
     }
 }
 
-extension Program: Equatable {
-    static func == (lhs: Program, rhs: Program) -> Bool {
+extension Workout: Equatable {
+    static func == (lhs: Workout, rhs: Workout) -> Bool {
         return lhs.uid == rhs.uid
     }
 }
+
+

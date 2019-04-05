@@ -8,13 +8,17 @@
 
 import UIKit
 
+// Fetches and displays user created programs
 class CreatedProgramsListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Call ProgramController to fetch programs array
-        
+        ProgramController.shared.loadPrograms {
+            self.tableView.reloadData()
+        }
+        self.tableView.rowHeight = 200
     }
 
     // MARK: - Table view data source
@@ -25,18 +29,18 @@ class CreatedProgramsListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 1 // ProgramController.shared.programs.count
+        return ProgramController.shared.programs.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Cast as custom cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "createdProgram", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "createdProgram", for: indexPath) as? CreatedProgramTableViewCell else { return UITableViewCell() }
 
         // Get created program at current IndexPath.row
-        //let program = ProgramController.shared.programs[indexPath.row]
+        let program = ProgramController.shared.programs[indexPath.row]
         
         // Pass program to custom cell to display
-        //cell.program = program
+        cell.program = program
         
         return cell
     }
@@ -61,6 +65,19 @@ class CreatedProgramsListTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+    }
+    
+    @IBAction func addProgramButtonTapped(_ sender: UIBarButtonItem) {
+        // User pressed add button
+        // Create a Program to initilize Program's uid
+        ProgramController.shared.createProgram { (success) in
+            if success {
+                print("Success. Should push")
+                self.tableView.reloadData()
+            } else {
+                print("Failure creating blank Program, still will push?")
+            }
+        }
     }
     
 
