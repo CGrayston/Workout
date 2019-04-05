@@ -13,20 +13,20 @@
         <!--Account-->
         <scene sceneID="i2j-FJ-ZfK">
             <objects>
-                <viewController id="Dkb-UJ-9le" sceneMemberID="viewController">
+                <viewController id="Dkb-UJ-9le" customClass="AccountViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="db0-b2-6y0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(username)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kl7-Uz-YLj">
-                                <rect key="frame" x="143" y="101" width="89" height="21"/>
+                                <rect key="frame" x="53" y="101" width="281" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(email)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3j-nA-aRU">
-                                <rect key="frame" x="143" y="153" width="89" height="21"/>
+                                <rect key="frame" x="53" y="153" width="281" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -36,12 +36,19 @@
                                 <rect key="frame" x="143" y="223" width="89" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <action selector="signOutButtonTapped:" destination="Dkb-UJ-9le" eventType="touchUpInside" id="gTE-BN-d5f"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fd1-Bm-5Iy"/>
                     </view>
                     <navigationItem key="navigationItem" title="Account" id="31d-E8-wEr"/>
+                    <connections>
+                        <outlet property="emailLabel" destination="k3j-nA-aRU" id="m7B-HM-Neb"/>
+                        <outlet property="usernameLabel" destination="kl7-Uz-YLj" id="pn1-g3-zYS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xpt-Eb-Txa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

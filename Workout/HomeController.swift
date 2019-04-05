@@ -46,44 +46,54 @@ class HomeController: UIViewController {
     // MARK: - API
     
     func loadUserData() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+        //guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        let docRef = db.collection(DatabaseReference.userDatabase).document(uid)
-        
-        docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                guard let username = document["username"] as? String else { return }
-                self.welcomeLabel.text = "Welcome, \(username)"
-                
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.welcomeLabel.alpha = 1
-                })
-                // Present Main Tabbar
-//                guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
-//                guard let controller = navController.viewControllers[0] as? HomeController else { return }
-//
-//                let tabbarViewController = UIStoryboard(name: "Tabbar", bundle: nil).instantiateViewController(withIdentifier: "Tabbar")
-//
-//                guard let tabController = UIApplication.shared.keyWindow?.resignKey() as UITabBarController else { return }
-//                guard let controller = tabBarController?.viewControllers[0] as
-//
-//                if let tabBar = self.tabBarController {
-//
-//                    self.present(tabBar, animated: true, completion: nil)
-//                }
-                let tabbarViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar")
-                self.present(tabbarViewController, animated: true, completion: nil)
-                
-            } else {
-                print("Document does not exist")
-            }
+        UserController.shared.loadUser {
+            let tabbarViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar")
+            self.present(tabbarViewController, animated: true, completion: nil)
         }
         
-        //guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
-        //guard let controller = navController.viewControllers[0] as? HomeController else { return }
-        
-        //controller.present(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
-        
+//        let docRef = db.collection(DatabaseReference.userDatabase).document(uid)
+//
+//        docRef.getDocument { (document, error) in
+//            if let document = document, document.exists {
+//                //guard let username = document["username"] as? String else { return }
+//                //self.welcomeLabel.text = "Welcome, \(username)"
+//
+////                UIView.animate(withDuration: 0.5, animations: {
+////                    self.welcomeLabel.alpha = 1
+////                })
+//
+//                UserController.shared.loadUser() {
+//                    guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
+//                    guard let controller = navController.viewControllers[0] as? HomeController else { return }
+//                }
+//                // Present Main Tabbar
+////                guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
+////                guard let controller = navController.viewControllers[0] as? HomeController else { return }
+////
+////                let tabbarViewController = UIStoryboard(name: "Tabbar", bundle: nil).instantiateViewController(withIdentifier: "Tabbar")
+////
+////                guard let tabController = UIApplication.shared.keyWindow?.resignKey() as UITabBarController else { return }
+////                guard let controller = tabBarController?.viewControllers[0] as
+////
+////                if let tabBar = self.tabBarController {
+////
+////                    self.present(tabBar, animated: true, completion: nil)
+////                }
+//                let tabbarViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar")
+//                self.present(tabbarViewController, animated: true, completion: nil)
+//
+//            } else {
+//                print("Document does not exist")
+//            }
+//        }
+//
+//        guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
+//        guard let controller = navController.viewControllers[0] as? HomeController else { return }
+//
+//        controller.present(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
+//
         
     }
     

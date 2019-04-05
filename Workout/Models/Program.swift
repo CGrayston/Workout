@@ -27,19 +27,14 @@ class Program {
     }
     
     // MARK: - Failable initilizer
-    init?(document: QueryDocumentSnapshot) {
-        guard let creatorUID = document["creatorUID"] as? String,
-            let name = document["name"] as? String,
-            let description = document["description"] as? String,
-            let photoURL = document["photoURL"] as? String,
-            let uid = document["uid"] as? String
-            else { return nil }
+    convenience init(document: [String: Any]) {
+        let creatorUID = document["creatorUID"] as! String? ?? ""
+        let name = document["name"] as! String? ?? ""
+        let description = document["description"] as! String? ?? ""
+        let photoURL = document["photoURL"] as! String? ?? ""
+        let uid = document["uid"] as! String? ?? ""
         
-        self.creatorUID = creatorUID
-        self.name = name
-        self.description = description
-        self.photoURL = photoURL
-        self.uid = uid
+        self.init(creatorUID: creatorUID, name: name, description: description, photoURL: photoURL, uid: uid)
     }
 }
 

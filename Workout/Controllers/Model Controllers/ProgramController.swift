@@ -35,7 +35,7 @@ class ProgramController {
     // MARK: - CRUD Functions
     
     // Create Program
-    func createProgram(completion: @escaping (Bool) -> Void) {
+    func createProgram(completion: @escaping (Bool, Program?) -> Void) {
         // Create an empty Program locally
         let program = Program(creatorUID: userUID, name: "", description: "", photoURL: "")
         self.programs.append(program)
@@ -50,11 +50,11 @@ class ProgramController {
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
-                completion(false)
+                completion(false, nil)
                 return
             } else {
                 print("Document successfully created!")
-                completion(true)
+                completion(true, program)
                 return
             }
         }
@@ -70,9 +70,11 @@ class ProgramController {
         
         // Update Program on Firestore
         db.collection(DatabaseReference.programDatabase).document(program.uid).setData([
+            "creatorUID": userUID,
             "name": name,
             "description": description,
-            "photoURL": photoURL
+            "photoURL": photoURL,
+            "uid": program.uid
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
@@ -87,8 +89,45 @@ class ProgramController {
     }
     
     // Delete Program
-    func deleteProgram(uid: String, completion: @escaping (Bool) -> Void) {
-        // TODO
+    func deleteProgram(program: Program, completion: @escaping (Bool) -> Void) {
+        // Delete locally
+        guard let index = self.programs.index(of: program) else { return }
+        self.programs.remove(at: index)
+        
+        // Delete from Firestore
+        db.collection(DatabaseReference.programDatabase).document(program.uid).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+                completion(false)
+            } else {
+                print("Document successfully removed!")
+                completion(true)
+            }
+        }
+        
+        // Delete all workouts that stem from that program
+        deleteProgramsWorkouts(programUID: program.uid) {
+        }
+    }
+    
+    private func deleteProgramsWorkouts(programUID: String, completion: @escaping () -> ()) {
+        // Delete all workouts that stem from that program
+        
+        // Go through workout collection
+        db.collection(DatabaseReference.workoutDatabase).whereField("programUID", isEqualTo: programUID).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            }
+            
+            for document in querySnapshot!.documents {
+                document.reference.delete()
+            }
+        }
+        
+        
+        // Check if UID == programUID
+        
+        // Delete that workout
     }
     
     // MARK: - Load All User Created Programs
@@ -104,10 +143,11 @@ class ProgramController {
                 
                 // Found querySnapshot!.documents.count documents in the Program snapshot
                 for document in querySnapshot!.documents {
-                    guard let program = Program(document: document) else {
-                        completion()
-                        return
-                    }
+                    let program = Program(document: document.data())
+//                    guard let program = Program(document: document) else {
+//                        completion()
+//                        return
+//                    }
                     self.programs.append(program)
                 }
                 completion()

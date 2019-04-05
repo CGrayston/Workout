@@ -63,7 +63,7 @@
                                     <outlet property="programDescriptionLabel" destination="z7x-nz-0bv" id="BwJ-Q7-A6z"/>
                                     <outlet property="programImageView" destination="SfC-U2-6F7" id="e9n-AK-T5K"/>
                                     <outlet property="programNameLabel" destination="kP8-v8-MOL" id="i02-Wa-INp"/>
-                                    <segue destination="ja2-B1-TE0" kind="show" identifier="toProgramTableVC" id="hvB-6d-ihm"/>
+                                    <segue destination="ja2-B1-TE0" kind="show" identifier="toShowProgramDetailsVC" id="hvB-6d-ihm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -76,6 +76,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="UUJ-Fg-73e">
                             <connections>
                                 <action selector="addProgramButtonTapped:" destination="e0l-ZV-hXj" id="fuI-Ud-WtO"/>
+                                <segue destination="ja2-B1-TE0" kind="show" identifier="toCreateNewProgramVC" id="eaa-Ai-0QU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -87,7 +88,7 @@
         <!--Create Program-->
         <scene sceneID="tCF-bu-RkR">
             <objects>
-                <viewController title="Create Program" id="ja2-B1-TE0" sceneMemberID="viewController">
+                <viewController title="Create Program" id="ja2-B1-TE0" customClass="ProgramCreationViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UeZ-9a-2Ss">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -104,10 +105,10 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Program description..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Yqg-GL-qUl">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yqg-GL-qUl">
                                                 <rect key="frame" x="0.0" y="38" width="165" height="165"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                         </subviews>
@@ -129,6 +130,9 @@
                                                     <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="saveProgramInfoButtonTapped:" destination="ja2-B1-TE0" eventType="touchUpInside" id="leU-NA-bWj"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -162,7 +166,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="b0o-Yo-Vsc" kind="show" id="EMX-m2-w0L"/>
+                                            <segue destination="b0o-Yo-Vsc" kind="show" identifier="toShowNewWorkoutVC" id="EMX-m2-w0L"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -181,22 +185,28 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QVG-TH-Ty0"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Create New Program" id="5ik-i1-4vQ">
+                    <navigationItem key="navigationItem" title="Program Creation" id="5ik-i1-4vQ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Vln-cL-uwS">
                             <connections>
-                                <segue destination="b0o-Yo-Vsc" kind="show" id="sq9-15-dMH"/>
+                                <segue destination="b0o-Yo-Vsc" kind="show" identifier="toCreateNewWorkoutVC" id="sq9-15-dMH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="programDescriptionTextView" destination="Yqg-GL-qUl" id="o1S-qP-gLf"/>
+                        <outlet property="programImageView" destination="ZJ1-QU-Cfd" id="Tvd-xU-SBD"/>
+                        <outlet property="programNameTextField" destination="N3Y-sf-QhT" id="IFP-Xl-V3S"/>
+                        <outlet property="tableView" destination="F4D-ji-WtB" id="HTg-3D-ALo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BA5-uC-DAb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3892" y="-625.86206896551732"/>
         </scene>
-        <!--Create New Workout-->
+        <!--Workout Creation-->
         <scene sceneID="oY5-JA-Pe6">
             <objects>
-                <viewController id="b0o-Yo-Vsc" sceneMemberID="viewController">
+                <viewController id="b0o-Yo-Vsc" customClass="WorkoutCreationViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BbL-Mo-pf4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -227,6 +237,9 @@
                                             <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                             <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="saveWorkoutInfoButton:" destination="b0o-Yo-Vsc" eventType="touchUpInside" id="9Bt-rf-Brq"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -322,13 +335,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ghg-gi-VzF"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Create New Workout" id="Gze-bi-KYj">
+                    <navigationItem key="navigationItem" title="Workout Creation" id="Gze-bi-KYj">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="lMG-WD-KJv">
                             <connections>
                                 <segue destination="HuO-uG-sCc" kind="show" id="TAK-m7-S1V"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="XVf-hn-fLB" id="ZEi-hI-L9t"/>
+                        <outlet property="workoutDescriptionTextView" destination="Tkz-ZL-YfL" id="sg4-EP-d3K"/>
+                        <outlet property="workoutNameTextField" destination="ksi-mi-1Mx" id="WZI-ag-iUQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I0d-Vx-u3c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -531,7 +549,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wrC-Es-gBl"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Create New Exercise" id="2NR-2t-j6I"/>
+                    <navigationItem key="navigationItem" title="Exercise Creation" id="2NR-2t-j6I"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mg4-Xa-g59" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -560,5 +578,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="TAK-m7-S1V"/>
         <segue reference="sq9-15-dMH"/>
+        <segue reference="eaa-Ai-0QU"/>
     </inferredMetricsTieBreakers>
 </document>
