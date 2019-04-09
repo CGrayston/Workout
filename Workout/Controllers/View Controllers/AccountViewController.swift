@@ -60,6 +60,8 @@ class AccountViewController: UIViewController {
     func signOut() {
         do {
             try Auth.auth().signOut()
+            UserController.shared.currentUser = nil
+            
 //            let navController = UINavigationController(rootViewController: LoginController())
 //            navController.navigationBar.barStyle = .black
 //            self.present(navController, animated: true, completion: nil)
@@ -68,7 +70,7 @@ class AccountViewController: UIViewController {
             let navController = UINavigationController(rootViewController: HomeController())
             navController.navigationBar.barStyle = .black
             window?.rootViewController = navController
-
+            
         } catch let error {
             print("Failed to sign out with error..", error)
         }

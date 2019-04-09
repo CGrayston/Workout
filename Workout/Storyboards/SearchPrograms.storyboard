@@ -10,24 +10,77 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Search Programs-->
         <scene sceneID="pbp-Bb-3LX">
             <objects>
-                <tableViewController id="JZc-9i-ZO3" sceneMemberID="viewController">
+                <tableViewController id="JZc-9i-ZO3" customClass="SearchProgramsTableViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="NAO-U5-cQy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search for programs..." id="0h3-90-Sfq">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="92" id="gcV-Iu-bOm">
-                                <rect key="frame" x="0.0" y="28" width="375" height="92"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchedProgramCell" rowHeight="132" id="gcV-Iu-bOm" customClass="SearchedProgramTableViewCell" customModule="Workout" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="132"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gcV-Iu-bOm" id="253-8F-fRI">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="91.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="131.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="VxG-0C-7ft">
+                                            <rect key="frame" x="19" y="6.5" width="337.5" height="118.5"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gan-35-Xrd">
+                                                    <rect key="frame" x="0.0" y="0.0" width="177.5" height="118.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="gan-35-Xrd" secondAttribute="height" multiplier="3:2" id="PPc-3a-Tbe"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1qv-VB-3sb">
+                                                    <rect key="frame" x="185.5" y="0.0" width="152" height="65"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(programName)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sij-LF-3Mm">
+                                                            <rect key="frame" x="0.0" y="0.0" width="122.5" height="39"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By: (programCreator)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akT-dy-mRD">
+                                                            <rect key="frame" x="0.0" y="47" width="146.5" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="sij-LF-3Mm" firstAttribute="height" secondItem="1qv-VB-3sb" secondAttribute="height" multiplier="0.6" id="Bwt-Rv-rpT"/>
+                                                        <constraint firstItem="akT-dy-mRD" firstAttribute="bottom" secondItem="1qv-VB-3sb" secondAttribute="bottomMargin" id="R91-iF-GAc"/>
+                                                        <constraint firstItem="akT-dy-mRD" firstAttribute="top" secondItem="sij-LF-3Mm" secondAttribute="bottom" constant="8" id="W1D-Gh-gVD"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gan-35-Xrd" firstAttribute="height" secondItem="VxG-0C-7ft" secondAttribute="height" id="MZf-NG-FLN"/>
+                                                <constraint firstItem="gan-35-Xrd" firstAttribute="centerY" secondItem="VxG-0C-7ft" secondAttribute="centerY" id="Q0A-Kj-Vjr"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="VxG-0C-7ft" firstAttribute="width" secondItem="253-8F-fRI" secondAttribute="width" multiplier="0.9" id="9Ue-x0-zcY"/>
+                                        <constraint firstItem="VxG-0C-7ft" firstAttribute="height" secondItem="253-8F-fRI" secondAttribute="height" multiplier="0.9" id="aBi-7L-mfU"/>
+                                        <constraint firstItem="VxG-0C-7ft" firstAttribute="centerX" secondItem="253-8F-fRI" secondAttribute="centerX" id="kJ2-lv-WkH"/>
+                                        <constraint firstItem="VxG-0C-7ft" firstAttribute="centerY" secondItem="253-8F-fRI" secondAttribute="centerY" id="wjf-23-RYI"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="baf-FH-jnP" kind="show" id="AYc-5X-Jzs"/>
+                                    <outlet property="programCreatorLabel" destination="akT-dy-mRD" id="PvF-Hv-N0g"/>
+                                    <outlet property="programNameLabel" destination="sij-LF-3Mm" id="cwj-I2-tLL"/>
+                                    <outlet property="programPhotoImageView" destination="gan-35-Xrd" id="Xbl-Uf-YDn"/>
+                                    <segue destination="baf-FH-jnP" kind="show" identifier="toProgramDetailVC" id="AYc-5X-Jzs"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -36,47 +89,93 @@
                             <outlet property="delegate" destination="JZc-9i-ZO3" id="YXC-V6-QHQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="FeR-nF-Z8S"/>
+                    <navigationItem key="navigationItem" title="Search Programs" id="FeR-nF-Z8S"/>
+                    <connections>
+                        <outlet property="searchBar" destination="0h3-90-Sfq" id="W0L-lx-dSY"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vAz-fx-A3W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-484" y="864.91754122938539"/>
         </scene>
-        <!--View Controller-->
+        <!--Follow Program-->
         <scene sceneID="qAx-Zo-4BY">
             <objects>
-                <viewController id="baf-FH-jnP" sceneMemberID="viewController">
+                <viewController id="baf-FH-jnP" customClass="AddProgramViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nOr-N4-5ay">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(programsName)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oko-Ky-Ttu">
-                                <rect key="frame" x="122" y="85" width="131" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j9e-x9-qAy">
-                                <rect key="frame" x="0.0" y="129" width="375" height="224"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(programsDescription)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nGb-Qf-Jyr">
-                                <rect key="frame" x="35" y="361" width="305" height="158"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rX-oI-NDz">
-                                <rect key="frame" x="122" y="548" width="139" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rLI-XX-vdT">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="58" translatesAutoresizingMaskIntoConstraints="NO" id="mGh-TA-QQQ">
+                                <rect key="frame" x="0.0" y="94" width="375" height="543"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(programsName)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oko-Ky-Ttu">
+                                        <rect key="frame" x="122" y="0.0" width="131" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j9e-x9-qAy">
+                                        <rect key="frame" x="0.0" y="78.5" width="375" height="298"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(programsDescription)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nGb-Qf-Jyr">
+                                        <rect key="frame" x="101" y="434.5" width="173.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rX-oI-NDz">
+                                        <rect key="frame" x="19" y="513" width="337.5" height="30"/>
+                                        <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="QSN-Ur-Zpn"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="Follow">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="followProgramButtonTapped:" destination="baf-FH-jnP" eventType="touchUpInside" id="enc-Vt-ZqB"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="7rX-oI-NDz" firstAttribute="centerX" secondItem="mGh-TA-QQQ" secondAttribute="centerX" id="atf-Sn-ls2"/>
+                                    <constraint firstItem="7rX-oI-NDz" firstAttribute="width" secondItem="mGh-TA-QQQ" secondAttribute="width" multiplier="0.9" id="wjy-Pq-WRv"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rLI-XX-vdT" firstAttribute="top" secondItem="PNw-re-Krq" secondAttribute="top" id="5W2-7e-93D"/>
+                            <constraint firstItem="mGh-TA-QQQ" firstAttribute="height" secondItem="rLI-XX-vdT" secondAttribute="height" multiplier="0.9" id="99D-4q-bCy"/>
+                            <constraint firstItem="mGh-TA-QQQ" firstAttribute="centerY" secondItem="rLI-XX-vdT" secondAttribute="centerY" id="BPl-Bp-bVz"/>
+                            <constraint firstItem="rLI-XX-vdT" firstAttribute="leading" secondItem="PNw-re-Krq" secondAttribute="leading" id="Ekv-bD-f56"/>
+                            <constraint firstItem="mGh-TA-QQQ" firstAttribute="centerX" secondItem="rLI-XX-vdT" secondAttribute="centerX" id="Gdw-GN-hW2"/>
+                            <constraint firstItem="PNw-re-Krq" firstAttribute="trailing" secondItem="rLI-XX-vdT" secondAttribute="trailing" id="NI1-N2-yJZ"/>
+                            <constraint firstItem="PNw-re-Krq" firstAttribute="bottom" secondItem="rLI-XX-vdT" secondAttribute="bottom" id="Syg-4i-nlg"/>
+                            <constraint firstItem="mGh-TA-QQQ" firstAttribute="width" secondItem="rLI-XX-vdT" secondAttribute="width" id="XC8-9D-kvg"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="PNw-re-Krq"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Follow Program" id="gd8-6A-h7U">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Unfollow" id="asF-P9-AgG">
+                            <connections>
+                                <action selector="unfollowButtonTapped:" destination="baf-FH-jnP" id="kwL-G4-1iB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="followProgramButton" destination="7rX-oI-NDz" id="epG-Kd-khx"/>
+                        <outlet property="programDescription" destination="nGb-Qf-Jyr" id="w2y-7E-SCn"/>
+                        <outlet property="programImageView" destination="j9e-x9-qAy" id="BHZ-9U-Wa6"/>
+                        <outlet property="programNameLabel" destination="Oko-Ky-Ttu" id="sK1-8j-1aR"/>
+                        <outlet property="unfollowBarButtonItem" destination="asF-P9-AgG" id="Sq8-CI-bGb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oxf-hg-pfO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

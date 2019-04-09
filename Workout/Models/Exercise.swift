@@ -15,16 +15,18 @@ class Exercise {
     var name: String
     var description: String
     var sets: String
+    var setsCount: Int
     var reps: String
     var photoURL: String
     let uid: String
     
     // MARK: - Memberwise initilizer
-    init(workoutUID: String, name: String, description: String, sets: String, reps: String, photoURL: String, uid: String = UUID.init().uuidString) {
+    init(workoutUID: String, name: String, description: String, sets: String, setsCount: Int = 0, reps: String, photoURL: String, uid: String = UUID.init().uuidString) {
         self.workoutUID = workoutUID
         self.name = name
         self.description = description
         self.sets = sets
+        self.setsCount = setsCount
         self.reps = reps
         self.photoURL = photoURL
         self.uid = uid
@@ -36,6 +38,7 @@ class Exercise {
             let name = document["name"] as? String,
             let description = document["description"] as? String,
             let sets = document["sets"] as? String,
+            let setsCount = document["setsCount"] as? Int,
             let reps = document["reps"] as? String,
             let photoURL = document["photoURL"] as? String,
             let uid = document["uid"] as? String
@@ -45,6 +48,7 @@ class Exercise {
         self.name = name
         self.description = description
         self.sets = sets
+        self.setsCount = setsCount
         self.reps = reps
         self.photoURL = photoURL
         self.uid = uid

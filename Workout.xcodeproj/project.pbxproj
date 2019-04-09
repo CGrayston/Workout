@@ -13,6 +13,12 @@
 		0A8B5BD4225523BF0038F734 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A8B5BD2225523BF0038F734 /* LaunchScreen.storyboard */; };
 		0AA28BFC22580403009D6B53 /* WorkoutCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA28BFB22580403009D6B53 /* WorkoutCreationViewController.swift */; };
 		0AA28BFE22581946009D6B53 /* ExerciseCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA28BFD22581946009D6B53 /* ExerciseCreationViewController.swift */; };
+		0AA28C0022581FDA009D6B53 /* SetsCreationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA28BFF22581FDA009D6B53 /* SetsCreationTableViewCell.swift */; };
+		0AA28C0222582376009D6B53 /* ExerciseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA28C0122582376009D6B53 /* ExerciseController.swift */; };
+		0AA28C04225828BD009D6B53 /* ExerciseCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA28C03225828BD009D6B53 /* ExerciseCellTableViewCell.swift */; };
+		0AA28C08225BBE0E009D6B53 /* SearchProgramsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA28C07225BBE0E009D6B53 /* SearchProgramsTableViewController.swift */; };
+		0AA28C0A225BC281009D6B53 /* SearchedProgramTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA28C09225BC281009D6B53 /* SearchedProgramTableViewCell.swift */; };
+		0AA28C0E225BD34C009D6B53 /* AddProgramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA28C0D225BD34C009D6B53 /* AddProgramViewController.swift */; };
 		0AAECEA22256F90700EC360B /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAECEA12256F90700EC360B /* Workout.swift */; };
 		0AAECEA42256F9CC00EC360B /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAECEA32256F9CC00EC360B /* Exercise.swift */; };
 		0AAECEA62256FBE600EC360B /* WorkoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAECEA52256FBE600EC360B /* WorkoutController.swift */; };
@@ -47,6 +53,12 @@
 		0A8B5BD5225523BF0038F734 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AA28BFB22580403009D6B53 /* WorkoutCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCreationViewController.swift; sourceTree = "<group>"; };
 		0AA28BFD22581946009D6B53 /* ExerciseCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCreationViewController.swift; sourceTree = "<group>"; };
+		0AA28BFF22581FDA009D6B53 /* SetsCreationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsCreationTableViewCell.swift; sourceTree = "<group>"; };
+		0AA28C0122582376009D6B53 /* ExerciseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseController.swift; sourceTree = "<group>"; };
+		0AA28C03225828BD009D6B53 /* ExerciseCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCellTableViewCell.swift; sourceTree = "<group>"; };
+		0AA28C07225BBE0E009D6B53 /* SearchProgramsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProgramsTableViewController.swift; sourceTree = "<group>"; };
+		0AA28C09225BC281009D6B53 /* SearchedProgramTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedProgramTableViewCell.swift; sourceTree = "<group>"; };
+		0AA28C0D225BD34C009D6B53 /* AddProgramViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProgramViewController.swift; sourceTree = "<group>"; };
 		0AAECEA12256F90700EC360B /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		0AAECEA32256F9CC00EC360B /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		0AAECEA52256FBE600EC360B /* WorkoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutController.swift; sourceTree = "<group>"; };
@@ -131,6 +143,9 @@
 			isa = PBXGroup;
 			children = (
 				0AAECEA822570FFB00EC360B /* CreatedProgramTableViewCell.swift */,
+				0AA28BFF22581FDA009D6B53 /* SetsCreationTableViewCell.swift */,
+				0AA28C03225828BD009D6B53 /* ExerciseCellTableViewCell.swift */,
+				0AA28C09225BC281009D6B53 /* SearchedProgramTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,6 +204,8 @@
 				0AAECEB02257C1D400EC360B /* ProgramCreationViewController.swift */,
 				0AA28BFB22580403009D6B53 /* WorkoutCreationViewController.swift */,
 				0AA28BFD22581946009D6B53 /* ExerciseCreationViewController.swift */,
+				0AA28C07225BBE0E009D6B53 /* SearchProgramsTableViewController.swift */,
+				0AA28C0D225BD34C009D6B53 /* AddProgramViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -199,6 +216,7 @@
 				0AF3C1DF2256B96700ACB9A3 /* ProgramController.swift */,
 				0AAECEA52256FBE600EC360B /* WorkoutController.swift */,
 				0AAECEAE2257B48600EC360B /* UserController.swift */,
+				0AA28C0122582376009D6B53 /* ExerciseController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -399,21 +417,27 @@
 				0AF3C1DE2256B83000ACB9A3 /* Program.swift in Sources */,
 				0AAECEA62256FBE600EC360B /* WorkoutController.swift in Sources */,
 				0AAECEAF2257B48600EC360B /* UserController.swift in Sources */,
+				0AA28C04225828BD009D6B53 /* ExerciseCellTableViewCell.swift in Sources */,
 				0AAECEAB2257B1E400EC360B /* AccountViewController.swift in Sources */,
 				0AF3C1B62255605900ACB9A3 /* DatabaseReference.swift in Sources */,
 				0AF3C1BC2255673800ACB9A3 /* Extensions.swift in Sources */,
 				0AAECEA22256F90700EC360B /* Workout.swift in Sources */,
+				0AA28C08225BBE0E009D6B53 /* SearchProgramsTableViewController.swift in Sources */,
 				0AF3C1BA225566FC00ACB9A3 /* HomeController.swift in Sources */,
 				0AF3C1AE2255560E00ACB9A3 /* LogInViewController.swift in Sources */,
 				0AAECEAD2257B3A800EC360B /* User.swift in Sources */,
+				0AA28C0E225BD34C009D6B53 /* AddProgramViewController.swift in Sources */,
 				0AAECEA42256F9CC00EC360B /* Exercise.swift in Sources */,
 				0AF3C1E02256B96700ACB9A3 /* ProgramController.swift in Sources */,
 				0AA28BFE22581946009D6B53 /* ExerciseCreationViewController.swift in Sources */,
+				0AA28C0022581FDA009D6B53 /* SetsCreationTableViewCell.swift in Sources */,
 				0AF3C1DB2256B50700ACB9A3 /* CreatedProgramsListTableViewController.swift in Sources */,
 				0A8B5BCA225523BE0038F734 /* AppDelegate.swift in Sources */,
 				0AAECEB12257C1D400EC360B /* ProgramCreationViewController.swift in Sources */,
+				0AA28C0A225BC281009D6B53 /* SearchedProgramTableViewCell.swift in Sources */,
 				0AA28BFC22580403009D6B53 /* WorkoutCreationViewController.swift in Sources */,
 				0AAECEA922570FFB00EC360B /* CreatedProgramTableViewCell.swift in Sources */,
+				0AA28C0222582376009D6B53 /* ExerciseController.swift in Sources */,
 				0AF3C1B82255667000ACB9A3 /* SignUpController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

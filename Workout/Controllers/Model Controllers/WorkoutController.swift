@@ -102,22 +102,51 @@ class WorkoutController {
         guard let index = self.workouts.index(of: workout) else { return }
         self.workouts.remove(at: index)
         
-        // Delete from Firestore
+        // Delete workout from Firestore
         db.collection(DatabaseReference.workoutDatabase).document(workout.uid).delete() { err in
             if let err = err {
                 print("Error removing workout: \(err)")
                 completion(false)
             } else {
                 print("Workout successfully removed!")
-                completion(true)
+                self.deleteAllExercisesFromWorkout(workoutUID: workout.uid, completion: {
+                    completion(true)
+                })
+            }
+        }
+        
+        // Delete all exercises contained in workout
+        
+    }
+    
+    private func deleteAllExercisesFromWorkout(workoutUID: String, completion: @escaping () -> ()) {
+        let dispatchGroup = DispatchGroup()
+        
+        
+        db.collection(DatabaseReference.exerciseDatabase).whereField("workoutUID", isEqualTo: workoutUID).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting exercises to delete: \(error)")
+                completion()
+            }
+            for document in querySnapshot!.documents {
+                dispatchGroup.enter()
+                document.reference.delete(completion: { (error) in
+                    if let error = error {
+                        print(error)
+                        dispatchGroup.leave()
+                    } else {
+                        dispatchGroup.leave()
+                    }
+                })
+            }
+            dispatchGroup.notify(queue: .main) {
+                completion()
             }
         }
     }
     
     // MARK: - Load workouts for currentUsers specified Program
     func loadWorkouts(programUID: String, completion: @escaping () -> ()) {
-        
-        
         db.collection(DatabaseReference.workoutDatabase).whereField("programUID", isEqualTo: programUID)
             .addSnapshotListener { (querySnapshot, error) in
                 if let error = error {
