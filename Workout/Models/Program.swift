@@ -15,14 +15,16 @@ class Program {
     var name: String
     var description: String
     var photoURL: String
+    var followersUIDs: [String]
     let uid: String
     
     // MARK: - Memberwise initilizer
-    init(creatorUID: String, name: String, description: String, photoURL: String, uid: String = UUID.init().uuidString) {
+    init(creatorUID: String, name: String, description: String, photoURL: String, followersUIDs: [String] = [], uid: String = UUID.init().uuidString) {
         self.creatorUID = creatorUID
         self.name = name
         self.description = description
         self.photoURL = photoURL
+        self.followersUIDs = followersUIDs
         self.uid = uid
     }
     
@@ -32,9 +34,10 @@ class Program {
         let name = document["name"] as! String? ?? ""
         let description = document["description"] as! String? ?? ""
         let photoURL = document["photoURL"] as! String? ?? ""
+        let followersUIDs = document["followersUIDs"] as! [String]? ?? []
         let uid = document["uid"] as! String? ?? ""
         
-        self.init(creatorUID: creatorUID, name: name, description: description, photoURL: photoURL, uid: uid)
+        self.init(creatorUID: creatorUID, name: name, description: description, photoURL: photoURL, followersUIDs: followersUIDs, uid: uid)
     }
 }
 

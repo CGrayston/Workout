@@ -154,9 +154,11 @@ class SignUpController: UIViewController, GIDSignInUIDelegate {
             guard let uid = result?.user.uid else { return }
             
             self.db.collection(DatabaseReference.userDatabase).document(uid).setData([
-                "uid": uid,
                 "email": email,
-                "username": username
+                "username": username,
+                "followedPrograms": [],
+                "createdPrograms": [],
+                "uid": uid,
             ]) { err in
                 if let err = err {
                     print("Error writing document: \(err)")

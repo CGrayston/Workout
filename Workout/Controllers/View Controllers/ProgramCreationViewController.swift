@@ -35,7 +35,7 @@ class ProgramCreationViewController: UIViewController, UITableViewDataSource, UI
         tableView.dataSource = self
         
         programDescriptionTextView.text = "Program Description..."
-        programDescriptionTextView.textColor = UIColor.lightGray
+        //programDescriptionTextView.textColor = UIColor.lightGray
         programDescriptionTextView.font = UIFont(name: "verdana", size: 13.0)
         programDescriptionTextView.returnKeyType = .done
         programDescriptionTextView.delegate = self
@@ -51,6 +51,7 @@ class ProgramCreationViewController: UIViewController, UITableViewDataSource, UI
             }
         }
     }
+    
     
     // MARK: - Text View Delegate Methods
     func textViewDidBeginEditing(_ textView: UITextView) {
