@@ -14,7 +14,6 @@ class CreatedProgramsListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         self.tableView.rowHeight = 200
     }
     

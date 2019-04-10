@@ -45,6 +45,8 @@ class ExerciseCreationViewController: UIViewController, UITableViewDelegate, UIT
         tableView.delegate = self
         tableView.dataSource = self
         
+        self.hideKeyboardWhenTappedAround()
+        
     }
     
     // MARK: - Delegate Methods

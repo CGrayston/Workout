@@ -29,7 +29,7 @@ class ProgramCreationViewController: UIViewController, UITableViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        self.hideKeyboardWhenTappedAround()
         // Set delegates
         tableView.delegate = self
         tableView.dataSource = self

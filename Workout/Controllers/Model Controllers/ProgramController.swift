@@ -14,7 +14,7 @@ class ProgramController {
     var programs: [Program] = []
     
     var db: Firestore!
-    
+    var programDBRef: CollectionReference
     var userUID: String {
         // TODO - better way to do this?
         guard let userUID = Auth.auth().currentUser?.uid else {
@@ -30,6 +30,8 @@ class ProgramController {
     // MARK: - Initilize
     init() {
         db = Firestore.firestore()
+        programDBRef = db.collection(DatabaseReference.programDatabase)
+        
     }
     
     // MARK: - CRUD Functions
@@ -280,6 +282,36 @@ class ProgramController {
             }
             completion(programs)
             return
+        }
+    }
+    
+    func getUserFollowedAndCreatedPrograms(completion: @escaping (_ followedPrograms: [Program], _ createdPrograms: [Program]) -> Void) {
+        var createdPrograms: [Program] = []
+        var followedPrograms: [Program] = []
+        
+        programDBRef.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error gettings all User followed programs: \(error.localizedDescription)")
+                completion([],[])
+                return
+            }
+            guard let querySnapshot = querySnapshot else { return }
+            
+            for document in querySnapshot.documents {
+                let creatorUID = document["creatorUID"] as? String
+                let followersUIDs = document["followersUIDs"] as? [String] ?? []
+                
+                // if document.creatorUID == userUID add to the createdPrograms array
+                // if document.followersUIDs array contains userUID then add to follwoed rograms array
+                if creatorUID == self.userUID {
+                    let program = Program(document: document.data())
+                    createdPrograms.append(program)
+                } else if followersUIDs.contains(self.userUID){
+                    let program = Program(document: document.data())
+                    followedPrograms.append(program)
+                }
+            }
+            completion(followedPrograms, createdPrograms)
         }
     }
 }

@@ -28,6 +28,13 @@ class AddProgramViewController: UIViewController {
     
     // MARK: - Life Cycle Methods
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Resign keyboard on tap
+        self.hideKeyboardWhenTappedAround()
+    }
     override func viewWillAppear(_ animated: Bool) {
         guard let program = program, let currentUser = UserController.shared.currentUser else { return }
        

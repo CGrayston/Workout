@@ -13,13 +13,13 @@
         <!--Created Programs-->
         <scene sceneID="iaj-GX-dGJ">
             <objects>
-                <tableViewController title="Created Programs" id="97o-3W-bdE" customClass="CreatedProgramsListTableViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Created Programs" id="97o-3W-bdE" customClass="MyProgramsTableViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Qs6-Xw-bWA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="createdProgram" rowHeight="161" id="Gfs-IL-3Rc" customClass="CreatedProgramTableViewCell" customModule="Workout" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="programsCell" rowHeight="161" id="Gfs-IL-3Rc" customClass="CreatedProgramTableViewCell" customModule="Workout" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="161"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gfs-IL-3Rc" id="gAZ-Jb-aLU">
@@ -75,7 +75,7 @@
                                     <outlet property="programDescriptionLabel" destination="Dtq-3p-zGt" id="xT9-RN-ia0"/>
                                     <outlet property="programImageView" destination="sdA-AV-Rfw" id="JbS-nl-NPP"/>
                                     <outlet property="programNameLabel" destination="aGR-dI-2qB" id="9BQ-If-SRr"/>
-                                    <segue destination="eZm-RE-va4" kind="show" id="MYY-sM-XMl"/>
+                                    <segue destination="eZm-RE-va4" kind="show" identifier="toProgramDetailVC" id="MYY-sM-XMl"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -84,13 +84,7 @@
                             <outlet property="delegate" destination="97o-3W-bdE" id="VNx-Lj-DRn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Programs" id="9X2-4R-7Z6">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="awg-Fz-koL">
-                            <connections>
-                                <action selector="addProgramButtonTapped:" destination="97o-3W-bdE" id="1Fb-CO-dsk"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="My Programs" id="9X2-4R-7Z6"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a9s-ev-jku" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -115,7 +109,7 @@
         <!--(Program Name)-->
         <scene sceneID="QEv-n7-C3a">
             <objects>
-                <viewController id="eZm-RE-va4" customClass="AddProgramViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="eZm-RE-va4" customClass="ProgramViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZYA-FN-zEA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -128,16 +122,16 @@
                                 <rect key="frame" x="0.0" y="122.66666666666669" width="375" height="621"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(programsName)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDd-0s-Drt">
-                                        <rect key="frame" x="122.33333333333333" y="0.0" width="130.66666666666669" height="20.333333333333332"/>
+                                        <rect key="frame" x="122.33333333333333" y="0.0" width="130.66666666666669" height="24.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="98a-F8-fs6">
-                                        <rect key="frame" x="0.0" y="78.333333333333314" width="375" height="376"/>
+                                        <rect key="frame" x="0.0" y="82.333333333333343" width="375" height="268.33333333333326"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(programsDescription)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pO2-KO-7ts">
-                                        <rect key="frame" x="101.00000000000001" y="512.33333333333337" width="173.33333333333337" height="20.666666666666629"/>
+                                        <rect key="frame" x="0.0" y="408.66666666666669" width="375" height="124.33333333333331"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -149,18 +143,20 @@
                                             <constraint firstAttribute="height" constant="30" id="B0Y-ha-wEc"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="Start">
+                                        <state key="normal" title="Enter Program">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="followProgramButtonTapped:" destination="eZm-RE-va4" eventType="touchUpInside" id="faF-XL-72o"/>
-                                            <segue destination="xjh-sJ-cLx" kind="showDetail" id="z2Q-Nx-UbK"/>
+                                            <action selector="startButtonTapped:" destination="eZm-RE-va4" eventType="touchUpInside" id="ew0-jh-PFh"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="pO2-KO-7ts" firstAttribute="height" secondItem="OXd-uN-a8V" secondAttribute="height" multiplier="0.2" id="Hk1-tE-E0z"/>
                                     <constraint firstItem="nDR-Aq-Ofp" firstAttribute="centerX" secondItem="OXd-uN-a8V" secondAttribute="centerX" id="PVz-DY-Vii"/>
                                     <constraint firstItem="nDR-Aq-Ofp" firstAttribute="width" secondItem="OXd-uN-a8V" secondAttribute="width" multiplier="0.9" id="ayW-Ti-HLC"/>
+                                    <constraint firstItem="pO2-KO-7ts" firstAttribute="width" secondItem="OXd-uN-a8V" secondAttribute="width" id="j77-p8-rnP"/>
+                                    <constraint firstItem="pO2-KO-7ts" firstAttribute="centerX" secondItem="OXd-uN-a8V" secondAttribute="centerX" id="pMx-gY-OcX"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -179,37 +175,36 @@
                     </view>
                     <navigationItem key="navigationItem" title="(Program Name)" id="obU-LN-JF4"/>
                     <connections>
-                        <outlet property="followProgramButton" destination="nDR-Aq-Ofp" id="LGQ-BU-AQb"/>
-                        <outlet property="programDescription" destination="pO2-KO-7ts" id="ESL-gh-ogg"/>
-                        <outlet property="programImageView" destination="98a-F8-fs6" id="tDk-um-1k6"/>
-                        <outlet property="programNameLabel" destination="PDd-0s-Drt" id="pfv-Gk-P2p"/>
+                        <outlet property="navBarItem" destination="obU-LN-JF4" id="wZe-P5-usp"/>
+                        <outlet property="programDescriptionLabel" destination="pO2-KO-7ts" id="UUo-LO-Rf3"/>
+                        <outlet property="programImageView" destination="98a-F8-fs6" id="buB-mb-VM1"/>
+                        <outlet property="programNameLabel" destination="PDd-0s-Drt" id="Zxf-tq-xZO"/>
+                        <segue destination="xjh-sJ-cLx" kind="show" identifier="toChooseWorkoutVC" id="F1L-Dy-QGN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ux3-Qp-Am0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3735" y="-624"/>
         </scene>
-        <!--Workout Creation-->
+        <!--Choose Workout-->
         <scene sceneID="vVN-70-yBi">
             <objects>
-                <viewController id="xjh-sJ-cLx" customClass="WorkoutCreationViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xjh-sJ-cLx" customClass="ChooseWorkoutViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AMM-6n-aj9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="SvO-Yb-ham">
-                                <rect key="frame" x="0.0" y="48" width="375" height="203"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="203"/>
                                 <subviews>
-                                    <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1sc-e8-m6l">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                        <items>
-                                            <navigationItem title="(Program Name)" id="GwE-PV-k98">
-                                                <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="HNs-pv-AKz"/>
-                                            </navigationItem>
-                                        </items>
-                                    </navigationBar>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(programsDescription)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4q-Ww-SSC">
-                                        <rect key="frame" x="0.0" y="52" width="375" height="93"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(programsName)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A9D-P4-FQt">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="(programsDescription)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4q-Ww-SSC">
+                                        <rect key="frame" x="0.0" y="28.333333333333321" width="375" height="116.66666666666669"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -227,7 +222,7 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uO7-AJ-K1g">
-                                <rect key="frame" x="0.0" y="255" width="375" height="523"/>
+                                <rect key="frame" x="0.0" y="299" width="375" height="479"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="workoutSelectionCell" textLabel="oP1-fj-zSh" detailTextLabel="y48-EH-aep" rowHeight="110" style="IBUITableViewCellStyleSubtitle" id="rC9-RJ-UZ3" customClass="ExerciseCellTableViewCell" customModule="Workout" customModuleProvider="target">
@@ -253,6 +248,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="zaV-pU-ohZ" kind="showDetail" identifier="toWorkoutViewController" id="BnD-xd-CXk"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -271,31 +269,367 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PwL-KL-OjH"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Workout Creation" id="H40-is-hez">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="M3d-gS-sYl"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Choose Workout" id="H40-is-hez"/>
                     <connections>
-                        <outlet property="tableView" destination="uO7-AJ-K1g" id="7YP-ev-dCc"/>
+                        <outlet property="programDescriptionLabel" destination="A4q-Ww-SSC" id="Q7f-cP-wXw"/>
+                        <outlet property="programNameLabel" destination="A9D-P4-FQt" id="V99-NP-Jma"/>
+                        <outlet property="tableView" destination="uO7-AJ-K1g" id="zq7-85-RKU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZdE-eb-feH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2903.1999999999998" y="-624.38423645320199"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="bhw-It-0im">
+        <!--(exercise)-->
+        <scene sceneID="41O-bM-czP">
             <objects>
-                <viewController id="djw-8B-lPH" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="MO0-qZ-oTG">
+                <viewController title="(exercise)" id="wI4-Cz-l2u" customClass="ExerciseViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GZq-aN-cde">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OlO-9X-ft9">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Current Exercise" id="6Ty-zr-SL6">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="q7G-RD-V6A">
+                                            <connections>
+                                                <action selector="cancelButtonTapped:" destination="wI4-Cz-l2u" id="0Un-4A-7iv"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem systemItem="save" id="dcO-9k-LPz">
+                                                <connections>
+                                                    <action selector="saveButtonTapped:" destination="wI4-Cz-l2u" id="dbE-Hb-zEu"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem systemItem="bookmarks" id="yyK-WK-9gn">
+                                                <connections>
+                                                    <action selector="exerciseHistoryButtonTapped:" destination="wI4-Cz-l2u" id="rtA-B9-vMH"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Tfb-Jo-NR6">
+                                <rect key="frame" x="0.0" y="88" width="375" height="330.33333333333331"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="h7y-Ho-dMm">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="298"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(exerciseName)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzs-tX-P0W">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="25.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="wkq-fW-2Sa">
+                                                <rect key="frame" x="0.0" y="33.333333333333329" width="375" height="236.33333333333337"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suggested:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NYr-As-XHC">
+                                                <rect key="frame" x="0.0" y="277.66666666666669" width="375" height="20.333333333333314"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="eZb-Gx-rE4">
+                                        <rect key="frame" x="0.0" y="310" width="224.33333333333334" height="20.333333333333314"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Igo-TU-s2C">
+                                                <rect key="frame" x="0.0" y="0.0" width="91.333333333333329" height="20.333333333333332"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Sets: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIv-6V-dh6">
+                                                        <rect key="frame" x="0.0" y="0.0" width="43" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(sets)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaf-M6-vQm">
+                                                        <rect key="frame" x="47" y="0.0" width="44.333333333333343" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="hKh-l1-vkv">
+                                                <rect key="frame" x="131.33333333333334" y="0.0" width="93" height="20.333333333333332"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reps:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ea6-1J-vvH">
+                                                        <rect key="frame" x="0.0" y="0.0" width="43" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="(reps)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bil-zk-JJi">
+                                                        <rect key="frame" x="47" y="0.0" width="46" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5fG-I9-Vi8">
+                                <rect key="frame" x="0.0" y="418.33333333333326" width="375" height="359.66666666666674"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="setCell" rowHeight="80" id="zon-rf-jnN" customClass="EnterExerciseSetTableViewCell" customModule="Workout" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zon-rf-jnN" id="6iB-4m-utZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.666666666666671"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="mti-un-FMC">
+                                                    <rect key="frame" x="27.666666666666657" y="35" width="319.66666666666674" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Set &quot;X&quot;)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVz-Yz-cRb">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50.333333333333336" height="30"/>
+                                                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Weight:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mnm-Vg-eyS">
+                                                            <rect key="frame" x="55.333333333333343" y="0.0" width="58.666666666666657" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" borderStyle="roundedRect" placeholder="Weight..." textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="C0r-av-ipK">
+                                                            <rect key="frame" x="119" y="0.0" width="82" height="30"/>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Reps:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igt-1P-WbE">
+                                                            <rect key="frame" x="206" y="0.0" width="43" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" borderStyle="roundedRect" placeholder="Reps..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pex-r8-fCX">
+                                                            <rect key="frame" x="253.99999999999997" y="0.0" width="65.666666666666657" height="30"/>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="repsInputTextField" destination="pex-r8-fCX" id="77P-Oc-wwx"/>
+                                            <outlet property="setLabel" destination="cVz-Yz-cRb" id="b4i-rj-KIJ"/>
+                                            <outlet property="weightInputTextField" destination="C0r-av-ipK" id="hTW-SN-7QR"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="QVI-f5-wx9"/>
+                        <constraints>
+                            <constraint firstItem="Tfb-Jo-NR6" firstAttribute="height" secondItem="t7K-Um-weF" secondAttribute="height" multiplier="0.45" id="GX1-y8-mcU"/>
+                            <constraint firstItem="t7K-Um-weF" firstAttribute="bottom" secondItem="5fG-I9-Vi8" secondAttribute="bottom" id="OFg-nn-C5l"/>
+                            <constraint firstItem="5fG-I9-Vi8" firstAttribute="leading" secondItem="t7K-Um-weF" secondAttribute="leading" id="Q4a-qj-aBi"/>
+                            <constraint firstItem="Tfb-Jo-NR6" firstAttribute="trailing" secondItem="t7K-Um-weF" secondAttribute="trailing" id="TH4-RK-PWq"/>
+                            <constraint firstItem="5fG-I9-Vi8" firstAttribute="top" secondItem="Tfb-Jo-NR6" secondAttribute="bottom" id="UbH-Hc-ulw"/>
+                            <constraint firstItem="Tfb-Jo-NR6" firstAttribute="top" secondItem="OlO-9X-ft9" secondAttribute="bottom" id="fBm-eD-4fe"/>
+                            <constraint firstItem="Tfb-Jo-NR6" firstAttribute="leading" secondItem="t7K-Um-weF" secondAttribute="leading" id="flq-1t-vF7"/>
+                            <constraint firstItem="5fG-I9-Vi8" firstAttribute="trailing" secondItem="t7K-Um-weF" secondAttribute="trailing" id="g4V-ch-VoB"/>
+                            <constraint firstItem="OlO-9X-ft9" firstAttribute="trailing" secondItem="t7K-Um-weF" secondAttribute="trailing" id="tTw-A2-ZhG"/>
+                            <constraint firstItem="OlO-9X-ft9" firstAttribute="leading" secondItem="t7K-Um-weF" secondAttribute="leading" id="tfs-CS-9aC"/>
+                            <constraint firstItem="t7K-Um-weF" firstAttribute="top" secondItem="OlO-9X-ft9" secondAttribute="top" id="zib-Ma-EZB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="t7K-Um-weF"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Exercise Creation" id="xwg-7z-ksP"/>
+                    <connections>
+                        <outlet property="exerciseImageView" destination="wkq-fW-2Sa" id="Fdj-QP-4my"/>
+                        <outlet property="exerciseNameLabel" destination="kzs-tX-P0W" id="ouP-Pg-Zhx"/>
+                        <outlet property="repsLabel" destination="Bil-zk-JJi" id="RVe-dU-COg"/>
+                        <outlet property="setsLabel" destination="kaf-M6-vQm" id="NNy-7T-s3z"/>
+                        <outlet property="tableView" destination="5fG-I9-Vi8" id="eLO-Zh-dFf"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fPc-PD-u3F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g90-fq-kRy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2014" y="-625"/>
+            <point key="canvasLocation" x="-1167.2" y="-627.33990147783254"/>
+        </scene>
+        <!--Workout View Controller-->
+        <scene sceneID="bfp-Wx-jwN">
+            <objects>
+                <viewController id="zaV-pU-ohZ" customClass="WorkoutViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gNQ-Oe-IcI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VL6-Rd-wQG">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Today's Workout" id="ULU-IE-0pR">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="y4Y-NN-rEf">
+                                            <connections>
+                                                <action selector="cancelButtonTapped:" destination="zaV-pU-ohZ" id="ml3-J6-uhT"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="DBK-wY-Lpx">
+                                            <connections>
+                                                <action selector="saveButtonTapped:" destination="zaV-pU-ohZ" id="0Mm-ZX-JIo"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hfX-gt-GOb">
+                                <rect key="frame" x="9.3333333333333428" y="88.000000000000014" width="356.33333333333326" height="220.33333333333337"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(workoutsName)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Sq-wl-rbx">
+                                        <rect key="frame" x="0.0" y="0.0" width="356.33333333333331" height="53"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="(workoutsDescription)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DE7-eA-Zcx">
+                                        <rect key="frame" x="0.0" y="60.999999999999993" width="356.33333333333331" height="111.33333333333331"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Perform Exercise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fhz-Fi-e8d">
+                                        <rect key="frame" x="0.0" y="180.33333333333331" width="356.33333333333331" height="40"/>
+                                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="0.81306185789999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="div-Zd-Ndd"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                        <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pO7-wl-a2O">
+                                <rect key="frame" x="0.0" y="308" width="375" height="504"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="exerciseCell" rowHeight="172" id="RTz-1O-f4e" customClass="ExerciseCellTableViewCell" customModule="Workout" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="172"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RTz-1O-f4e" id="xLF-e6-tPO">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="171.66666666666666"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="r05-eJ-0Le">
+                                                    <rect key="frame" x="9.3333333333333428" y="0.0" width="356.33333333333326" height="171.66666666666666"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ceR-ru-JPW">
+                                                            <rect key="frame" x="0.0" y="32.333333333333343" width="142.66666666666666" height="107"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="ceR-ru-JPW" secondAttribute="height" multiplier="4:3" id="RiK-LJ-5Xt"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="3NF-pF-Lua">
+                                                            <rect key="frame" x="150.66666666666669" y="44.333333333333343" width="205.66666666666669" height="83"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(exercisesName)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zeD-0a-BtE">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="128.66666666666666" height="20.333333333333332"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="9RM-5e-Y57">
+                                                                    <rect key="frame" x="0.0" y="31.333333333333336" width="178.66666666666666" height="20.333333333333336"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sets: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5F9-id-59u">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="43" height="20.333333333333332"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(exercisesSets)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJ9-gs-l2Z">
+                                                                            <rect key="frame" x="61.000000000000007" y="0.0" width="117.66666666666669" height="20.333333333333332"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="7ne-E4-mOs">
+                                                                    <rect key="frame" x="0.0" y="62.666666666666664" width="182.33333333333334" height="20.333333333333336"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reps: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hvE-j7-NXf">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="47.333333333333336" height="20.333333333333332"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(exercisesReps)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inx-fN-4cW">
+                                                                            <rect key="frame" x="60.333333333333343" y="0.0" width="122" height="20.333333333333332"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="ceR-ru-JPW" firstAttribute="width" secondItem="r05-eJ-0Le" secondAttribute="width" multiplier="0.4" id="nNx-xI-mB3"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="r05-eJ-0Le" firstAttribute="centerY" secondItem="xLF-e6-tPO" secondAttribute="centerY" id="EOM-xU-VuY"/>
+                                                <constraint firstItem="r05-eJ-0Le" firstAttribute="width" secondItem="xLF-e6-tPO" secondAttribute="width" multiplier="0.95" id="M8O-al-cxj"/>
+                                                <constraint firstItem="r05-eJ-0Le" firstAttribute="centerX" secondItem="xLF-e6-tPO" secondAttribute="centerX" id="QCz-tH-EyG"/>
+                                                <constraint firstItem="r05-eJ-0Le" firstAttribute="height" secondItem="xLF-e6-tPO" secondAttribute="height" id="ZAf-eo-tfb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="exerciseImageView" destination="ceR-ru-JPW" id="ko4-mE-uZF"/>
+                                            <outlet property="nameLabel" destination="zeD-0a-BtE" id="Jq1-AU-RNA"/>
+                                            <outlet property="repsLabel" destination="inx-fN-4cW" id="0re-L6-nAW"/>
+                                            <outlet property="setsLabel" destination="wJ9-gs-l2Z" id="cus-Ac-bnA"/>
+                                            <segue destination="wI4-Cz-l2u" kind="showDetail" identifier="toExerciseView" id="kTN-dI-na5"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hfX-gt-GOb" firstAttribute="width" secondItem="sWy-zQ-s67" secondAttribute="width" multiplier="0.95" id="1km-yy-IXb"/>
+                            <constraint firstItem="hfX-gt-GOb" firstAttribute="top" secondItem="VL6-Rd-wQG" secondAttribute="bottom" id="BrW-CQ-doQ"/>
+                            <constraint firstItem="pO7-wl-a2O" firstAttribute="top" secondItem="hfX-gt-GOb" secondAttribute="bottom" id="FkB-Cj-U9S"/>
+                            <constraint firstItem="hfX-gt-GOb" firstAttribute="height" secondItem="sWy-zQ-s67" secondAttribute="height" multiplier="0.3" id="MkY-ko-mTe"/>
+                            <constraint firstAttribute="bottom" secondItem="pO7-wl-a2O" secondAttribute="bottom" id="NJp-97-OBy"/>
+                            <constraint firstItem="VL6-Rd-wQG" firstAttribute="leading" secondItem="sWy-zQ-s67" secondAttribute="leading" id="hXa-BJ-MXH"/>
+                            <constraint firstItem="hfX-gt-GOb" firstAttribute="centerX" secondItem="gNQ-Oe-IcI" secondAttribute="centerX" id="mQ1-Q7-C9z"/>
+                            <constraint firstItem="VL6-Rd-wQG" firstAttribute="trailing" secondItem="sWy-zQ-s67" secondAttribute="trailing" id="qfH-gP-tYU"/>
+                            <constraint firstItem="pO7-wl-a2O" firstAttribute="leading" secondItem="sWy-zQ-s67" secondAttribute="leading" id="vZU-yi-inT"/>
+                            <constraint firstItem="pO7-wl-a2O" firstAttribute="trailing" secondItem="sWy-zQ-s67" secondAttribute="trailing" id="w47-PJ-vub"/>
+                            <constraint firstItem="sWy-zQ-s67" firstAttribute="top" secondItem="VL6-Rd-wQG" secondAttribute="top" id="y66-MS-r3v"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="sWy-zQ-s67"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="pO7-wl-a2O" id="cMw-wy-XYe"/>
+                        <outlet property="workoutDescriptionLabel" destination="DE7-eA-Zcx" id="Inw-Xm-CEU"/>
+                        <outlet property="workoutNameLabel" destination="3Sq-wl-rbx" id="Fn6-T5-7hj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x8E-Mk-VE8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2017" y="-624"/>
         </scene>
     </scenes>
     <resources>

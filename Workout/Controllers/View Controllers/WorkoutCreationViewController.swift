@@ -29,6 +29,8 @@ class WorkoutCreationViewController: UIViewController, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        self.hideKeyboardWhenTappedAround()
         // Set delegates
         tableView.delegate = self
         tableView.dataSource = self

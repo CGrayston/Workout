@@ -27,9 +27,18 @@ class SearchProgramsTableViewController: UITableViewController, UISearchBarDeleg
         super.viewDidLoad()
         
         searchBar.delegate = self
+        
+        //self.hideKeyboard()
+        self.hideKeyboardWhenTappedAround()
+        
     }
     
     // MARK: - Table view data source
+    
+    override func touchesBegan(_ touches: Set<UITouch>,
+                               with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // TODO

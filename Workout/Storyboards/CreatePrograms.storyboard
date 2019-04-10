@@ -419,9 +419,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="luy-QL-k2J">
-                                <rect key="frame" x="0.0" y="486" width="375" height="266"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="luy-QL-k2J">
+                                <rect key="frame" x="0.0" y="457.33333333333326" width="375" height="320.66666666666674"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="setCell" rowHeight="80" id="yS0-iS-8os" customClass="SetsCreationTableViewCell" customModule="Workout" customModuleProvider="target">
@@ -616,7 +615,11 @@
                             <constraint firstItem="h0z-wj-NP8" firstAttribute="height" secondItem="IAy-MB-KxP" secondAttribute="height" multiplier="0.45" id="2Y7-8O-zBo"/>
                             <constraint firstItem="h0z-wj-NP8" firstAttribute="width" secondItem="IAy-MB-KxP" secondAttribute="width" multiplier="0.95" id="6QG-fz-BUB"/>
                             <constraint firstItem="h0z-wj-NP8" firstAttribute="top" secondItem="wrC-Es-gBl" secondAttribute="top" constant="4" id="JZI-Vf-9Ei"/>
+                            <constraint firstItem="wrC-Es-gBl" firstAttribute="bottom" secondItem="luy-QL-k2J" secondAttribute="bottom" id="Mcr-B0-iGe"/>
+                            <constraint firstItem="luy-QL-k2J" firstAttribute="leading" secondItem="wrC-Es-gBl" secondAttribute="leading" id="QMd-Ed-JZg"/>
+                            <constraint firstItem="luy-QL-k2J" firstAttribute="top" secondItem="h0z-wj-NP8" secondAttribute="bottom" id="T69-og-8e5"/>
                             <constraint firstItem="h0z-wj-NP8" firstAttribute="centerX" secondItem="wrC-Es-gBl" secondAttribute="centerX" id="had-mX-Fwd"/>
+                            <constraint firstItem="luy-QL-k2J" firstAttribute="trailing" secondItem="wrC-Es-gBl" secondAttribute="trailing" id="sQj-iW-ycc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wrC-Es-gBl"/>
                     </view>
