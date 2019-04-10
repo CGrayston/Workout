@@ -149,5 +149,29 @@ class ExerciseController {
                 completion()
         }
     }
+    
+    // MARK: - Fetch
+    
+    // MARK: - Fetch
+    func getExercisesForWorkout(_ workout: Workout, completion: @escaping ([Exercise]) -> (Void)) {
+        var exercises: [Exercise] = []
+        // Search for all workouts associated with given Program
+        let query = db.collection(DatabaseReference.exerciseDatabase).whereField("workoutUID", isEqualTo: workout.uid)
+        
+        query.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting exercises from Firestore: \(error.localizedDescription)")
+                completion([])
+                return
+            }
+            
+            guard let querySnapshot = querySnapshot else { return }
+            for document in querySnapshot.documents {
+                guard let exercise = Exercise(document: document) else { return }
+                exercises.append(exercise)
+            }
+            completion(exercises)
+        }
+    }
 }
 
