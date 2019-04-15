@@ -20,8 +20,11 @@ class Exercise {
     var photoURL: String
     let uid: String
     
+    // Local only isCompleted var to see if the exercise was completed durign workout
+    var isCompleted: Bool
+    
     // MARK: - Memberwise initilizer
-    init(workoutUID: String, name: String, description: String, sets: String, setsCount: Int = 0, reps: String, photoURL: String, uid: String = UUID.init().uuidString) {
+    init(workoutUID: String, name: String, description: String, sets: String, setsCount: Int = 0, reps: String, photoURL: String, uid: String = UUID.init().uuidString, isCompleted: Bool = false) {
         self.workoutUID = workoutUID
         self.name = name
         self.description = description
@@ -30,6 +33,8 @@ class Exercise {
         self.reps = reps
         self.photoURL = photoURL
         self.uid = uid
+        
+        self.isCompleted = isCompleted
     }
     
     // MARK: - Failable initilizer
@@ -52,6 +57,8 @@ class Exercise {
         self.reps = reps
         self.photoURL = photoURL
         self.uid = uid
+        
+        self.isCompleted = false
     }
 }
 

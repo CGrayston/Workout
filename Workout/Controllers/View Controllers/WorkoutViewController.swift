@@ -11,9 +11,10 @@ import UIKit
 class WorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Properties
-    var exercises: [Exercise]?
+    var completedExercises: [CompletedExercise]?
+    var program: Program?
     
-    var workout: Workout? {
+    var completedWorkout: CompletedWorkout? {
         didSet {
             loadViewIfNeeded()
             tableView.reloadData()
@@ -33,21 +34,26 @@ class WorkoutViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Set delegate and data source
         tableView.delegate = self
         tableView.dataSource = self
-
+     
     }
     
     
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return exercises?.count ?? 0
+        return completedExercises?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as? ExerciseCellTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "completedExerciseCell", for: indexPath) as? CompletedExerciseCellTableViewCell else { return UITableViewCell() }
         
-        if let exercises = exercises {
-            let exercise = exercises[indexPath.row]
-            cell.exercise = exercise
+        
+        
+        if let completedExercises = completedExercises {
+            let completedExercise = completedExercises[indexPath.row]
+            cell.completedExercise = completedExercise
+            
+//            cell.backgroundColor = exercise.isCompleted ? UIColor.green : UIColor.darkGray
+//            print("Color: \(cell.backgroundColor?.description). Exercise isOn: \(exercise.isCompleted)")
         }
         
         return cell
@@ -65,22 +71,36 @@ class WorkoutViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // "toExerciseView"
         if segue.identifier == "toExerciseView" {
+            
             guard let indexPath = tableView.indexPathForSelectedRow,
                 let destinationVC = segue.destination as? ExerciseViewController,
-                let exercises = exercises else { return }
+                let completedExercises = completedExercises else { return }
             
-            let exercise = exercises[indexPath.row]
+            // Get correct completedExercise to pass
+            let completedExercise = completedExercises[indexPath.row]
             
-            destinationVC.workout = workout // not sure if this is neccesary
-            destinationVC.exercise = exercise
+            destinationVC.completedExerciseDelegate = self
+            
+            // Send completed workouts and exercises
+            destinationVC.completedWorkout = completedWorkout
+            destinationVC.completedExercise = completedExercise
+//            // If exercise
+//            if completedExercise.isCompleted {
+//
+//                destinationVC.workout = completedWorkout // not sure if this is neccesary
+//                destinationVC.exercise = completedExercises
+//            } else {
+//                destinationVC.workout = completedWorkout // not sure if this is neccesary
+//                destinationVC.exercise = completedExercises
+//            }
         }
     }
     
     
     func updateViews() {
-        guard let workout = workout else { return }
-        workoutNameLabel.text = workout.name
-        workoutDescriptionLabel.text = workout.description
+        guard let completedWorkout = completedWorkout else { return }
+        workoutNameLabel.text = completedWorkout.name
+        workoutDescriptionLabel.text = completedWorkout.description
         
     }
     
@@ -97,11 +117,37 @@ class WorkoutViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func saveButtonTapped(_ sender: Any) {
         // TODO
         // Create a workout you did
-        
-        // Save each exercise you did
+//        guard let program = program, let workout = workout else { return }
+//
+//        // Save each exercise you did
+//        CompletedWorkoutController.shared.createCompletedWorkout(program: program, workout: workout) { (success) in
+//            if success {
+//                self.dismiss(animated: true, completion: {
+//                    let alert = UIAlertController(title: "Completed Workout!", message: "You can view this in the progress tab", preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+//                    self.present(alert, animated: true)
+//                })
+//            }
+//        }
         
     }
     
     
 
+}
+
+
+extension WorkoutViewController: CompletedExerciseDelegate {
+    func completedExercise(completedExercise: CompletedExercise) {
+        CompletedExerciseController.shared.exerciseIsCompleted(completedExercise: completedExercise)
+    }
+    
+    
+//    func completedExercise(exercise: Exercise) {
+//        // Update model
+//        ExerciseController.shared.exerciseIsCompleted(exercise: exercise)
+//
+//
+//        tableView.reloadData()
+//    }
 }
