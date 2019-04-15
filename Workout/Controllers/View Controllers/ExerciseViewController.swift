@@ -11,7 +11,7 @@ import UIKit
 class ExerciseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Properties
-    var exercise: Exercise? {
+    var completedExercise: CompletedExercise? {
         didSet {
             loadViewIfNeeded()
             updateViews()
@@ -19,7 +19,9 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     // Not sure if we need this
-    var workout: Workout?
+    var completedWorkout: CompletedWorkout?
+    
+    weak var completedExerciseDelegate: CompletedExerciseDelegate?
     
     // MARK: - IBOutlets
     @IBOutlet weak var exerciseNameLabel: UILabel!
@@ -44,7 +46,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     
     // MARK: - Table View Delegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return exercise?.setsCount ?? 0
+        return completedExercise?.setsCount ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -66,10 +68,10 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
 
     // MARK: - Helper Methods
     func updateViews() {
-        guard let exercise = exercise else { return }
-        exerciseNameLabel.text = exercise.name
-        setsLabel.text = exercise.sets
-        repsLabel.text = exercise.reps
+        guard let completedExercise = completedExercise else { return }
+        exerciseNameLabel.text = completedExercise.name
+        setsLabel.text = completedExercise.sets
+        repsLabel.text = completedExercise.reps
         
         exerciseImageView.image = UIImage(named: "300-Pound-Bench")
         
@@ -83,13 +85,24 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         // Save information
+        let setRows = tableView.numberOfRows(inSection: 0)
+       
+        //tableView.cellForRow(at: <#T##IndexPath#>)
         
         // Delegate method to show you have completed that exercise
+        guard let completedExercise = completedExercise else { return }
+        
+        completedExerciseDelegate?.completedExercise(completedExercise: completedExercise)
         
         // Dismiss view
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func exerciseHistoryButtonTapped(_ sender: Any) {
         // View other times you did this exercise
     }
+}
+
+protocol CompletedExerciseDelegate: class {
+    func completedExercise(completedExercise: CompletedExercise)
 }

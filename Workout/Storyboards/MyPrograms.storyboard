@@ -90,10 +90,12 @@
             </objects>
             <point key="canvasLocation" x="-4671.1999999999998" y="-625.1231527093596"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Do-->
         <scene sceneID="HEx-7g-PGm">
             <objects>
                 <navigationController id="WNz-mB-FqI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Do" image="myPrograms" id="TJM-09-ODh"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WQ1-9R-Gg9">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -106,7 +108,7 @@
             </objects>
             <point key="canvasLocation" x="-5623" y="-624"/>
         </scene>
-        <!--(Program Name)-->
+        <!--Program-->
         <scene sceneID="QEv-n7-C3a">
             <objects>
                 <viewController id="eZm-RE-va4" customClass="ProgramViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
@@ -115,29 +117,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qPQ-Sb-WBY">
-                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="58" translatesAutoresizingMaskIntoConstraints="NO" id="OXd-uN-a8V">
-                                <rect key="frame" x="0.0" y="122.66666666666669" width="375" height="621"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="577"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(programsName)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDd-0s-Drt">
-                                        <rect key="frame" x="122.33333333333333" y="0.0" width="130.66666666666669" height="24.333333333333332"/>
+                                        <rect key="frame" x="122.33333333333333" y="0.0" width="130.66666666666669" height="24.666666666666668"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="98a-F8-fs6">
-                                        <rect key="frame" x="0.0" y="82.333333333333343" width="375" height="268.33333333333326"/>
+                                        <rect key="frame" x="0.0" y="82.666666666666657" width="375" height="232.99999999999997"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(programsDescription)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pO2-KO-7ts">
-                                        <rect key="frame" x="0.0" y="408.66666666666669" width="375" height="124.33333333333331"/>
+                                        <rect key="frame" x="0.0" y="373.66666666666669" width="375" height="115.33333333333331"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDR-Aq-Ofp">
-                                        <rect key="frame" x="18.666666666666657" y="591" width="337.66666666666674" height="30"/>
+                                        <rect key="frame" x="18.666666666666657" y="547" width="337.66666666666674" height="30"/>
                                         <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="B0Y-ha-wEc"/>
@@ -173,7 +175,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eXu-VU-bVj"/>
                     </view>
-                    <navigationItem key="navigationItem" title="(Program Name)" id="obU-LN-JF4"/>
+                    <navigationItem key="navigationItem" title="Program" id="obU-LN-JF4"/>
                     <connections>
                         <outlet property="navBarItem" destination="obU-LN-JF4" id="wZe-P5-usp"/>
                         <outlet property="programDescriptionLabel" destination="pO2-KO-7ts" id="UUo-LO-Rf3"/>
@@ -222,7 +224,7 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uO7-AJ-K1g">
-                                <rect key="frame" x="0.0" y="299" width="375" height="479"/>
+                                <rect key="frame" x="0.0" y="299" width="375" height="430"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="workoutSelectionCell" textLabel="oP1-fj-zSh" detailTextLabel="y48-EH-aep" rowHeight="110" style="IBUITableViewCellStyleSubtitle" id="rC9-RJ-UZ3" customClass="ExerciseCellTableViewCell" customModule="Workout" customModuleProvider="target">
@@ -517,10 +519,10 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pO7-wl-a2O">
-                                <rect key="frame" x="0.0" y="308" width="375" height="504"/>
+                                <rect key="frame" x="0.0" y="308.33333333333326" width="375" height="503.66666666666674"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="exerciseCell" rowHeight="172" id="RTz-1O-f4e" customClass="ExerciseCellTableViewCell" customModule="Workout" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="completedExerciseCell" rowHeight="172" id="RTz-1O-f4e" customClass="CompletedExerciseCellTableViewCell" customModule="Workout" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="172"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RTz-1O-f4e" id="xLF-e6-tPO">
@@ -634,5 +636,6 @@
     </scenes>
     <resources>
         <image name="300-Pound-Bench" width="738" height="415"/>
+        <image name="myPrograms" width="30" height="30"/>
     </resources>
 </document>

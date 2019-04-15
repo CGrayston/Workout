@@ -79,21 +79,24 @@ class ChooseWorkoutViewController: UIViewController, UITableViewDelegate, UITabl
             
             let workout = workouts[indexPath.row]
             dispatchGroup.enter()
-            // Get exercises associated with that workout
-            ExerciseController.shared.getExercisesForWorkout(workout) { (exercises) -> (Void) in
+            
+            
+            // Create an initial completedWorkout
+            guard let program = program else { return }
+            let completedWorkout = CompletedWorkoutController.shared.createInitialCompletedWorkout(program: program, workout: workout)
+            
+            // Create initial exercises based off that initial completedWorkout and pass them
+            CompletedExerciseController.shared.createEmptyCompletedExercisesFromWorkout(workout, completedWorkout: completedWorkout) { (completedExercises) -> (Void) in
                 dispatchGroup.leave()
                 // Pass values to WorkoutViewController
                 dispatchGroup.notify(queue: .main, execute: {
-                    destinationVC.exercises = exercises
-                    destinationVC.workout = workout
+                    destinationVC.completedExercises = completedExercises
+                    destinationVC.program = self.program
+                    destinationVC.completedWorkout = completedWorkout
                 })
                 
-//                DispatchQueue.main.async {
-//                    destinationVC.exercises = exercises
-//                    destinationVC.workout = workout
-//                }
-
             }
+                        
         }
     }
     

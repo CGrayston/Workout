@@ -41,7 +41,7 @@ class ExerciseController {
     
     // MARK: - CRUD Functions
     
-    // Create Program
+    // Create Exercise
     func createExercise(workoutUID: String, completion: @escaping (Bool, Exercise?) -> Void) {
         
         // Create an empty Program locally
@@ -71,7 +71,7 @@ class ExerciseController {
         }
     }
     
-    // Update Program
+    // Update Exercise
     func updateExercise(exercise: Exercise, name: String, description: String, sets: String, setsCount: Int, reps: String, photoURL: String, completion: @escaping (Bool) -> Void) {
         // Update Program locally
         guard let index = exercises.index(of: exercise) else {
@@ -85,7 +85,7 @@ class ExerciseController {
         exercises[index].reps = reps
         exercises[index].photoURL = photoURL
         
-        // Update Program on Firestore
+        // Update Exercise on Firestore
         db.collection(DatabaseReference.exerciseDatabase).document(exercise.uid).setData([
             "workoutUID": exercise.workoutUID,
             "name": name,
@@ -106,6 +106,11 @@ class ExerciseController {
                 return
             }
         }
+    }
+    
+    // Update exercise isCompletedValue
+    func exerciseIsCompleted(exercise: Exercise) {
+        exercise.isCompleted = true
     }
     
     // Delete Program
@@ -152,7 +157,7 @@ class ExerciseController {
     
     // MARK: - Fetch
     
-    // MARK: - Fetch
+    // MARK: - Fetch Exercises for Selected Workout
     func getExercisesForWorkout(_ workout: Workout, completion: @escaping ([Exercise]) -> (Void)) {
         var exercises: [Exercise] = []
         // Search for all workouts associated with given Program

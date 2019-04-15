@@ -13,4 +13,7 @@ struct DatabaseReference {
     static let programDatabase = "programTestDB3"
     static let workoutDatabase = "workoutTestDB3"
     static let exerciseDatabase = "exerciseTestDB3"
+    
+    static let completedExerciseDatabase = "completedExerciseDB3"
+    static let completedWorkoutDatabase = "completedWorkoutDB3"
 }

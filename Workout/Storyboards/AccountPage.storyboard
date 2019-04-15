@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PBK-yY-Dwx">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,7 +15,7 @@
             <objects>
                 <viewController id="Dkb-UJ-9le" customClass="AccountViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="db0-b2-6y0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(username)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kl7-Uz-YLj">
@@ -54,14 +54,15 @@
             </objects>
             <point key="canvasLocation" x="2628" y="857.72113943028489"/>
         </scene>
-        <!--Item-->
+        <!--Account-->
         <scene sceneID="ch1-6N-2uW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PBK-yY-Dwx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="2mA-RH-7lD"/>
+                    <tabBarItem key="tabBarItem" title="Account" image="account" id="CcN-x9-hpy"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="l5o-0g-lXc">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -74,4 +75,7 @@
             <point key="canvasLocation" x="1688.8" y="857.72113943028489"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="account" width="30" height="30"/>
+    </resources>
 </document>
