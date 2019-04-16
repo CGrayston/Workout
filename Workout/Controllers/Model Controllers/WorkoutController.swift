@@ -70,7 +70,7 @@ class WorkoutController {
     // Update Program
     func updateWorkout(workout: Workout, name: String, description: String, completion: @escaping (Bool) -> Void) {
         // Update Program locally
-        guard let index = workouts.index(of: workout) else {
+        guard let index = workouts.firstIndex(of: workout) else {
                 completion(false)
                 return
         }
@@ -99,7 +99,7 @@ class WorkoutController {
     // Delete Program
     func deleteWorkout(workout: Workout, completion: @escaping (Bool) -> Void) {
         // Delete locally
-        guard let index = self.workouts.index(of: workout) else { return }
+        guard let index = self.workouts.firstIndex(of: workout) else { return }
         self.workouts.remove(at: index)
         
         // Delete workout from Firestore

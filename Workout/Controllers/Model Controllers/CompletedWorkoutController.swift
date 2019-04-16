@@ -70,6 +70,36 @@ class CompletedWorkoutController {
         }
     }
     
+    func saveCompletedWorkoutAndExercisesToFirestore(completedWorkout: CompletedWorkout, completion: @escaping (Bool) -> Void) {
+        // Create an empty Program locally TODO - Don't think need to update it locally
+        
+        
+        // Create a CompletedProgram on Firestore
+        db.collection(DatabaseReference.completedWorkoutDatabase).document(completedWorkout.uid).setData([
+            "userUID": userUID,
+            "programUID": completedWorkout.programUID,
+            "programName": completedWorkout.programName,
+            "name": completedWorkout.name,
+            "description": completedWorkout.description,
+            "dateCompleted": completedWorkout.dateCompleted,
+            "uid": completedWorkout.uid
+        ]) { err in
+            if let err = err {
+                print("Error writing completed workout: \(err)")
+                completion(false)
+                return
+            } else {
+                print("Completed Workout successfully created!")
+                completion(true)
+                //CompletedExerciseController.shared.createCompletedExercise(completedExercise: <#T##CompletedExercise#>, completion: <#T##(Bool) -> Void#>)
+                // Save completedExercises to Firestore
+                //CompletedExerciseController.shared.saveCompletedExercisesToFirestore
+                
+                return
+            }
+        }
+    }
+    
 //    func createInitialCompletedWorkout(program: Program, workout: Workout, completion: @escaping (CompletedWorkout) -> Void) {
 //        // Create an empty Program locally
 //        let completedWorkout = CompletedWorkout(userUID: userUID, program: program, name: workout.name, description: workout.description)
@@ -80,7 +110,8 @@ class CompletedWorkoutController {
     
     func createInitialCompletedWorkout(program: Program, workout: Workout) -> CompletedWorkout {
         // Create an empty Program locally
-        return CompletedWorkout(userUID: userUID, program: program, name: workout.name, description: workout.description)
+        let completedWorkout = CompletedWorkout(userUID: userUID, program: program, name: workout.name, description: workout.description)
+        return completedWorkout
         //self.completedWorkouts.append(completedWorkout)
         
         
@@ -119,7 +150,7 @@ class CompletedWorkoutController {
     // Delete Program
     func deleteCompletedWorkout(completedWorkout: CompletedWorkout, completion: @escaping (Bool) -> Void) {
         // Delete locally
-        guard let index = self.completedWorkouts.index(of: completedWorkout) else { return }
+        guard let index = self.completedWorkouts.firstIndex(of: completedWorkout) else { return }
         self.completedWorkouts.remove(at: index)
         
         // Delete workout from Firestore
@@ -190,7 +221,7 @@ class CompletedWorkoutController {
     }
     
     // TODO - Do I need this fetch function
-//    // MARK: - Fetch
+    // MARK: - Fetch
 //    func getWorkoutsForProgram(_ program: Program, completion: @escaping ([Workout]) -> (Void)) {
 //        var workouts: [Workout] = []
 //        // Search for all workouts associated with given Program
@@ -211,4 +242,5 @@ class CompletedWorkoutController {
 //            completion(workouts)
 //        }
 //    }
+    
 }

@@ -62,7 +62,7 @@ class UserController {
     // Remove
     func removeCreatedProgramUID(programUID: String, completion: @escaping (Bool) -> (Void)) {
         // Remove locally TODO do I need to unwrap??
-        guard let index = currentUser?.createdPrograms.index(of: programUID) else { return }
+        guard let index = currentUser?.createdPrograms.firstIndex(of: programUID) else { return }
         currentUser!.createdPrograms.remove(at: index)
         
         // Remove from Firestore
@@ -118,7 +118,7 @@ class UserController {
         guard let currentUser = currentUser, currentUser.followedPrograms.contains(program.uid) else { completion(true, "Not Following") ; return }
         
         // Update locally
-        guard let index = self.currentUser?.followedPrograms.index(of: program.uid) else { completion(false, "Error: Couldn't find index of program") ; return }
+        guard let index = self.currentUser?.followedPrograms.firstIndex(of: program.uid) else { completion(false, "Error: Couldn't find index of program") ; return }
         self.currentUser?.followedPrograms.remove(at: index)
         
         

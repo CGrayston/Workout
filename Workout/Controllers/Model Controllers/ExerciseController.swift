@@ -74,7 +74,7 @@ class ExerciseController {
     // Update Exercise
     func updateExercise(exercise: Exercise, name: String, description: String, sets: String, setsCount: Int, reps: String, photoURL: String, completion: @escaping (Bool) -> Void) {
         // Update Program locally
-        guard let index = exercises.index(of: exercise) else {
+        guard let index = exercises.firstIndex(of: exercise) else {
             completion(false)
             return
         }
@@ -116,7 +116,7 @@ class ExerciseController {
     // Delete Program
     func deleteExercise(exercise: Exercise, completion: @escaping (Bool) -> Void) {
         // Delete locally
-        guard let index = self.exercises.index(of: exercise) else { return }
+        guard let index = self.exercises.firstIndex(of: exercise) else { return }
         self.exercises.remove(at: index)
         
         // Delete from Firestore

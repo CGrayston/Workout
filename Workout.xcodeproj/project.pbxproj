@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A82AA6622651D15009CFCC9 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A82AA6522651D15009CFCC9 /* DateHelper.swift */; };
+		0A82AA682265248B009CFCC9 /* CompletedWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A82AA672265248B009CFCC9 /* CompletedWorkoutViewController.swift */; };
+		0A82AA6A226533BE009CFCC9 /* CompletedExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A82AA69226533BE009CFCC9 /* CompletedExerciseViewController.swift */; };
+		0A82AA6C22653581009CFCC9 /* CompletedSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A82AA6B22653581009CFCC9 /* CompletedSetTableViewCell.swift */; };
+		0A82AA7022654170009CFCC9 /* ExerciseHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A82AA6F22654170009CFCC9 /* ExerciseHistoryViewController.swift */; };
 		0A8B5BCA225523BE0038F734 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B5BC9225523BE0038F734 /* AppDelegate.swift */; };
 		0A8B5BCF225523BE0038F734 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A8B5BCD225523BE0038F734 /* Main.storyboard */; };
 		0A8B5BD1225523BF0038F734 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A8B5BD0225523BF0038F734 /* Assets.xcassets */; };
@@ -58,6 +63,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A82AA6522651D15009CFCC9 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		0A82AA672265248B009CFCC9 /* CompletedWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedWorkoutViewController.swift; sourceTree = "<group>"; };
+		0A82AA69226533BE009CFCC9 /* CompletedExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedExerciseViewController.swift; sourceTree = "<group>"; };
+		0A82AA6B22653581009CFCC9 /* CompletedSetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedSetTableViewCell.swift; sourceTree = "<group>"; };
+		0A82AA6F22654170009CFCC9 /* ExerciseHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseHistoryViewController.swift; sourceTree = "<group>"; };
 		0A8B5BC6225523BE0038F734 /* Workout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Workout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8B5BC9225523BE0038F734 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A8B5BCE225523BE0038F734 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -161,6 +171,7 @@
 				0AF3C1B72255667000ACB9A3 /* SignUpController.swift */,
 				0AF3C1B9225566FC00ACB9A3 /* HomeController.swift */,
 				0AF3C1BB2255673800ACB9A3 /* Extensions.swift */,
+				0A82AA6522651D15009CFCC9 /* DateHelper.swift */,
 			);
 			path = Workout;
 			sourceTree = "<group>";
@@ -174,6 +185,7 @@
 				0AA28C09225BC281009D6B53 /* SearchedProgramTableViewCell.swift */,
 				0AA28C0F225D2CDF009D6B53 /* EnterExerciseSetTableViewCell.swift */,
 				0AA28C76225FDD02009D6B53 /* CompletedExerciseTableViewCell.swift */,
+				0A82AA6B22653581009CFCC9 /* CompletedSetTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -241,6 +253,9 @@
 				0AA28C1B225E3F7A009D6B53 /* ExerciseViewController.swift */,
 				0AA28C1D225E89C3009D6B53 /* ViewController+Extension.swift */,
 				0AA28C23225EAF13009D6B53 /* ProgressTableViewController.swift */,
+				0A82AA672265248B009CFCC9 /* CompletedWorkoutViewController.swift */,
+				0A82AA69226533BE009CFCC9 /* CompletedExerciseViewController.swift */,
+				0A82AA6F22654170009CFCC9 /* ExerciseHistoryViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -323,6 +338,7 @@
 				TargetAttributes = {
 					0A8B5BC5225523BE0038F734 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -455,7 +471,9 @@
 			files = (
 				0AA28C1E225E89C3009D6B53 /* ViewController+Extension.swift in Sources */,
 				0AF3C1DE2256B83000ACB9A3 /* Program.swift in Sources */,
+				0A82AA6C22653581009CFCC9 /* CompletedSetTableViewCell.swift in Sources */,
 				0AA28C14225D3F7F009D6B53 /* ProgramViewController.swift in Sources */,
+				0A82AA6A226533BE009CFCC9 /* CompletedExerciseViewController.swift in Sources */,
 				0AAECEA62256FBE600EC360B /* WorkoutController.swift in Sources */,
 				0AAECEAF2257B48600EC360B /* UserController.swift in Sources */,
 				0AA28C04225828BD009D6B53 /* ExerciseCellTableViewCell.swift in Sources */,
@@ -467,6 +485,7 @@
 				0AA28C77225FDD02009D6B53 /* CompletedExerciseTableViewCell.swift in Sources */,
 				0AA28C22225EA6E6009D6B53 /* CompletedWorkoutController.swift in Sources */,
 				0AA28C16225D41F6009D6B53 /* ChooseWorkoutViewController.swift in Sources */,
+				0A82AA7022654170009CFCC9 /* ExerciseHistoryViewController.swift in Sources */,
 				0AA28C08225BBE0E009D6B53 /* SearchProgramsTableViewController.swift in Sources */,
 				0AF3C1BA225566FC00ACB9A3 /* HomeController.swift in Sources */,
 				0AF3C1AE2255560E00ACB9A3 /* LogInViewController.swift in Sources */,
@@ -474,6 +493,7 @@
 				0AAECEAD2257B3A800EC360B /* User.swift in Sources */,
 				0AA28C24225EAF13009D6B53 /* ProgressTableViewController.swift in Sources */,
 				0AA28C1C225E3F7A009D6B53 /* ExerciseViewController.swift in Sources */,
+				0A82AA6622651D15009CFCC9 /* DateHelper.swift in Sources */,
 				0AA28C0E225BD34C009D6B53 /* AddProgramViewController.swift in Sources */,
 				0AAECEA42256F9CC00EC360B /* Exercise.swift in Sources */,
 				0AA28C12225D3E05009D6B53 /* MyProgramsTableViewController.swift in Sources */,
@@ -482,6 +502,7 @@
 				0AA28C0022581FDA009D6B53 /* SetsCreationTableViewCell.swift in Sources */,
 				0AF3C1DB2256B50700ACB9A3 /* CreatedProgramsListTableViewController.swift in Sources */,
 				0A8B5BCA225523BE0038F734 /* AppDelegate.swift in Sources */,
+				0A82AA682265248B009CFCC9 /* CompletedWorkoutViewController.swift in Sources */,
 				0AA28C10225D2CDF009D6B53 /* EnterExerciseSetTableViewCell.swift in Sources */,
 				0AAECEB12257C1D400EC360B /* ProgramCreationViewController.swift in Sources */,
 				0AA28C20225EA1F3009D6B53 /* CompletedWorkout.swift in Sources */,
@@ -646,7 +667,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ChrisGrayston.Workout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -665,7 +686,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ChrisGrayston.Workout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
