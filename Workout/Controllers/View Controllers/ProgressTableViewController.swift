@@ -44,17 +44,21 @@ class ProgressTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "progessWorkoutCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "progessWorkoutCell", for: indexPath) as? ProgressTableViewCell else { return UITableViewCell() }
 
         let completedWorkout = CompletedWorkoutController.shared.completedWorkouts[indexPath.row]
         //cell.textLabel?.text = "\(getDayOfWeek(completedWorkout.dateCompleted.description))"
-        cell.textLabel?.text = DateHelper.dateFormatter.string(from: completedWorkout.dateCompleted)
-        cell.detailTextLabel?.text = "Program: \(completedWorkout.programName). Workout: \(completedWorkout.name)"
+//        cell.textLabel?.text = DateHelper.dateFormatter.string(from: completedWorkout.dateCompleted)
+//        cell.detailTextLabel?.text = "Program: \(completedWorkout.programName). Workout: \(completedWorkout.name)"
+        
+        cell.completedWorkout = completedWorkout
 
         return cell
     }
  
-
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -63,17 +67,27 @@ class ProgressTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            //tableView.deleteRows(at: [indexPath], with: .fade)
+            let completedWorkout = CompletedWorkoutController.shared.completedWorkouts[indexPath.row]
+            
+            CompletedWorkoutController.shared.deleteCompletedWorkout(completedWorkout: completedWorkout) { (success) in
+                if success {
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+ 
 
     /*
     // Override to support rearranging the table view.

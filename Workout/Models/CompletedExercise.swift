@@ -31,7 +31,7 @@ class CompletedExercise {
     var dateCompleted: Date
     
     var isCompleted: Bool
-    
+    let userUID: String
     let uid: String
     
     // MARK: - Memberwise initilizer - Made when we navigate to the WorkoutVC
@@ -51,7 +51,7 @@ class CompletedExercise {
         self.dateCompleted = completedWorkout.dateCompleted
         
         self.isCompleted = isCompleted
-        
+        self.userUID = completedWorkout.userUID
         self.uid = uid
         
         
@@ -84,7 +84,7 @@ class CompletedExercise {
         self.dateCompleted = completedWorkout.dateCompleted
         
         self.isCompleted = false
-        
+        self.userUID = completedWorkout.userUID
         self.uid = UUID.init().uuidString
     }
 
@@ -104,6 +104,7 @@ class CompletedExercise {
             let repsCompleted = document["repsCompleted"] as? [Int],
             let dateCompleted = document["dateCompleted"] as? Timestamp,
             let isCompleted = document["isCompleted"] as? Bool,
+            let userUID = document["userUID"] as? String,
             let uid = document["uid"] as? String
             else { return nil }
         
@@ -122,7 +123,7 @@ class CompletedExercise {
         self.dateCompleted = dateCompleted.dateValue()
         
         self.isCompleted = isCompleted
-        
+        self.userUID = userUID
         self.uid = uid
     }
 }

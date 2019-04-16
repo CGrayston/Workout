@@ -12,6 +12,13 @@ class DateHelper {
     
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
+//        formatter.weekdaySymbols = DateFormatter.init().shortWeekdaySymbols
+//        formatter.dateStyle = .long
+//        formatter.timeStyle = .short
+        
+        let format = "EEEE-dd-MMM-yyyy"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
         formatter.dateStyle = .long
         formatter.timeStyle = .short
         return formatter

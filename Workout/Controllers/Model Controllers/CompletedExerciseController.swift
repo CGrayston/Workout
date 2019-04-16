@@ -58,6 +58,7 @@ class CompletedExerciseController {
             "setsCount": completedExercise.setsCount,
             "reps": completedExercise.reps,
             "photoURL": completedExercise.photoURL,
+            "userUID": completedExercise.userUID,
             "uid": completedExercise.uid,
             "weightsCompleted": completedExercise.weightsCompleted,
             "repsCompleted": completedExercise.repsCompleted,

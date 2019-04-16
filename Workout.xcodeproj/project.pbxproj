@@ -45,6 +45,8 @@
 		0AAECEAD2257B3A800EC360B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAECEAC2257B3A800EC360B /* User.swift */; };
 		0AAECEAF2257B48600EC360B /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAECEAE2257B48600EC360B /* UserController.swift */; };
 		0AAECEB12257C1D400EC360B /* ProgramCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAECEB02257C1D400EC360B /* ProgramCreationViewController.swift */; };
+		0ABFE3F822667C5100BD185F /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABFE3F722667C5000BD185F /* SF-Pro-Text-Regular.otf */; };
+		0ABFE3FA22667D9900BD185F /* ProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABFE3F922667D9900BD185F /* ProgressTableViewCell.swift */; };
 		0AF3C1AE2255560E00ACB9A3 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF3C1AD2255560E00ACB9A3 /* LogInViewController.swift */; };
 		0AF3C1B62255605900ACB9A3 /* DatabaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF3C1B52255605900ACB9A3 /* DatabaseReference.swift */; };
 		0AF3C1B82255667000ACB9A3 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF3C1B72255667000ACB9A3 /* SignUpController.swift */; };
@@ -103,6 +105,8 @@
 		0AAECEAC2257B3A800EC360B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0AAECEAE2257B48600EC360B /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		0AAECEB02257C1D400EC360B /* ProgramCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramCreationViewController.swift; sourceTree = "<group>"; };
+		0ABFE3F722667C5000BD185F /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Text-Regular.otf"; path = "../../../../../../Downloads/SFFont/SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		0ABFE3F922667D9900BD185F /* ProgressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCell.swift; sourceTree = "<group>"; };
 		0AF3C1AD2255560E00ACB9A3 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		0AF3C1B52255605900ACB9A3 /* DatabaseReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseReference.swift; sourceTree = "<group>"; };
 		0AF3C1B72255667000ACB9A3 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 				0AA28C0F225D2CDF009D6B53 /* EnterExerciseSetTableViewCell.swift */,
 				0AA28C76225FDD02009D6B53 /* CompletedExerciseTableViewCell.swift */,
 				0A82AA6B22653581009CFCC9 /* CompletedSetTableViewCell.swift */,
+				0ABFE3F922667D9900BD185F /* ProgressTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 		0AF3C1CB22566ABE00ACB9A3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				0ABFE3F722667C5000BD185F /* SF-Pro-Text-Regular.otf */,
 				0AF3C1CE22566B1800ACB9A3 /* Gotham-Light.otf */,
 				0AF3C1CF22566B4F00ACB9A3 /* Gotham-Thin.otf */,
 				0AF3C1D022566BE100ACB9A3 /* GothamMedium.ttf */,
@@ -371,6 +377,7 @@
 				0AF3C1C22255728700ACB9A3 /* MyPrograms.storyboard in Resources */,
 				0A8B5BD1225523BF0038F734 /* Assets.xcassets in Resources */,
 				0AF3C1CA225573AD00ACB9A3 /* AccountPage.storyboard in Resources */,
+				0ABFE3F822667C5100BD185F /* SF-Pro-Text-Regular.otf in Resources */,
 				0A8B5BCF225523BE0038F734 /* Main.storyboard in Resources */,
 				0AF3C1C62255733B00ACB9A3 /* SearchPrograms.storyboard in Resources */,
 				0AF3C1C82255736B00ACB9A3 /* CreatePrograms.storyboard in Resources */,
@@ -479,6 +486,7 @@
 				0AA28C04225828BD009D6B53 /* ExerciseCellTableViewCell.swift in Sources */,
 				0AAECEAB2257B1E400EC360B /* AccountViewController.swift in Sources */,
 				0AA28C55225FA8DB009D6B53 /* CompletedExercise.swift in Sources */,
+				0ABFE3FA22667D9900BD185F /* ProgressTableViewCell.swift in Sources */,
 				0AF3C1B62255605900ACB9A3 /* DatabaseReference.swift in Sources */,
 				0AF3C1BC2255673800ACB9A3 /* Extensions.swift in Sources */,
 				0AAECEA22256F90700EC360B /* Workout.swift in Sources */,

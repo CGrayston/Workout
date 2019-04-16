@@ -162,9 +162,9 @@ class CompletedWorkoutController {
                 print("Completed Workout successfully removed!")
                 
                 // TODO remove completed exercises associated
-//                self.deleteAllExercisesFromWorkout(workoutUID: workout.uid, completion: {
-//                    completion(true)
-//                })
+                self.deleteAllExercisesFromWorkout(completedWorkoutUID: completedWorkout.uid, completion: {
+                    completion(true)
+                })
             }
         }
         
@@ -172,13 +172,13 @@ class CompletedWorkoutController {
         
     }
     // TODO
-    private func deleteAllExercisesFromWorkout(workoutUID: String, completion: @escaping () -> ()) {
+    private func deleteAllExercisesFromWorkout(completedWorkoutUID: String, completion: @escaping () -> ()) {
         let dispatchGroup = DispatchGroup()
         
         
-        db.collection(DatabaseReference.exerciseDatabase).whereField("workoutUID", isEqualTo: workoutUID).getDocuments { (querySnapshot, error) in
+        db.collection(DatabaseReference.completedExerciseDatabase).whereField("completedWorkoutUID", isEqualTo: completedWorkoutUID).getDocuments { (querySnapshot, error) in
             if let error = error {
-                print("Error getting exercises to delete: \(error)")
+                print("Error getting compelted exercises to delete: \(error)")
                 completion()
             }
             for document in querySnapshot!.documents {

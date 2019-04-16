@@ -148,7 +148,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate {
             guard let controller = navController.viewControllers[0] as? HomeController else { return }
             controller.configureViewComponents()
             
-            // forgot to add this in video
+            
             controller.loadUserData()
             
             self.dismiss(animated: true, completion: nil)
