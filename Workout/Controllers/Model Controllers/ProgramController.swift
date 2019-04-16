@@ -13,6 +13,10 @@ class ProgramController {
     // MARK: - Properties
     var programs: [Program] = []
     
+    // Set from homescreen
+    var createdPrograms: [Program] = []
+    var followedPrograms: [Program] = []
+    
     var db: Firestore!
     var programDBRef: CollectionReference
     var userUID: String {
@@ -313,6 +317,40 @@ class ProgramController {
                 }
             }
             completion(followedPrograms, createdPrograms)
+        }
+    }
+    
+    // Get and set all userFollowedandCreatedPrograms in the controller
+    func setUserFollowedAndCreatedPrograms(completion: @escaping (Bool) -> Void) {
+        var createdPrograms: [Program] = []
+        var followedPrograms: [Program] = []
+        
+        programDBRef.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error gettings all User followed programs: \(error.localizedDescription)")
+                completion(false)
+                return
+            }
+            guard let querySnapshot = querySnapshot else { return }
+            
+            for document in querySnapshot.documents {
+                let creatorUID = document["creatorUID"] as? String
+                let followersUIDs = document["followersUIDs"] as? [String] ?? []
+                
+                // if document.creatorUID == userUID add to the createdPrograms array
+                // if document.followersUIDs array contains userUID then add to follwoed rograms array
+                if creatorUID == self.userUID {
+                    let program = Program(document: document.data())
+                    createdPrograms.append(program)
+                } else if followersUIDs.contains(self.userUID){
+                    let program = Program(document: document.data())
+                    followedPrograms.append(program)
+                }
+            }
+            
+            self.createdPrograms = createdPrograms
+            self.followedPrograms = followedPrograms
+            completion(true)
         }
     }
 }

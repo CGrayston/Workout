@@ -48,6 +48,21 @@ class HomeController: UIViewController {
     func loadUserData() {
         //guard let uid = Auth.auth().currentUser?.uid else { return }
         
+//        // Get programs user follows
+//        DispatchQueue.main.async {
+//            ProgramController.shared.getUserFollowedAndCreatedPrograms { (followedPrograms, createdPrograms) in
+//                self.followedPrograms = followedPrograms
+//                self.createdPrograms = createdPrograms
+//                self.tableView.reloadData()
+//            }
+//        }
+//        
+//        ProgramController.shared.setUserFollowedAndCreatedPrograms { (success) in
+//            if success {
+//                
+//            }
+//        }
+        
         UserController.shared.loadUser {
             let tabbarViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar")
             self.present(tabbarViewController, animated: true, completion: nil)

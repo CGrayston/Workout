@@ -29,6 +29,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var exerciseNameLabel: UILabel!
     @IBOutlet weak var exerciseImageView: UIImageView!
     
+    @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
     @IBOutlet weak var setsLabel: UILabel!
     @IBOutlet weak var repsLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -44,6 +45,30 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Resign keyboard on tap
         self.hideKeyboardWhenTappedAround()
+        
+        //let newFrame: CGRect = CGRectMake( , self, 200)
+        //let screenRect = UIScreen.main.bounds
+        //let screenWidth = screenRect.size.width
+       // let screenHeight = screenRect.size.height
+        
+        //loadViewIfNeeded()
+        let screen = UIScreen.main.bounds.height
+        let additionalHeight = CGFloat(integerLiteral: (completedExercise?.setsCount ?? 0) * 150)
+        let finalHeight = screen + additionalHeight
+        
+        contentViewHeight.constant = finalHeight
+        
+//        let newFrame: CGRect = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: screenWidth, height: screenHeight + 3)
+//
+//        self.view.frame = newFrame
+        
+        
+        //mainView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height * 1.0)
+        
+        //contentView.frame.height = contentViewOriginalHeight + (100 * completedExercise?.setsCount.count)
+        
+        
+        
     }
     
     // MARK: - Table View Delegate Methods

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ek8-at-1sO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="myg-bi-XLR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Progress-->
         <scene sceneID="RKk-cJ-4tB">
@@ -42,9 +47,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="eW3-0Z-yBA" kind="show" identifier="toCompletedWorkoutVC" id="2Hw-CT-1fD"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -56,7 +58,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CS8-BB-unE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-634.39999999999998" y="-16.641679160419791"/>
+            <point key="canvasLocation" x="-1222" y="-542"/>
         </scene>
         <!--Progress-->
         <scene sceneID="geB-D4-w3A">
@@ -74,7 +76,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sX9-4T-iQo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1546" y="-16"/>
+            <point key="canvasLocation" x="-2132" y="-543"/>
         </scene>
         <!--Completed Workout-->
         <scene sceneID="xJ1-Go-Byy">
@@ -558,6 +560,99 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nj0-9F-G1l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1831" y="-27"/>
+        </scene>
+        <!--Progress-->
+        <scene sceneID="oBk-K9-1tz">
+            <objects>
+                <tableViewController id="ay0-NA-PxB" customClass="ProgressTableViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="NT7-ly-Cz5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="progessWorkoutCell" rowHeight="125" id="bDH-pk-zTP" customClass="ProgressTableViewCell" customModule="Workout" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="125"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bDH-pk-zTP" id="v5d-g3-04y">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="usC-C3-6cR">
+                                            <rect key="frame" x="20" y="41.5" width="335" height="74.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(program)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQK-i7-Ohz">
+                                                    <rect key="frame" x="8" y="8" width="327" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(workout)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hhe-kw-ZZR">
+                                                    <rect key="frame" x="8" y="37" width="327" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="0.89338077910273983" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(date)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Nx-Mp-FKB">
+                                            <rect key="frame" x="20" y="15" width="335" height="20.5"/>
+                                            <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="usC-C3-6cR" firstAttribute="width" secondItem="4Nx-Mp-FKB" secondAttribute="width" id="4EX-1S-KfT"/>
+                                        <constraint firstItem="usC-C3-6cR" firstAttribute="height" secondItem="v5d-g3-04y" secondAttribute="height" multiplier="0.6" id="77f-wD-uao"/>
+                                        <constraint firstItem="4Nx-Mp-FKB" firstAttribute="top" secondItem="v5d-g3-04y" secondAttribute="topMargin" constant="4" id="LlO-0e-q2g"/>
+                                        <constraint firstItem="4Nx-Mp-FKB" firstAttribute="leading" secondItem="v5d-g3-04y" secondAttribute="leadingMargin" constant="4" id="O8t-yg-75c"/>
+                                        <constraint firstItem="usC-C3-6cR" firstAttribute="top" secondItem="4Nx-Mp-FKB" secondAttribute="bottom" constant="6" id="gt8-22-bMT"/>
+                                        <constraint firstItem="usC-C3-6cR" firstAttribute="centerX" secondItem="v5d-g3-04y" secondAttribute="centerX" id="k5D-18-FUf"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="4Nx-Mp-FKB" secondAttribute="trailing" constant="4" id="ngQ-Su-pM6"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="backgroundCellView" destination="usC-C3-6cR" id="dCW-3X-Gwd"/>
+                                    <outlet property="dateLabel" destination="4Nx-Mp-FKB" id="eLy-pi-YEW"/>
+                                    <outlet property="programLabel" destination="eQK-i7-Ohz" id="CWa-Sd-ctr"/>
+                                    <outlet property="workoutLabel" destination="Hhe-kw-ZZR" id="UdJ-Yw-AiI"/>
+                                    <segue destination="eW3-0Z-yBA" kind="show" identifier="toCompletedWorkoutVC" id="RuI-IQ-MCk"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ay0-NA-PxB" id="hf6-Fl-0u3"/>
+                            <outlet property="delegate" destination="ay0-NA-PxB" id="PFG-XT-A8e"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Progress" id="6ZD-WM-4yZ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4ML-2P-JZu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-770.39999999999998" y="178.56071964017991"/>
+        </scene>
+        <!--Progress-->
+        <scene sceneID="Q7g-3L-ZAP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="myg-bi-XLR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Progress" image="progress" id="MBH-IR-tSA"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="soW-d2-8GV">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ay0-NA-PxB" kind="relationship" relationship="rootViewController" id="jvH-mz-PQq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fVa-RL-2bh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1820" y="273"/>
         </scene>
     </scenes>
     <resources>
