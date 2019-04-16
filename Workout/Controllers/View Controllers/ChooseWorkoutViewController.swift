@@ -65,13 +65,10 @@ class ChooseWorkoutViewController: UIViewController, UITableViewDelegate, UITabl
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
         
-        // workoutSelectionCell
-        // "toWorkoutViewController"
         if segue.identifier == "toWorkoutViewController" {
             let dispatchGroup = DispatchGroup()
+            
             guard let indexPath = tableView.indexPathForSelectedRow,
                 let workouts = workouts,
                 let destinationVC = segue.destination as? WorkoutViewController
@@ -86,17 +83,21 @@ class ChooseWorkoutViewController: UIViewController, UITableViewDelegate, UITabl
             let completedWorkout = CompletedWorkoutController.shared.createInitialCompletedWorkout(program: program, workout: workout)
             
             // Create initial exercises based off that initial completedWorkout and pass them
-            CompletedExerciseController.shared.createEmptyCompletedExercisesFromWorkout(workout, completedWorkout: completedWorkout) { (completedExercises) -> (Void) in
-                dispatchGroup.leave()
-                // Pass values to WorkoutViewController
-                dispatchGroup.notify(queue: .main, execute: {
-                    destinationVC.completedExercises = completedExercises
+            CompletedExerciseController.shared.createInitialCompletedExercisesFromWorkout(workout, completedWorkout: completedWorkout) { (success) -> (Void) in
+//                dispatchGroup.leave()
+//                // Pass values to WorkoutViewController
+//                dispatchGroup.notify(queue: .main, execute: {
+//                    destinationVC.completedExercises = completedExercises
+//                    destinationVC.program = self.program
+//                    destinationVC.completedWorkout = completedWorkout
+//                })
+                
+                if success {
+                    //destinationVC.completedExercises = completedExercises
                     destinationVC.program = self.program
                     destinationVC.completedWorkout = completedWorkout
-                })
-                
+                }
             }
-                        
         }
     }
     

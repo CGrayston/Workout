@@ -11,7 +11,7 @@ import UIKit
 class WorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Properties
-    var completedExercises: [CompletedExercise]?
+    //var completedExercises: [CompletedExercise]?
     var program: Program?
     
     var completedWorkout: CompletedWorkout? {
@@ -37,24 +37,36 @@ class WorkoutViewController: UIViewController, UITableViewDelegate, UITableViewD
      
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadData()
+    }
+    
     
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return completedExercises?.count ?? 0
+        return CompletedExerciseController.shared.completedExercises.count //completedExercises?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "completedExerciseCell", for: indexPath) as? CompletedExerciseCellTableViewCell else { return UITableViewCell() }
         
         
+        let completedExercise = CompletedExerciseController.shared.completedExercises[indexPath.row]
+        cell.completedExercise = completedExercise
         
-        if let completedExercises = completedExercises {
-            let completedExercise = completedExercises[indexPath.row]
-            cell.completedExercise = completedExercise
-            
-//            cell.backgroundColor = exercise.isCompleted ? UIColor.green : UIColor.darkGray
-//            print("Color: \(cell.backgroundColor?.description). Exercise isOn: \(exercise.isCompleted)")
-        }
+        cell.backgroundColor = completedExercise.isCompleted ? UIColor.green : UIColor.darkGray
+        print("Color: \(String(describing: cell.backgroundColor?.description)). Exercise isOn: \(completedExercise.isCompleted)")
+        
+
+        
+//        if let completedExercises = completedExercises {
+//            let completedExercise = completedExercises[indexPath.row]
+//            cell.completedExercise = completedExercise
+//
+//            cell.backgroundColor = completedExercise.isCompleted ? UIColor.green : UIColor.darkGray
+//            print("Color: \(String(describing: cell.backgroundColor?.description)). Exercise isOn: \(completedExercise.isCompleted)")
+//        }
         
         return cell
     }
@@ -73,11 +85,11 @@ class WorkoutViewController: UIViewController, UITableViewDelegate, UITableViewD
         if segue.identifier == "toExerciseView" {
             
             guard let indexPath = tableView.indexPathForSelectedRow,
-                let destinationVC = segue.destination as? ExerciseViewController,
-                let completedExercises = completedExercises else { return }
+                let destinationVC = segue.destination as? ExerciseViewController/*,
+                let completedExercises = completedExercises*/ else { return }
             
             // Get correct completedExercise to pass
-            let completedExercise = completedExercises[indexPath.row]
+            let completedExercise = CompletedExerciseController.shared.completedExercises[indexPath.row]
             
             destinationVC.completedExerciseDelegate = self
             
@@ -108,7 +120,10 @@ class WorkoutViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - IBActions
     @IBAction func cancelButtonTapped(_ sender: Any) {
         
-        // Won't save anything
+        // Set completed exercises to [] and nil
+        // TODO - don't know if this is necesary
+        CompletedExerciseController.shared.completedExercises = []
+        //self.completedExercises = nil
         
         // Dismiss current view
         self.dismiss(animated: true, completion: nil)
@@ -129,8 +144,66 @@ class WorkoutViewController: UIViewController, UITableViewDelegate, UITableViewD
 //                })
 //            }
 //        }
+        guard let completedWorkout = completedWorkout else { return }
+        
+        let completedExercises = CompletedExerciseController.shared.completedExercises
+        
+        let dispatchGroup = DispatchGroup()
+        
+        
+        // Save CompletedWorkout to Firestore
+        dispatchGroup.enter()
+        CompletedWorkoutController.shared.saveCompletedWorkoutAndExercisesToFirestore(completedWorkout: completedWorkout) { (success) in
+            if success {
+                dispatchGroup.leave()
+                print("Saved completedWorkout to Firestore")
+                // Save each completed exercise to Firestore
+                //dispatchGroup.enter()
+                for completedExercise in completedExercises {
+                    dispatchGroup.enter()
+                    CompletedExerciseController.shared.saveCompletedExerciseToFirestore(completedExercise: completedExercise, completion: { (_) in
+                        if success {
+                            dispatchGroup.leave()
+                            print("Saved completedExercise to Firestore")
+                        } else {
+                            dispatchGroup.leave()
+                            print("Did not save completedExercise to Firestore")
+                        }
+                    })
+                }
+                //dispatchGroup.leave()
+                
+                
+                //dispatchGroup.wait()
+//                dispatchGroup.enter()
+//                let alert = UIAlertController(title: "Completed Workout!", message: "You can view this in the progress tab", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+//                self.present(alert, animated: true)
+//                dispatchGroup.leave()
+                
+                dispatchGroup.notify(queue: .main, execute: {
+                    self.dismiss(animated: true, completion: {
+                        print("Total success")
+                    })
+                })
+
+                
+                
+            }
+        }
+        // Save completed Exercises to Firestore
+        
+        // Tell User where they can find this
+        
+        // Dismiss
+        
+        // TODO - Maybe change appearance of the Workout they just did on the ChooseWorkoutVC
         
     }
+    
+    
+    
+    
     
     
 

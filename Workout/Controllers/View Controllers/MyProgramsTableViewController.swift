@@ -37,10 +37,12 @@ class MyProgramsTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         // Get programs user follows
-        ProgramController.shared.getUserFollowedAndCreatedPrograms { (followedPrograms, createdPrograms) in
-            self.followedPrograms = followedPrograms
-            self.createdPrograms = createdPrograms
-            self.tableView.reloadData()
+        DispatchQueue.main.async {
+            ProgramController.shared.getUserFollowedAndCreatedPrograms { (followedPrograms, createdPrograms) in
+                self.followedPrograms = followedPrograms
+                self.createdPrograms = createdPrograms
+                self.tableView.reloadData()
+            }
         }
     }
 

@@ -42,15 +42,16 @@ class CompletedExerciseController {
     // MARK: - CRUD Functions
     
     // Create Exercise
-    func createCompletedExercise(exercise: Exercise, completedWorkout: CompletedWorkout, completion: @escaping (Bool) -> Void) {
+    func saveCompletedExerciseToFirestore(completedExercise: CompletedExercise, completion: @escaping (Bool) -> Void) {
         
         // Create an empty Program locally
-        let completedExercise = CompletedExercise(exercise: exercise, completedWorkout: completedWorkout)
-        self.completedExercises.append(completedExercise)
+        //let completedExercise = CompletedExercise(exercise: exercise, completedWorkout: completedWorkout)
+        //self.completedExercises.append(completedExercise)
         
         // Create a Program on Firestore
         db.collection(DatabaseReference.completedExerciseDatabase).document(completedExercise.uid).setData([
             "completedWorkoutUID": completedExercise.completedWorkoutUID,
+            "exerciseUID": completedExercise.exerciseUID,
             "name": completedExercise.name,
             "description": completedExercise.description,
             "sets": completedExercise.sets,
@@ -75,7 +76,18 @@ class CompletedExerciseController {
         }
     }
     
-//    // Update Exercise
+    // Update Exercise
+    func updateExerciseWeightAndRepsValuesLocally(completedExercise: CompletedExercise, weightsCompleted: [Double], repsCompleted: [Int]) {
+        // Update completedExercises weights and reps Completed values
+        // TODO - Beleieve this is the right way to do this
+        completedExercise.weightsCompleted = weightsCompleted
+        completedExercise.repsCompleted = repsCompleted
+        
+        // Change to isCompelted = true
+        completedExercise.isCompleted = true
+    }
+    
+    
 //    func updateExercise(exercise: Exercise, name: String, description: String, sets: String, setsCount: Int, reps: String, photoURL: String, completion: @escaping (Bool) -> Void) {
 //        // Update Program locally
 //        guard let index = exercises.index(of: exercise) else {
@@ -186,7 +198,10 @@ class CompletedExerciseController {
         }
     }
     
-    func createEmptyCompletedExercisesFromWorkout(_ workout: Workout, completedWorkout: CompletedWorkout, completion: @escaping ([CompletedExercise]) -> (Void)) {
+    /*
+     * Creates local initilized completedExercises that will be saved later if User presses save on WorkoutVC
+     */
+    func createInitialCompletedExercisesFromWorkout(_ workout: Workout, completedWorkout: CompletedWorkout, completion: @escaping (Bool) -> (Void)) {
         var completedExercises: [CompletedExercise] = []
         // Search for all workouts associated with given Program
         let query = db.collection(DatabaseReference.exerciseDatabase).whereField("workoutUID", isEqualTo: workout.uid)
@@ -194,21 +209,70 @@ class CompletedExerciseController {
         query.getDocuments { (querySnapshot, error) in
             if let error = error {
                 print("Error getting exercises from Firestore to make completedExercises: \(error.localizedDescription)")
-                completion([])
+                completion(false)
                 return
             }
             
-            // get exercises fro mquery to make into initial completedExercises
+            // get exercises from query to make into initial completedExercises
             guard let querySnapshot = querySnapshot else { return }
             for document in querySnapshot.documents {
                 guard let completedExercise = CompletedExercise(completedWorkout: completedWorkout, document: document) else { return }
                 completedExercises.append(completedExercise)
+                
+//                guard let completedExercise = CompletedExercise(completedWorkout: completedWorkout, document: document) else { return }
+//                completedExercises.append(completedExercise)
             }
             // return
+            self.completedExercises = completedExercises
+            
+            // TODO - maybe get rid of returning this
+            //completion(completedExercises)
+            completion(true)
+        }
+    }
+    
+    // MARK: - Fetch
+    func getCompletedExercises(for completedWorkout: CompletedWorkout, completion: @escaping ([CompletedExercise]) -> Void) {
+        var completedExercises: [CompletedExercise] = []
+        
+        let query = db.collection(DatabaseReference.completedExerciseDatabase).whereField("completedWorkoutUID", isEqualTo: completedWorkout.uid)
+        
+        query.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting workouts from Firestore: \(error.localizedDescription)")
+                completion([])
+                return
+            }
+            
+            guard let querySnapshot = querySnapshot else { return }
+            for document in querySnapshot.documents {
+                guard let completedExercise = CompletedExercise(document: document) else { return }
+                completedExercises.append(completedExercise)
+            }
             completion(completedExercises)
         }
     }
     
-    
+    func fetchExerciseHistory(with compeltedExercise: CompletedExercise, completion: @escaping ([CompletedExercise]) -> (Void)) {
+        var completedExercises: [CompletedExercise] = []
+        
+        let query = db.collection(DatabaseReference.completedExerciseDatabase).whereField("exerciseUID", isEqualTo: compeltedExercise.exerciseUID)
+        
+        query.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting workouts from Firestore: \(error.localizedDescription)")
+                completion([])
+                return
+            }
+            
+            guard let querySnapshot = querySnapshot else { return }
+            for document in querySnapshot.documents {
+                
+                guard let completedExercise = CompletedExercise(document: document) else { return }
+                completedExercises.append(completedExercise)
+            }
+            completion(completedExercises)
+        }
+    }
 }
 

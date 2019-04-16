@@ -30,7 +30,7 @@ class ExerciseCellTableViewCell: UITableViewCell {
         exerciseImageView.image = UIImage(named: "300-Pound-Bench")
         
         self.backgroundColor = exercise.isCompleted ? UIColor.green : UIColor.darkGray
-        print("Color: \(self.backgroundColor?.description). Exercise isOn: \(exercise.isCompleted)")
+        print("Color: \(self.backgroundColor?.description ?? "No Color"). Exercise isOn: \(exercise.isCompleted)")
     }
     
     override func awakeFromNib() {

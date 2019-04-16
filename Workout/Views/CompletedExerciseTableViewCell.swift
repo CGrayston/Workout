@@ -15,7 +15,7 @@ class CompletedExerciseCellTableViewCell: UITableViewCell {
     @IBOutlet weak var setsLabel: UILabel!
     @IBOutlet weak var repsLabel: UILabel!
     
-    var completedExercise: CompletedExercise? {
+    weak var completedExercise: CompletedExercise? {
         didSet{
             updateCell()
         }
@@ -30,7 +30,7 @@ class CompletedExerciseCellTableViewCell: UITableViewCell {
         exerciseImageView.image = UIImage(named: "300-Pound-Bench")
         
         self.backgroundColor = completedExercise.isCompleted ? UIColor.green : UIColor.darkGray
-        print("Color: \(self.backgroundColor?.description). Exercise isOn: \(completedExercise.isCompleted)")
+        print("Color: \(self.backgroundColor?.description ?? "No Color"). Exercise isOn: \(completedExercise.isCompleted)")
     }
     
     override func awakeFromNib() {

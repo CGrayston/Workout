@@ -78,7 +78,7 @@ class ProgramController {
     // Update Program
     func updateProgram(program: Program, name: String, description: String, photoURL: String, completion: @escaping (Bool) -> Void) {
         // Update Program locally
-        guard let index = programs.index(of: program) else { completion(false) ; return }
+        guard let index = programs.firstIndex(of: program) else { completion(false) ; return }
         programs[index].name = name
         programs[index].description = description
         programs[index].photoURL = photoURL
@@ -110,7 +110,7 @@ class ProgramController {
      */
     func deleteProgram(program: Program, completion: @escaping (Bool) -> Void) {
         // Delete locally
-        guard let index = self.programs.index(of: program) else { return }
+        guard let index = self.programs.firstIndex(of: program) else { return }
         self.programs.remove(at: index)
         
         // Delete from Firestore
@@ -274,7 +274,8 @@ class ProgramController {
             //
             for document in querrySnapshot!.documents {
                 // Check to see if current document's (program) name contains search string else return
-                if let name = document["name"] as? String, name.lowercased().contains(text.lowercased()) {
+                if let name = document["name"] as? String, name.lowercased().contains(text.lowercased()),
+                    let creatorUID = document["creatorUID"] as? String, creatorUID != self.userUID  {
                     let program = Program(document: document.data())
                     programs.append(program)
                 }

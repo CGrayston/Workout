@@ -23,11 +23,11 @@ class ProgressTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        CompletedWorkoutController.shared.loadCompletedWorkouts {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+//        CompletedWorkoutController.shared.loadCompletedWorkouts {
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        }
     }
 
     // MARK: - Table view data source
@@ -47,7 +47,8 @@ class ProgressTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "progessWorkoutCell", for: indexPath)
 
         let completedWorkout = CompletedWorkoutController.shared.completedWorkouts[indexPath.row]
-        cell.textLabel?.text = "\(completedWorkout.dateCompleted)"
+        //cell.textLabel?.text = "\(getDayOfWeek(completedWorkout.dateCompleted.description))"
+        cell.textLabel?.text = DateHelper.dateFormatter.string(from: completedWorkout.dateCompleted)
         cell.detailTextLabel?.text = "Program: \(completedWorkout.programName). Workout: \(completedWorkout.name)"
 
         return cell
@@ -96,6 +97,32 @@ class ProgressTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "toCompletedWorkoutVC" {
+            // Get completed exercises
+            guard let indexPath = tableView.indexPathForSelectedRow,
+                let destinationVC = segue.destination as? CompletedWorkoutViewController
+                else { return }
+            
+            let completedWorkout = CompletedWorkoutController.shared.completedWorkouts[indexPath.row]
+            
+            // Get completedExercises associated with this completedWorkout
+            CompletedExerciseController.shared.getCompletedExercises(for: completedWorkout) { (completedExercises) in
+                // Pass completed workout and exercises
+                destinationVC.completedExercises = completedExercises
+                destinationVC.completedWorkout = completedWorkout
+            }
+            
+            
+        }
+    }
+    
+    func getDayOfWeek(_ today:String) -> Int? {
+        let formatter  = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        guard let todayDate = formatter.date(from: today) else { return nil }
+        let myCalendar = Calendar(identifier: .gregorian)
+        let weekDay = myCalendar.component(.weekday, from: todayDate)
+        return weekDay
     }
  
 

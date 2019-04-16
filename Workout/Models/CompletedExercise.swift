@@ -13,6 +13,7 @@ class CompletedExercise {
     // MARK: - Properties
     
     let completedWorkoutUID: String
+    let exerciseUID: String
     
     // get this information from an exercise
     var name: String
@@ -36,7 +37,7 @@ class CompletedExercise {
     // MARK: - Memberwise initilizer - Made when we navigate to the WorkoutVC
     init(exercise: Exercise, completedWorkout: CompletedWorkout, weightsCompleted: [Double] = [], repsCompleted: [Int] = [], isCompleted: Bool = false, uid: String = UUID.init().uuidString) {
         self.completedWorkoutUID = completedWorkout.uid
-        
+        self.exerciseUID = exercise.uid
         self.name = exercise.name
         self.description = exercise.description
         self.photoURL = exercise.photoURL
@@ -59,6 +60,7 @@ class CompletedExercise {
     // MARK: - Failable initilizer for empty CompletedExercise
     init?(completedWorkout: CompletedWorkout, document: QueryDocumentSnapshot) {
         guard let name = document["name"] as? String,
+            let exerciseUID = document["uid"] as? String,
             let description = document["description"] as? String,
             let sets = document["sets"] as? String,
             let setsCount = document["setsCount"] as? Int,
@@ -68,7 +70,7 @@ class CompletedExercise {
         
         // Set stuff
         self.completedWorkoutUID = completedWorkout.uid
-        
+        self.exerciseUID = exerciseUID
         self.name = name
         self.description = description
         self.photoURL = photoURL
@@ -92,6 +94,7 @@ class CompletedExercise {
     init?(document: QueryDocumentSnapshot) {
         guard let completedWorkoutUID = document["completedWorkoutUID"] as? String,
             let name = document["name"] as? String,
+            let exerciseUID = document["exerciseUID"] as? String,
             let description = document["description"] as? String,
             let sets = document["sets"] as? String,
             let setsCount = document["setsCount"] as? Int,
@@ -105,7 +108,7 @@ class CompletedExercise {
             else { return nil }
         
         self.completedWorkoutUID = completedWorkoutUID
-        
+        self.exerciseUID = exerciseUID
         self.name = name
         self.description = description
         self.photoURL = photoURL
