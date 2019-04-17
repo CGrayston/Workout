@@ -141,6 +141,9 @@ class LoginController: UIViewController, GIDSignInUIDelegate {
             
             if let error = error {
                 print("Failed to sign user in with error: ", error.localizedDescription)
+                let alert = UIAlertController(title: "Error logging in", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true)
                 return
             }
             

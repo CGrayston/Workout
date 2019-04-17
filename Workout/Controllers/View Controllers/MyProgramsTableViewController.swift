@@ -11,17 +11,17 @@ import UIKit
 class MyProgramsTableViewController: UITableViewController {
 
     // MARK: - Properties
-    var followedPrograms: [Program]? {
-        didSet{
-            //tableView.reloadData()
-        }
-    }
-    
-    var createdPrograms: [Program]? {
-        didSet{
-            //tableView.reloadData()
-        }
-    }
+//    var followedPrograms: [Program]? {
+//        didSet{
+//            //tableView.reloadData()
+//        }
+//    }
+//
+//    var createdPrograms: [Program]? {
+//        didSet{
+//            //tableView.reloadData()
+//        }
+//    }
     
     
     override func viewDidLoad() {
@@ -31,19 +31,24 @@ class MyProgramsTableViewController: UITableViewController {
         
         // Resign keyboard on tap
         self.hideKeyboardWhenTappedAround()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loadMyPrograms), name: NotificationCenterNames.programUpdated, object: nil)
+        
+
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Get programs user follows
-        DispatchQueue.main.async {
-            ProgramController.shared.getUserFollowedAndCreatedPrograms { (followedPrograms, createdPrograms) in
-                self.followedPrograms = followedPrograms
-                self.createdPrograms = createdPrograms
-                self.tableView.reloadData()
-            }
-        }
+//        DispatchQueue.main.async {
+//            ProgramController.shared.getUserFollowedAndCreatedPrograms { (followedPrograms, createdPrograms) in
+//                self.followedPrograms = followedPrograms
+//                self.createdPrograms = createdPrograms
+//                self.tableView.reloadData()
+//            }
+//        }
     }
 
     // MARK: - Table view data source
@@ -56,10 +61,10 @@ class MyProgramsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             
-            return followedPrograms?.count ?? 0
+            return ProgramController.shared.followedPrograms.count
         }
         if section == 1 {
-            return createdPrograms?.count ?? 0
+            return ProgramController.shared.createdPrograms.count //createdPrograms?.count ?? 0
         } else {
             return 0
         }
@@ -67,14 +72,14 @@ class MyProgramsTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 && followedPrograms?.count ?? 0 > 0 {
+        if section == 0 && ProgramController.shared.followedPrograms.count > 0 {
             
             return "Followed Programs"
         }
 //        if section == 1 && createdPrograms?.count ?? 0 > 0 {
 //            return "Created Programs"
 //        }
-        if section == 1 && createdPrograms?.count ?? 0 > 0{
+        if section == 1 && ProgramController.shared.createdPrograms.count > 0{
             return "Created Programs"
         }
         return nil
@@ -85,12 +90,12 @@ class MyProgramsTableViewController: UITableViewController {
         
         // Configure the cell...
         if indexPath.section == 0 {
-            guard let followedPrograms = followedPrograms else { return UITableViewCell() }
-            let program = followedPrograms[indexPath.row]
+            //guard let followedPrograms = followedPrograms else { return UITableViewCell() }
+            let program = ProgramController.shared.followedPrograms[indexPath.row]
             cell.program = program
         } else if indexPath.section == 1 {
-            guard let createdPrograms = createdPrograms else { return UITableViewCell() }
-            let program = createdPrograms[indexPath.row]
+            //guard let createdPrograms = createdPrograms else { return UITableViewCell() }
+            let program = ProgramController.shared.createdPrograms[indexPath.row]
             cell.program = program
         }
         return cell
@@ -146,16 +151,23 @@ class MyProgramsTableViewController: UITableViewController {
                 let destinationVC = segue.destination as? ProgramViewController else { return }
             
             if indexPath.section == 0 {
-                guard let followedPrograms = followedPrograms else { return }
-                let program = followedPrograms[indexPath.row]
+                //guard let followedPrograms = followedPrograms else { return }
+                let program = ProgramController.shared.followedPrograms[indexPath.row]
                 destinationVC.program = program
             } else if indexPath.section == 1 {
-                guard let createdPrograms = createdPrograms else { return }
-                let program = createdPrograms[indexPath.row]
+                //guard let createdPrograms = createdPrograms else { return }
+                let program = ProgramController.shared.createdPrograms[indexPath.row]
                 destinationVC.program = program
             }
 
         }
+    }
+    
+    // MARK: - Helper Methods
+    @objc func loadMyPrograms(notification: NSNotification){
+        //load data here
+        
+        self.tableView.reloadData()
     }
  
 

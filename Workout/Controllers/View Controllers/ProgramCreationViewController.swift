@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ProgramCreationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
     
@@ -25,6 +26,9 @@ class ProgramCreationViewController: UIViewController, UITableViewDataSource, UI
         }
     }
     
+    var imagePicker: UIImagePickerController!
+    var takenImage: UIImage!
+    
     // MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +44,12 @@ class ProgramCreationViewController: UIViewController, UITableViewDataSource, UI
         programDescriptionTextView.returnKeyType = .done
         programDescriptionTextView.delegate = self
         //updateViews()
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        programImageView.isUserInteractionEnabled = true
+        programImageView.addGestureRecognizer(tapGestureRecognizer)
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,6 +104,8 @@ class ProgramCreationViewController: UIViewController, UITableViewDataSource, UI
         
         if program.photoURL == "" {
             programImageView.image = UIImage(named: "300-Pound-Bench")
+        } else {
+            
         }
     }
     
@@ -207,6 +219,117 @@ class ProgramCreationViewController: UIViewController, UITableViewDataSource, UI
                 self.present(alert, animated: true)
             }
         }
+    }
+    
+    func selectPhoto() {
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+//        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+//            imagePicker.sourceType = .camera
+//            imagePicker.cameraCaptureMode = .photo
+//        } else {
+//            imagePicker.sourceType = .photoLibrary
+//        }
+//
+//        self.present(imagePicker, animated: true, completion: nil)
+        
+        
+        
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_: UIAlertAction) in
+                self.imagePicker.sourceType = .camera
+                self.present(self.imagePicker, animated: true, completion: nil)
+            }))
+        }
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (_: UIAlertAction) in
+            self.imagePicker.sourceType = .photoLibrary
+            self.present(self.imagePicker, animated: true, completion: nil)
+            
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(actionSheet, animated: true)
+    }
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        
+        // Your action
+        selectPhoto()
+    }
+    
+    func savePhoto(image: UIImage, completion: @escaping (Bool) -> (Void)) {
+        guard let program = program, let userUID = Auth.auth().currentUser?.uid else { return }
+        let newPostRef = Database.database().reference().child("programPhotos").child(program.uid)
+        guard let newPostKey = newPostRef.key else { return }
+        //var imageDownloadURL: String = ""
+        guard let imageData = image.jpegData(compressionQuality: 0.6) else { return }
+        let imageStorageRef = Storage.storage().reference().child("images")
+        
+        let newImageRef = imageStorageRef.child(newPostKey)
+        
+        // Save image to storage
+        newImageRef.putData(imageData).observe(.success, handler: { (snapshot) in
+            newImageRef.downloadURL(completion: { (url, error) in
+                if error != nil {
+                    print(error!.localizedDescription)
+                    completion(false)
+                    return
+                }
+                // get download URL
+                if let profileImageUrl = url?.absoluteString {
+//                    guard let uid = (Auth.auth().currentUser?.uid) else {return}
+//                    let values = ["name": self.name, "email": self.email, "profilePictureUrl": profileImageUrl]
+//
+//                    newPostRef.setValue(values)
+//                    self.ref.child(uid).childByAutoId().setValue(values)
+                    
+                    // Update program photoURL
+                    ProgramController.shared.updateProgramPhotoURL(profileImageUrl, program: program, completion: { (success) -> (Void) in
+                        if success {
+                            let newPostDictionary = [
+                                "imageDownloadURL": profileImageUrl,
+                                "programUID": program.uid,
+                                "userUID": userUID
+                            ]
+                            
+                            newPostRef.setValue(newPostDictionary)
+                            completion(true)
+                        } else {
+                            completion(false)
+                        }
+                    })
+                    
+                }
+            })
+        })
+        
+    }
+}
+
+extension ProgramCreationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        self.takenImage = image
+        self.programImageView.image = self.takenImage
+        
+        self.savePhoto(image: image) { (success) -> (Void) in
+            if success {
+                self.dismiss(animated: true, completion: nil)
+                
+            } else {
+                fatalError("Help")
+            }
+        }
+        
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

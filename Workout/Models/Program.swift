@@ -18,6 +18,7 @@ class Program {
     var followersUIDs: [String]
     let uid: String
     
+    
     // MARK: - Memberwise initilizer
     init(creatorUID: String, name: String, description: String, photoURL: String, followersUIDs: [String] = [], uid: String = UUID.init().uuidString) {
         self.creatorUID = creatorUID
