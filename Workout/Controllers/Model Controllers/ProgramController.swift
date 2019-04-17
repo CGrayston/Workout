@@ -108,6 +108,26 @@ class ProgramController {
         }
     }
     
+    func updateProgramPhotoURL(_ photoURL: String, program: Program, completion: @escaping (Bool) -> (Void)) {
+        // Update Program locally
+        guard let index = programs.firstIndex(of: program) else { completion(false) ; return }
+        programs[index].photoURL = photoURL
+        
+        db.collection(DatabaseReference.programDatabase).document(program.uid).updateData([
+            "photoURL": photoURL,
+        ]) { (error) in
+            if let error = error {
+                print("Error writing document: \(error)")
+                completion(false)
+                return
+            } else {
+                print("Document successfully updated!")
+                completion(true)
+                return
+            }
+        }
+    }
+    
     /*
      * Delete program. Must delete all workouts and exercises contained in that program.
      * Also remove the programUID from the User models createdPrograms array
@@ -324,33 +344,105 @@ class ProgramController {
     func setUserFollowedAndCreatedPrograms(completion: @escaping (Bool) -> Void) {
         var createdPrograms: [Program] = []
         var followedPrograms: [Program] = []
+
+        //programDBRef.addSnapshotListener(<#T##listener: FIRQuerySnapshotBlock##FIRQuerySnapshotBlock##(QuerySnapshot?, Error?) -> Void#>)
+        //programDBRef
         
-        programDBRef.getDocuments { (querySnapshot, error) in
-            if let error = error {
-                print("Error gettings all User followed programs: \(error.localizedDescription)")
-                completion(false)
-                return
-            }
-            guard let querySnapshot = querySnapshot else { return }
-            
-            for document in querySnapshot.documents {
-                let creatorUID = document["creatorUID"] as? String
-                let followersUIDs = document["followersUIDs"] as? [String] ?? []
-                
-                // if document.creatorUID == userUID add to the createdPrograms array
-                // if document.followersUIDs array contains userUID then add to follwoed rograms array
-                if creatorUID == self.userUID {
-                    let program = Program(document: document.data())
-                    createdPrograms.append(program)
-                } else if followersUIDs.contains(self.userUID){
-                    let program = Program(document: document.data())
-                    followedPrograms.append(program)
+        
+        programDBRef
+            //.whereField("creatorUID", isEqualTo: userUID)
+            .whereField("followersUIDs", arrayContains: userUID)
+            .addSnapshotListener { (querySnapshot, error) in
+                if let error = error {
+                    print("Error gettings all User followed programs: \(error.localizedDescription)")
+                    completion(false)
+                    return
                 }
-            }
-            
-            self.createdPrograms = createdPrograms
-            self.followedPrograms = followedPrograms
-            completion(true)
+                guard let querySnapshot = querySnapshot else { return }
+                //self.createdPrograms = []
+                followedPrograms = []
+                for document in querySnapshot.documents {
+                    let creatorUID = document["creatorUID"] as? String
+                    let followersUIDs = document["followersUIDs"] as? [String] ?? []
+                    
+                    // if document.creatorUID == userUID add to the createdPrograms array
+                    // if document.followersUIDs array contains userUID then add to follwoed rograms array
+                    if creatorUID == self.userUID {
+                        let program = Program(document: document.data())
+                        createdPrograms.append(program)
+                    } else if followersUIDs.contains(self.userUID){
+                        let program = Program(document: document.data())
+                        followedPrograms.append(program)
+                    }
+                }
+                
+//                self.createdPrograms = createdPrograms
+//                self.followedPrograms = followedPrograms
+                //completion(true)
         }
+        
+        
+        programDBRef
+            .whereField("creatorUID", isEqualTo: userUID)
+            //.whereField("followersUIDs", arrayContains: userUID)
+            .addSnapshotListener { (querySnapshot, error) in
+                if let error = error {
+                    print("Error gettings all User followed programs: \(error.localizedDescription)")
+                    completion(false)
+                    return
+                }
+                guard let querySnapshot = querySnapshot else { return }
+                createdPrograms = []
+                //self.followedPrograms = []
+                for document in querySnapshot.documents {
+                    let creatorUID = document["creatorUID"] as? String
+                    let followersUIDs = document["followersUIDs"] as? [String] ?? []
+                    
+                    // if document.creatorUID == userUID add to the createdPrograms array
+                    // if document.followersUIDs array contains userUID then add to follwoed rograms array
+                    if creatorUID == self.userUID {
+                        let program = Program(document: document.data())
+                        createdPrograms.append(program)
+                    } else if followersUIDs.contains(self.userUID){
+                        let program = Program(document: document.data())
+                        followedPrograms.append(program)
+                    }
+                }
+                
+                self.createdPrograms = createdPrograms
+                self.followedPrograms = followedPrograms
+                completion(true)
+        }
+        
+        
+        
+        
+//        programDBRef.getDocuments { (querySnapshot, error) in
+//            if let error = error {
+//                print("Error gettings all User followed programs: \(error.localizedDescription)")
+//                completion(false)
+//                return
+//            }
+//            guard let querySnapshot = querySnapshot else { return }
+//
+//            for document in querySnapshot.documents {
+//                let creatorUID = document["creatorUID"] as? String
+//                let followersUIDs = document["followersUIDs"] as? [String] ?? []
+//
+//                // if document.creatorUID == userUID add to the createdPrograms array
+//                // if document.followersUIDs array contains userUID then add to follwoed rograms array
+//                if creatorUID == self.userUID {
+//                    let program = Program(document: document.data())
+//                    createdPrograms.append(program)
+//                } else if followersUIDs.contains(self.userUID){
+//                    let program = Program(document: document.data())
+//                    followedPrograms.append(program)
+//                }
+//            }
+//
+//            self.createdPrograms = createdPrograms
+//            self.followedPrograms = followedPrograms
+//            completion(true)
+//        }
     }
 }

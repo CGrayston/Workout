@@ -30,6 +30,8 @@ class HomeController: UIViewController {
         db = Firestore.firestore()
         
         authenticateUserAndConfigureView()
+        
+        
     }
     
     // MARK: - Selectors
@@ -48,7 +50,7 @@ class HomeController: UIViewController {
     func loadUserData() {
         //guard let uid = Auth.auth().currentUser?.uid else { return }
         
-//        // Get programs user follows
+        // Get programs user follows
 //        DispatchQueue.main.async {
 //            ProgramController.shared.getUserFollowedAndCreatedPrograms { (followedPrograms, createdPrograms) in
 //                self.followedPrograms = followedPrograms
@@ -56,17 +58,33 @@ class HomeController: UIViewController {
 //                self.tableView.reloadData()
 //            }
 //        }
-//        
-//        ProgramController.shared.setUserFollowedAndCreatedPrograms { (success) in
-//            if success {
-//                
-//            }
-//        }
+        let dispatchGroup = DispatchGroup()
+        ProgramController.shared.setUserFollowedAndCreatedPrograms { (success) in
+            dispatchGroup.enter()
+            //dispatchGroup.leave()
+            if success {
+                NotificationCenter.default.post(name: NotificationCenterNames.programUpdated, object: nil)
+                dispatchGroup.leave()
+            }
+        }
         
+        dispatchGroup.enter()
         UserController.shared.loadUser {
+            
+            //dispatchGroup.leave()
+            
+        }
+        dispatchGroup.leave()
+        
+        dispatchGroup.notify(queue: .main) {
             let tabbarViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar")
             self.present(tabbarViewController, animated: true, completion: nil)
         }
+        
+//        UserController.shared.loadUser {
+//            let tabbarViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar")
+//            self.present(tabbarViewController, animated: true, completion: nil)
+//        }
         
 //        let docRef = db.collection(DatabaseReference.userDatabase).document(uid)
 //

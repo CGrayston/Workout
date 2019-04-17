@@ -191,7 +191,7 @@
         <!--Choose Workout-->
         <scene sceneID="vVN-70-yBi">
             <objects>
-                <viewController id="xjh-sJ-cLx" customClass="ChooseWorkoutViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChooseWorkout" id="xjh-sJ-cLx" customClass="ChooseWorkoutViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AMM-6n-aj9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -285,7 +285,7 @@
         <!--Workout View Controller-->
         <scene sceneID="bfp-Wx-jwN">
             <objects>
-                <viewController id="zaV-pU-ohZ" customClass="WorkoutViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WorkoutVC" id="zaV-pU-ohZ" customClass="WorkoutViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gNQ-Oe-IcI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

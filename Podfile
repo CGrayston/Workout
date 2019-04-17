@@ -11,4 +11,7 @@ target 'Workout' do
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
+  pod 'Firebase/Storage'
+  pod 'SwiftyJSON'
+
 end
