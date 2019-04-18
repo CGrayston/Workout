@@ -18,7 +18,8 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.googleRed()]
     }
     
     override func viewWillAppear(_ animated: Bool) {

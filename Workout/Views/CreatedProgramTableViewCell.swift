@@ -10,6 +10,7 @@ import UIKit
 
 class CreatedProgramTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var programImageView: UIImageView!
     @IBOutlet weak var programNameLabel: UILabel!
     @IBOutlet weak var programDescriptionLabel: UILabel!
@@ -17,20 +18,24 @@ class CreatedProgramTableViewCell: UITableViewCell {
     var program: Program? {
         didSet {
             //self.setSelected(, animated: <#T##Bool#>)
-            updateViews()
+            //layoutIfNeeded()
+            //layoutSubviews()
+            self.updateViews()
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        //_ = self.cellView
+        
+        self.selectionStyle = UITableViewCell.SelectionStyle.none
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//
+//        // Configure the view for the selected state
+//    }
     
     func updateViews() {
         
@@ -48,6 +53,11 @@ class CreatedProgramTableViewCell: UITableViewCell {
         
         programNameLabel.text = program.name
         programDescriptionLabel.text = program.description
+        //TODO
+        if self.cellView != nil {
+            cellView.layer.cornerRadius = 15
+            
+        }
     }
 
 }

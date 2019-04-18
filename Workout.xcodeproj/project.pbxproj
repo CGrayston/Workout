@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A82AA6622651D15009CFCC9 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A82AA6522651D15009CFCC9 /* DateHelper.swift */; };
 		0A82AA682265248B009CFCC9 /* CompletedWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A82AA672265248B009CFCC9 /* CompletedWorkoutViewController.swift */; };
 		0A82AA6A226533BE009CFCC9 /* CompletedExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A82AA69226533BE009CFCC9 /* CompletedExerciseViewController.swift */; };
 		0A82AA6C22653581009CFCC9 /* CompletedSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A82AA6B22653581009CFCC9 /* CompletedSetTableViewCell.swift */; };
@@ -48,6 +47,8 @@
 		0ABFE3F822667C5100BD185F /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABFE3F722667C5000BD185F /* SF-Pro-Text-Regular.otf */; };
 		0ABFE3FA22667D9900BD185F /* ProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABFE3F922667D9900BD185F /* ProgressTableViewCell.swift */; };
 		0ACD37CC2267BEC8008A6163 /* NotificationCenterNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD37CB2267BEC8008A6163 /* NotificationCenterNames.swift */; };
+		0ACD37D22267D348008A6163 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD37D12267D348008A6163 /* DateHelper.swift */; };
+		0ACD37D42268E5B2008A6163 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD37D32268E5B1008A6163 /* WorkoutTableViewCell.swift */; };
 		0AF3C1AE2255560E00ACB9A3 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF3C1AD2255560E00ACB9A3 /* LogInViewController.swift */; };
 		0AF3C1B62255605900ACB9A3 /* DatabaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF3C1B52255605900ACB9A3 /* DatabaseReference.swift */; };
 		0AF3C1B82255667000ACB9A3 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF3C1B72255667000ACB9A3 /* SignUpController.swift */; };
@@ -66,7 +67,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A82AA6522651D15009CFCC9 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		0A82AA672265248B009CFCC9 /* CompletedWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedWorkoutViewController.swift; sourceTree = "<group>"; };
 		0A82AA69226533BE009CFCC9 /* CompletedExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedExerciseViewController.swift; sourceTree = "<group>"; };
 		0A82AA6B22653581009CFCC9 /* CompletedSetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedSetTableViewCell.swift; sourceTree = "<group>"; };
@@ -109,6 +109,8 @@
 		0ABFE3F722667C5000BD185F /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Text-Regular.otf"; path = "../../../../../../Downloads/SFFont/SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		0ABFE3F922667D9900BD185F /* ProgressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCell.swift; sourceTree = "<group>"; };
 		0ACD37CB2267BEC8008A6163 /* NotificationCenterNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterNames.swift; sourceTree = "<group>"; };
+		0ACD37D12267D348008A6163 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		0ACD37D32268E5B1008A6163 /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		0AF3C1AD2255560E00ACB9A3 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		0AF3C1B52255605900ACB9A3 /* DatabaseReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseReference.swift; sourceTree = "<group>"; };
 		0AF3C1B72255667000ACB9A3 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -178,7 +180,6 @@
 				0AF3C1B72255667000ACB9A3 /* SignUpController.swift */,
 				0AF3C1B9225566FC00ACB9A3 /* HomeController.swift */,
 				0AF3C1BB2255673800ACB9A3 /* Extensions.swift */,
-				0A82AA6522651D15009CFCC9 /* DateHelper.swift */,
 			);
 			path = Workout;
 			sourceTree = "<group>";
@@ -194,6 +195,7 @@
 				0AA28C76225FDD02009D6B53 /* CompletedExerciseTableViewCell.swift */,
 				0A82AA6B22653581009CFCC9 /* CompletedSetTableViewCell.swift */,
 				0ABFE3F922667D9900BD185F /* ProgressTableViewCell.swift */,
+				0ACD37D32268E5B1008A6163 /* WorkoutTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -232,6 +234,7 @@
 				0A8B5BD0225523BF0038F734 /* Assets.xcassets */,
 				0A8B5BD5225523BF0038F734 /* Info.plist */,
 				0AF3C1D52256948600ACB9A3 /* GoogleService-Info.plist */,
+				0ACD37D12267D348008A6163 /* DateHelper.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				0AF3C1BC2255673800ACB9A3 /* Extensions.swift in Sources */,
 				0AAECEA22256F90700EC360B /* Workout.swift in Sources */,
 				0ACD37CC2267BEC8008A6163 /* NotificationCenterNames.swift in Sources */,
+				0ACD37D22267D348008A6163 /* DateHelper.swift in Sources */,
 				0AA28C77225FDD02009D6B53 /* CompletedExerciseTableViewCell.swift in Sources */,
 				0AA28C22225EA6E6009D6B53 /* CompletedWorkoutController.swift in Sources */,
 				0AA28C16225D41F6009D6B53 /* ChooseWorkoutViewController.swift in Sources */,
@@ -507,7 +511,7 @@
 				0AAECEAD2257B3A800EC360B /* User.swift in Sources */,
 				0AA28C24225EAF13009D6B53 /* ProgressTableViewController.swift in Sources */,
 				0AA28C1C225E3F7A009D6B53 /* ExerciseViewController.swift in Sources */,
-				0A82AA6622651D15009CFCC9 /* DateHelper.swift in Sources */,
+				0ACD37D42268E5B2008A6163 /* WorkoutTableViewCell.swift in Sources */,
 				0AA28C0E225BD34C009D6B53 /* AddProgramViewController.swift in Sources */,
 				0AAECEA42256F9CC00EC360B /* Exercise.swift in Sources */,
 				0AA28C12225D3E05009D6B53 /* MyProgramsTableViewController.swift in Sources */,

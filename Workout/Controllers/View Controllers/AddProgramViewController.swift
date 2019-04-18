@@ -42,7 +42,7 @@ class AddProgramViewController: UIViewController {
             // Already following
             DispatchQueue.main.async {
                 self.followProgramButton.setTitle("Already Following", for: .disabled)
-                self.followProgramButton.backgroundColor = UIColor.blue
+                //self.followProgramButton.backgroundColor = UIColor.blue
                 self.followProgramButton.titleLabel?.textColor = UIColor.white
                 self.followProgramButton.isEnabled = false
                 self.unfollowBarButtonItem.isEnabled = true
@@ -51,7 +51,7 @@ class AddProgramViewController: UIViewController {
             // Not following
             DispatchQueue.main.async {
                 self.followProgramButton.setTitle("Follow Program", for: .normal)
-                self.followProgramButton.backgroundColor = UIColor.googleRed()
+                //self.followProgramButton.backgroundColor = UIColor.googleRed()
                 self.followProgramButton.titleLabel?.textColor = UIColor.white
                 self.followProgramButton.isEnabled = true
                 self.unfollowBarButtonItem.isEnabled = false
@@ -86,13 +86,22 @@ class AddProgramViewController: UIViewController {
         // Append Program's 'uid' to User's 'followedPrograms' array
         // Append User's 'uid' to Program's --> 'followersUIDs'
         UserController.shared.followProgram(program: program) { (success, response) -> (Void) in
+            // Send reload notification if we unfollowed
+            if success {
+                ProgramController.shared.setUserFollowedAndCreatedPrograms(completion: { (success) in
+                    if success {
+                        NotificationCenter.default.post(name: NotificationCenterNames.programUpdated, object: nil)
+                    }
+                })
+            }
+            
             if success && response == "Following program" {
                 DispatchQueue.main.async {
                     self.followProgramButton.isEnabled = false
                     self.unfollowBarButtonItem.isEnabled = true
 
                     
-                    self.followProgramButton.backgroundColor = UIColor.blue
+                    //self.followProgramButton.backgroundColor = UIColor.blue
                     self.followProgramButton.titleLabel?.textColor = UIColor.white
                     self.followProgramButton.setTitle("Following Program", for: .disabled)
                 }
@@ -102,13 +111,13 @@ class AddProgramViewController: UIViewController {
                     self.unfollowBarButtonItem.isEnabled = true
                     
                     
-                    self.followProgramButton.backgroundColor = UIColor.blue
+                    //self.followProgramButton.backgroundColor = UIColor.blue
                     self.followProgramButton.titleLabel?.textColor = UIColor.white
                     self.followProgramButton.setTitle("Already Following Program", for: .disabled)
                 }
             }  else {
                 DispatchQueue.main.async {
-                    self.followProgramButton.backgroundColor = UIColor.googleRed()
+                    //self.followProgramButton.backgroundColor = UIColor.googleRed()
                     self.followProgramButton.titleLabel?.textColor = UIColor.white
                     self.followProgramButton.titleLabel?.text = response
                 }
@@ -126,9 +135,16 @@ class AddProgramViewController: UIViewController {
                 self.unfollowBarButtonItem.isEnabled = false
                 
                 
-                self.followProgramButton.backgroundColor = UIColor.googleRed()
+                //self.followProgramButton.backgroundColor = UIColor.googleRed()
                 self.followProgramButton.titleLabel?.textColor = UIColor.white
                 self.followProgramButton.setTitle("Follow Program", for: .normal)
+            }
+            if success {
+                ProgramController.shared.setUserFollowedAndCreatedPrograms(completion: { (success) in
+                    if success {
+                        NotificationCenter.default.post(name: NotificationCenterNames.programUpdated, object: nil)
+                    }
+                })
             }
         }
         

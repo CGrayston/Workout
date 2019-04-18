@@ -10,7 +10,9 @@ import UIKit
 
 class SetsCreationTableViewCell: UITableViewCell {
 
+    
     @IBOutlet weak var setLabel: UILabel!
+    
     
     var setNumber: Int? {
         didSet{

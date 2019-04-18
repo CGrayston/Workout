@@ -14,6 +14,7 @@ class CompletedExerciseCellTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var setsLabel: UILabel!
     @IBOutlet weak var repsLabel: UILabel!
+    @IBOutlet weak var completedExerciseView: UIView!
     
     weak var completedExercise: CompletedExercise? {
         didSet{

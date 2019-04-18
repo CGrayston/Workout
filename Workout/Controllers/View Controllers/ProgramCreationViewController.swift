@@ -221,6 +221,18 @@ class ProgramCreationViewController: UIViewController, UITableViewDataSource, UI
         }
     }
     
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        // Delete the program we just created
+//        guard let program = program else { return }
+//        ProgramController.shared.deleteProgram(program: program) { (success) in
+//            if success {
+//                self.dismiss(animated: true, completion: nil)
+//            }
+//        }
+        // Dismiss view
+        self.dismiss(animated: false, completion: nil)
+    }
+    
     func selectPhoto() {
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self

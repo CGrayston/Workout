@@ -10,14 +10,16 @@ import UIKit
 
 class SearchedProgramTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var searchedProgramView: UIView!
     @IBOutlet weak var programPhotoImageView: UIImageView!
     @IBOutlet weak var programNameLabel: UILabel!
-    @IBOutlet weak var programCreatorLabel: UILabel!
+    @IBOutlet weak var programDescription: UILabel!
     
     var program: Program? {
         didSet {
             updateCell()
         }
+        
     }
     
     // TODO - do something with creator
@@ -27,12 +29,15 @@ class SearchedProgramTableViewCell: UITableViewCell {
         guard let program = program else { return }
         programPhotoImageView.image = UIImage(named: "300-Pound-Bench")
         programNameLabel.text = program.name
-        programCreatorLabel.text = "By: \(program.creatorUID)"
+        programDescription.text = program.description
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        searchedProgramView.layer.cornerRadius = 5
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

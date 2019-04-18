@@ -23,6 +23,7 @@ class CompletedSetTableViewCell: UITableViewCell {
     @IBOutlet weak var setLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var repsLabel: UILabel!
+    @IBOutlet weak var setCellView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

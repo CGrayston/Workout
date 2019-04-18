@@ -51,11 +51,14 @@ class ChooseWorkoutViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "workoutSelectionCell", for: indexPath)
-        guard let workouts = workouts else { return cell }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "workoutSelectionCell", for: indexPath) as? WorkoutTableViewCell,
+            let workout = workouts?[indexPath.row]
+            else { return UITableViewCell() }
+        //guard   else { return cell }
         
-        cell.textLabel?.text = workouts[indexPath.row].name
-        cell.detailTextLabel?.text = workouts[indexPath.row].description
+        cell.workout = workout
+//        cell.textLabel?.text = workouts[indexPath.row].name
+//        cell.detailTextLabel?.text = workouts[indexPath.row].description
         
         return cell
     }
