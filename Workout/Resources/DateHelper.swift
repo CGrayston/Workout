@@ -5,16 +5,15 @@
 //  Created by Chris Grayston on 4/15/19.
 //  Copyright © 2019 Chris Grayston. All rights reserved.
 //
-
 import Foundation
 
 class DateHelper {
     
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-//        formatter.weekdaySymbols = DateFormatter.init().shortWeekdaySymbols
-//        formatter.dateStyle = .long
-//        formatter.timeStyle = .short
+        //        formatter.weekdaySymbols = DateFormatter.init().shortWeekdaySymbols
+        //        formatter.dateStyle = .long
+        //        formatter.timeStyle = .short
         
         let format = "EEEE-dd-MMM-yyyy"
         let dateFormatter = DateFormatter()

@@ -24,6 +24,9 @@ class EnterExerciseSetTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var weightInputTextField: UITextField!
     @IBOutlet weak var repsInputTextField: UITextField!
     
+    @IBOutlet weak var background: UIView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         

@@ -14,7 +14,10 @@ class CreatedProgramsListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.rowHeight = 200
+        self.tableView.rowHeight = UIScreen.main.bounds.height * 0.15
+        self.tableView.backgroundColor = .white
+        self.tableView.separatorStyle = .none
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,7 +40,7 @@ class CreatedProgramsListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Cast as custom cell
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "createdProgram", for: indexPath) as? CreatedProgramTableViewCell else { return UITableViewCell() }
+        /*guard*/ let cell = tableView.dequeueReusableCell(withIdentifier: "createdProgramCell", for: indexPath) as! CreatedProgramTableViewCell /*else { return UITableViewCell() }*/
         
         // Get created program at current IndexPath.row
         let program = ProgramController.shared.programs[indexPath.row]

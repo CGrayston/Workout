@@ -12,7 +12,7 @@ class ProgressTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.red]
         CompletedWorkoutController.shared.loadCompletedWorkouts {
             DispatchQueue.main.async {
                 self.tableView.reloadData()

@@ -171,4 +171,21 @@ class WorkoutCreationViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
     
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        guard let workoutText = workoutNameTextField.text,
+            !workoutText.isEmpty,
+            let workoutDescription = workoutDescriptionTextView.text,
+            !workoutDescription.isEmpty
+            else {
+                guard let workout = workout else { return }
+                WorkoutController.shared.deleteWorkout(workout: workout) { (_) in
+                    self.dismiss(animated: true, completion: nil)
+                }
+                return
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
 }

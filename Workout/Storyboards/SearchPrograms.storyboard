@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3ba-h9-p7p">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WIn-wY-WqQ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Search Programs-->
         <scene sceneID="pbp-Bb-3LX">
             <objects>
-                <tableViewController id="JZc-9i-ZO3" customClass="SearchProgramsTableViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="JZc-9i-ZO3" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="NAO-U5-cQy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,7 +29,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchedProgramCell" rowHeight="132" id="gcV-Iu-bOm" customClass="SearchedProgramTableViewCell" customModule="Workout" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="132" id="gcV-Iu-bOm">
                                 <rect key="frame" x="0.0" y="72" width="375" height="132"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gcV-Iu-bOm" id="253-8F-fRI">
@@ -77,10 +82,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="programCreatorLabel" destination="akT-dy-mRD" id="PvF-Hv-N0g"/>
-                                    <outlet property="programNameLabel" destination="sij-LF-3Mm" id="cwj-I2-tLL"/>
-                                    <outlet property="programPhotoImageView" destination="gan-35-Xrd" id="Xbl-Uf-YDn"/>
-                                    <segue destination="baf-FH-jnP" kind="show" identifier="toProgramDetailVC" id="AYc-5X-Jzs"/>
+                                    <segue destination="baf-FH-jnP" kind="show" identifier="" id="AYc-5X-Jzs"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -90,9 +92,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Search Programs" id="FeR-nF-Z8S"/>
-                    <connections>
-                        <outlet property="searchBar" destination="0h3-90-Sfq" id="W0L-lx-dSY"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vAz-fx-A3W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -101,7 +100,7 @@
         <!--Follow Program-->
         <scene sceneID="qAx-Zo-4BY">
             <objects>
-                <viewController id="baf-FH-jnP" customClass="AddProgramViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="baf-FH-jnP" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nOr-N4-5ay">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,16 +113,16 @@
                                 <rect key="frame" x="0.0" y="91.5" width="375" height="499"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(programsName)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oko-Ky-Ttu">
-                                        <rect key="frame" x="122" y="0.0" width="131" height="19"/>
+                                        <rect key="frame" x="122" y="0.0" width="131" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j9e-x9-qAy">
-                                        <rect key="frame" x="0.0" y="77" width="375" height="273.5"/>
+                                        <rect key="frame" x="0.0" y="78.5" width="375" height="258"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(programsDescription)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nGb-Qf-Jyr">
-                                        <rect key="frame" x="101" y="408.5" width="173.5" height="2.5"/>
+                                        <rect key="frame" x="101" y="394.5" width="173.5" height="16.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -138,9 +137,6 @@
                                         <state key="normal" title="Follow">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
-                                        <connections>
-                                            <action selector="followProgramButtonTapped:" destination="baf-FH-jnP" eventType="touchUpInside" id="enc-Vt-ZqB"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -163,19 +159,8 @@
                         <viewLayoutGuide key="safeArea" id="PNw-re-Krq"/>
                     </view>
                     <navigationItem key="navigationItem" title="Follow Program" id="gd8-6A-h7U">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Unfollow" id="asF-P9-AgG">
-                            <connections>
-                                <action selector="unfollowButtonTapped:" destination="baf-FH-jnP" id="kwL-G4-1iB"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Unfollow" id="asF-P9-AgG"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="followProgramButton" destination="7rX-oI-NDz" id="epG-Kd-khx"/>
-                        <outlet property="programDescription" destination="nGb-Qf-Jyr" id="w2y-7E-SCn"/>
-                        <outlet property="programImageView" destination="j9e-x9-qAy" id="BHZ-9U-Wa6"/>
-                        <outlet property="programNameLabel" destination="Oko-Ky-Ttu" id="sK1-8j-1aR"/>
-                        <outlet property="unfollowBarButtonItem" destination="asF-P9-AgG" id="Sq8-CI-bGb"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oxf-hg-pfO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -198,6 +183,231 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LTW-wH-dju" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1437" y="865"/>
+        </scene>
+        <!--Search Programs-->
+        <scene sceneID="iiT-tc-bXx">
+            <objects>
+                <tableViewController id="9IT-A7-NOA" customClass="SearchProgramsTableViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ofL-dZ-hX9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search for programs..." id="utx-Z8-GSc">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchedProgramCell" rowHeight="141" id="Dkc-ON-rv7" customClass="SearchedProgramTableViewCell" customModule="Workout" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="141"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dkc-ON-rv7" id="jAn-Xu-wiv">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="140.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="73e-rh-6gf">
+                                            <rect key="frame" x="9.5" y="7" width="356" height="126.5"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6Bb-kC-7K5">
+                                                    <rect key="frame" x="9" y="3" width="338" height="120.5"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Enq-gM-lfU">
+                                                            <rect key="frame" x="0.0" y="6" width="86.5" height="108.5"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VVK-Tw-uNt">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="86.5" height="108.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="VVK-Tw-uNt" secondAttribute="height" multiplier="4:5" id="gxr-te-QJb"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="VVK-Tw-uNt" firstAttribute="height" secondItem="Enq-gM-lfU" secondAttribute="height" id="kvN-Zc-7dB"/>
+                                                            </constraints>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="HIm-dg-i3f">
+                                                            <rect key="frame" x="94.5" y="0.0" width="243.5" height="120.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(programName)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MXp-KM-JKm">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="243.5" height="36"/>
+                                                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(programDescription)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="73D-xT-522">
+                                                                    <rect key="frame" x="0.0" y="44" width="243.5" height="76.5"/>
+                                                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="73D-xT-522" firstAttribute="width" secondItem="HIm-dg-i3f" secondAttribute="width" id="f4x-0Z-yLN"/>
+                                                                <constraint firstItem="MXp-KM-JKm" firstAttribute="height" secondItem="HIm-dg-i3f" secondAttribute="height" multiplier="0.3" id="hoS-6N-tpn"/>
+                                                                <constraint firstItem="MXp-KM-JKm" firstAttribute="width" secondItem="HIm-dg-i3f" secondAttribute="width" id="w0M-W7-8NX"/>
+                                                            </constraints>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="Enq-gM-lfU" firstAttribute="height" secondItem="6Bb-kC-7K5" secondAttribute="height" multiplier="0.9" id="ID1-sl-NJ2"/>
+                                                        <constraint firstItem="HIm-dg-i3f" firstAttribute="height" secondItem="6Bb-kC-7K5" secondAttribute="height" id="x8P-71-Toa"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="0.89338077910000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="6Bb-kC-7K5" firstAttribute="centerY" secondItem="73e-rh-6gf" secondAttribute="centerY" id="7us-UH-N3D"/>
+                                                <constraint firstItem="6Bb-kC-7K5" firstAttribute="centerX" secondItem="73e-rh-6gf" secondAttribute="centerX" id="C20-Qq-pza"/>
+                                                <constraint firstItem="6Bb-kC-7K5" firstAttribute="height" secondItem="73e-rh-6gf" secondAttribute="height" multiplier="0.95" id="F2k-kI-sQX"/>
+                                                <constraint firstItem="6Bb-kC-7K5" firstAttribute="width" secondItem="73e-rh-6gf" secondAttribute="width" multiplier="0.95" id="hvb-Ci-Sd1"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="73e-rh-6gf" firstAttribute="width" secondItem="jAn-Xu-wiv" secondAttribute="width" multiplier="0.95" id="99E-VW-JWh"/>
+                                        <constraint firstItem="73e-rh-6gf" firstAttribute="centerX" secondItem="jAn-Xu-wiv" secondAttribute="centerX" id="hbi-Nv-jp7"/>
+                                        <constraint firstItem="73e-rh-6gf" firstAttribute="centerY" secondItem="jAn-Xu-wiv" secondAttribute="centerY" id="jNt-ZC-fb7"/>
+                                        <constraint firstItem="73e-rh-6gf" firstAttribute="height" secondItem="jAn-Xu-wiv" secondAttribute="height" multiplier="0.9" id="rW2-sC-bHG"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="programDescription" destination="73D-xT-522" id="qCy-lN-Yxh"/>
+                                    <outlet property="programNameLabel" destination="MXp-KM-JKm" id="GdM-48-osk"/>
+                                    <outlet property="programPhotoImageView" destination="VVK-Tw-uNt" id="v88-uU-C72"/>
+                                    <outlet property="searchedProgramView" destination="73e-rh-6gf" id="UvJ-iN-PhT"/>
+                                    <segue destination="gls-lm-qsx" kind="show" identifier="toProgramDetailVC" id="LbJ-Dt-n1J"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="9IT-A7-NOA" id="u8X-cH-19J"/>
+                            <outlet property="delegate" destination="9IT-A7-NOA" id="Lf5-pL-4Zk"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Search Programs" id="kKc-96-94k"/>
+                    <connections>
+                        <outlet property="searchBar" destination="utx-Z8-GSc" id="GwJ-0F-yOL"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BeZ-su-Jmz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-445.60000000000002" y="1564.7676161919042"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="xup-AD-3Kt">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WIn-wY-WqQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Search" image="search" id="kqD-aD-fG6"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1SI-qu-xRc">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9IT-A7-NOA" kind="relationship" relationship="rootViewController" id="0Ky-UW-L1x"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eu8-JO-ihg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1386.4000000000001" y="1564.7676161919042"/>
+        </scene>
+        <!--Follow Program-->
+        <scene sceneID="AoD-lm-bHj">
+            <objects>
+                <viewController id="gls-lm-qsx" customClass="AddProgramViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wNh-MX-BFK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h63-m5-mqx">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="AmH-z2-1AC">
+                                <rect key="frame" x="0.0" y="91.5" width="375" height="499"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(programName)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6d4-46-0iA">
+                                        <rect key="frame" x="9.5" y="0.0" width="356" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="5fO-e0-3BE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="37C-wu-uNE">
+                                        <rect key="frame" x="75" y="72" width="225" height="281.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="37C-wu-uNE" secondAttribute="height" multiplier="4:5" id="PXh-iT-8Mn"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(programDescription)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgc-Uv-x1h">
+                                        <rect key="frame" x="8" y="385.5" width="359" height="51.5"/>
+                                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cuu-s9-2nr">
+                                        <rect key="frame" x="9.5" y="469" width="356" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="0.89338077910000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="45" id="rro-4T-Nh6"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="19"/>
+                                        <state key="normal" title="Follow Program">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="followProgramButtonTapped:" destination="gls-lm-qsx" eventType="touchUpInside" id="8WX-fi-XLi"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="6d4-46-0iA" firstAttribute="centerX" secondItem="AmH-z2-1AC" secondAttribute="centerX" id="A5l-LV-q14"/>
+                                    <constraint firstItem="6d4-46-0iA" firstAttribute="height" secondItem="AmH-z2-1AC" secondAttribute="height" multiplier="0.08" id="SQD-Js-y9Q"/>
+                                    <constraint firstAttribute="bottom" secondItem="Cuu-s9-2nr" secondAttribute="bottom" id="WRm-Gs-4nd"/>
+                                    <constraint firstItem="6d4-46-0iA" firstAttribute="width" secondItem="AmH-z2-1AC" secondAttribute="width" multiplier="0.95" id="Yh5-gS-AZ4"/>
+                                    <constraint firstItem="Cuu-s9-2nr" firstAttribute="height" secondItem="AmH-z2-1AC" secondAttribute="height" multiplier="0.06" id="iSp-Ci-I1P"/>
+                                    <constraint firstItem="Cuu-s9-2nr" firstAttribute="width" secondItem="AmH-z2-1AC" secondAttribute="width" multiplier="0.95" id="kwO-1j-e07"/>
+                                    <constraint firstItem="qgc-Uv-x1h" firstAttribute="leading" secondItem="AmH-z2-1AC" secondAttribute="leading" constant="8" id="o8Y-ma-cjP"/>
+                                    <constraint firstAttribute="trailing" secondItem="qgc-Uv-x1h" secondAttribute="trailing" constant="8" id="rRN-qf-UUS"/>
+                                    <constraint firstItem="37C-wu-uNE" firstAttribute="width" secondItem="AmH-z2-1AC" secondAttribute="width" multiplier="0.6" id="u0D-dQ-CUL"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="AmH-z2-1AC" firstAttribute="centerX" secondItem="h63-m5-mqx" secondAttribute="centerX" id="1UU-6C-hK7"/>
+                            <constraint firstItem="AmH-z2-1AC" firstAttribute="centerY" secondItem="h63-m5-mqx" secondAttribute="centerY" id="5fN-NU-kNS"/>
+                            <constraint firstItem="AmH-z2-1AC" firstAttribute="height" secondItem="h63-m5-mqx" secondAttribute="height" multiplier="0.9" id="9E7-Ys-Okk"/>
+                            <constraint firstItem="mL4-Qx-nXl" firstAttribute="bottom" secondItem="h63-m5-mqx" secondAttribute="bottom" id="Kby-FB-Zf5"/>
+                            <constraint firstItem="h63-m5-mqx" firstAttribute="leading" secondItem="mL4-Qx-nXl" secondAttribute="leading" id="XAc-ob-6Mo"/>
+                            <constraint firstItem="mL4-Qx-nXl" firstAttribute="trailing" secondItem="h63-m5-mqx" secondAttribute="trailing" id="cWa-nq-sVv"/>
+                            <constraint firstItem="AmH-z2-1AC" firstAttribute="width" secondItem="h63-m5-mqx" secondAttribute="width" id="euU-Vf-fUX"/>
+                            <constraint firstItem="h63-m5-mqx" firstAttribute="top" secondItem="mL4-Qx-nXl" secondAttribute="top" id="fz8-NH-mld"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mL4-Qx-nXl"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Follow Program" id="83z-tA-jbg">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Unfollow" id="58O-6S-7uF">
+                            <connections>
+                                <action selector="unfollowButtonTapped:" destination="gls-lm-qsx" id="9JY-kQ-K0S"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="followProgramButton" destination="Cuu-s9-2nr" id="VJi-Is-NfN"/>
+                        <outlet property="programDescription" destination="qgc-Uv-x1h" id="4ek-HN-duO"/>
+                        <outlet property="programImageView" destination="37C-wu-uNE" id="Mfq-N8-JFf"/>
+                        <outlet property="programNameLabel" destination="6d4-46-0iA" id="YbN-qZ-GMM"/>
+                        <outlet property="unfollowBarButtonItem" destination="58O-6S-7uF" id="5ca-5O-8Bi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WuI-6q-6AI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="351" y="1565"/>
         </scene>
     </scenes>
     <resources>

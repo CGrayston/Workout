@@ -27,7 +27,7 @@ class MyProgramsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.rowHeight = 200
+        self.tableView.rowHeight = UIScreen.main.bounds.height * 0.15
         
         // Resign keyboard on tap
         self.hideKeyboardWhenTappedAround()
