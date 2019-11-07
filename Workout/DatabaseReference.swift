@@ -9,5 +9,11 @@
 import Foundation
 
 struct DatabaseReference {
-    static let userDatabase = "userTestDB1"
+    static let userDatabase = "userTestDB5"
+    static let programDatabase = "programTestDB5"
+    static let workoutDatabase = "workoutTestDB5"
+    static let exerciseDatabase = "exerciseTestDB5"
+    
+    static let completedExerciseDatabase = "completedExerciseDB5"
+    static let completedWorkoutDatabase = "completedWorkoutDB5"
 }

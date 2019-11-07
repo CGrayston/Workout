@@ -20,7 +20,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.image = #imageLiteral(resourceName: "firebase-logo")
+        iv.image = UIImage(named: "TheLogo")
         return iv
     }()
     
@@ -48,7 +48,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate {
         let button = UIButton(type: .system)
         button.setTitle("LOG IN", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        button.setTitleColor(UIColor.mainBlue(), for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = .white
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         button.layer.cornerRadius = 5
@@ -108,6 +108,10 @@ class LoginController: UIViewController, GIDSignInUIDelegate {
         super.viewDidLoad()
         db = Firestore.firestore()
         configureViewComponents()
+        
+//        super.modalPresentationStyle = .fullScreen
+//        self.modalPresentationStyle = .fullScreen
+        fullScreen()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,7 +119,11 @@ class LoginController: UIViewController, GIDSignInUIDelegate {
         
         GIDSignIn.sharedInstance()?.uiDelegate = self
         GIDSignIn.sharedInstance()?.delegate = self
+        
+        fullScreen()
     }
+    
+    
     
     // MARK: - Selectors
     
@@ -141,6 +149,9 @@ class LoginController: UIViewController, GIDSignInUIDelegate {
             
             if let error = error {
                 print("Failed to sign user in with error: ", error.localizedDescription)
+                let alert = UIAlertController(title: "Error logging in", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true)
                 return
             }
             
@@ -148,7 +159,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate {
             guard let controller = navController.viewControllers[0] as? HomeController else { return }
             controller.configureViewComponents()
             
-            // forgot to add this in video
+            
             controller.loadUserData()
             
             self.dismiss(animated: true, completion: nil)
@@ -158,10 +169,11 @@ class LoginController: UIViewController, GIDSignInUIDelegate {
     // MARK: - Helper Functions
     
     func configureViewComponents() {
-        view.backgroundColor = UIColor.mainBlue()
+        view.backgroundColor = UIColor.lightGray
         navigationController?.navigationBar.isHidden = true
         
         view.addSubview(logoImageView)
+        
         logoImageView.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 60, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 150, height: 150)
         logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
@@ -196,6 +208,12 @@ extension LoginController: GIDSignInDelegate {
         guard let authentication = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
         
+        
+        
+        //        Auth.auth().signInAnonymously { (_, _) in
+        //            print("Soemthing")
+        //            print("\(UserController.shared.currentUser)")
+        //        }
         Auth.auth().signInAndRetrieveData(with: credential) { (result, error) in
             
             if let error = error {
@@ -203,29 +221,65 @@ extension LoginController: GIDSignInDelegate {
                 return
             }
             
-            guard let uid = result?.user.uid else { return }
+            //            // Get currentUser info
+            //            UserController.shared.loadUser {
+            //                print("Got most current User")
+            //            }
+            
+            // See if user has values yet then set properties acordingly
+           // let followedPrograms = UserController.shared.currentUser?.followedPrograms ?? []
+            //let createdPrograms = UserController.shared.currentUser?.createdPrograms ?? []
+            
             guard let email = result?.user.email else { return }
             guard let username = result?.user.displayName else { return }
+            guard let uid = result?.user.uid else { return }
             
-            self.db.collection(DatabaseReference.userDatabase).document(uid).setData([
-                "uid": uid,
-                "email": email,
-                "username": username
-            ]) { err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("Document successfully written!")
-                    guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
-                    guard let controller = navController.viewControllers[0] as? HomeController else { return }
-                    controller.configureViewComponents()
-                    
-                    // forgot to add this in video
-                    controller.loadUserData()
-                    
-                    self.dismiss(animated: true, completion: nil)
+            let docRef = self.db.collection(DatabaseReference.userDatabase).document(uid)
+            
+            // Checks if document exists
+            docRef.getDocument(completion: { (document, error) in
+                if let document = document {
+                    if document.exists {
+                        guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
+                        guard let controller = navController.viewControllers[0] as? HomeController else { return }
+                        controller.configureViewComponents()
+                        
+                        
+                        controller.loadUserData()
+                        
+                        self.dismiss(animated: true, completion: nil)
+                        return
+                    } else {
+                        // Sets blank document data if documents does not exist
+                        docRef.setData([
+                            "email": email,
+                            "username": username,
+                            "followedPrograms": [],
+                            "createdPrograms": [],
+                            "uid": uid,
+                            ]) { err in
+                                if let err = err {
+                                    print("Error writing document: \(err)")
+                                } else {
+                                    print("Document successfully written!")
+                                    guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
+                                    guard let controller = navController.viewControllers[0] as? HomeController else { return }
+                                    controller.configureViewComponents()
+                                    
+                                    // load user data
+                                    controller.loadUserData()
+                                    
+                                    self.dismiss(animated: true, completion: nil)
+                                    return
+                                }
+                        }
+                    }
                 }
-            }
+            })
+            
+            
+            
+            
             
         }
     }

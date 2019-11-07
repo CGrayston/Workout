@@ -89,3 +89,13 @@ extension UITextField {
     }
 }
 
+extension UIViewController {
+    func fullScreen() {
+        self.modalPresentationStyle = .fullScreen
+        
+        if #available(iOS 13.0, *) {
+            self.isModalInPresentation = true
+        }
+    }
+    
+}

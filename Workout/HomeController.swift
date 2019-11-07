@@ -30,46 +30,60 @@ class HomeController: UIViewController {
         db = Firestore.firestore()
         
         authenticateUserAndConfigureView()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fullScreen()
     }
     
     // MARK: - Selectors
     
-    @objc func handleSignOut() {
-        let alertController = UIAlertController(title: nil, message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { (_) in
-            self.signOut()
-        }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alertController, animated: true, completion: nil)
-    }
+//    @objc func handleSignOut() {
+//        let alertController = UIAlertController(title: nil, message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
+//        alertController.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { (_) in
+//            self.signOut()
+//        }))
+//        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//        present(alertController, animated: true, completion: nil)
+//    }
     
     // MARK: - API
     
     func loadUserData() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+        //guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        let docRef = db.collection(DatabaseReference.userDatabase).document(uid)
-        
-        docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                guard let username = document["username"] as? String else { return }
-                self.welcomeLabel.text = "Welcome, \(username)"
-                
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.welcomeLabel.alpha = 1
-                })
-                
-            } else {
-                print("Document does not exist")
+        // Get programs user follows
+//        DispatchQueue.main.async {
+//            ProgramController.shared.getUserFollowedAndCreatedPrograms { (followedPrograms, createdPrograms) in
+//                self.followedPrograms = followedPrograms
+//                self.createdPrograms = createdPrograms
+//                self.tableView.reloadData()
+//            }
+//        }
+        let dispatchGroup = DispatchGroup()
+        ProgramController.shared.setUserFollowedAndCreatedPrograms { (success) in
+            dispatchGroup.enter()
+            //dispatchGroup.leave()
+            if success {
+                NotificationCenter.default.post(name: NotificationCenterNames.programUpdated, object: nil)
+                dispatchGroup.leave()
             }
         }
         
-        guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
-        guard let controller = navController.viewControllers[0] as? HomeController else { return }
+        dispatchGroup.enter()
+        UserController.shared.loadUser {
+            
+            //dispatchGroup.leave()
+            
+        }
+        dispatchGroup.leave()
         
-        controller.present(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
-        
-        
+        dispatchGroup.notify(queue: .main) {
+            let tabbarViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar")
+            self.present(tabbarViewController, animated: true, completion: nil)
+        }
+   
     }
     
     func signOut() {
@@ -96,16 +110,17 @@ class HomeController: UIViewController {
         }
     }
     
+    
     // MARK: - Helper Functions
     
     func configureViewComponents() {
-        view.backgroundColor = UIColor.mainBlue()
+        view.backgroundColor = UIColor.googleRed()
         
-        navigationItem.title = "Firebase Login"
+        //navigationItem.title = "Login"
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_arrow_back_white_24dp"), style: .plain, target: self, action: #selector(handleSignOut))
+        //navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_arrow_back_white_24dp"), style: .plain, target: self, action: #selector(handleSignOut))
         navigationItem.leftBarButtonItem?.tintColor = .white
-        navigationController?.navigationBar.barTintColor = UIColor.mainBlue()
+        navigationController?.navigationBar.barTintColor = UIColor.googleRed()
         
         view.addSubview(welcomeLabel)
         welcomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
