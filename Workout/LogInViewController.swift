@@ -20,7 +20,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.image = #imageLiteral(resourceName: "firebase-logo")
+        iv.image = UIImage(named: "TheLogo")
         return iv
     }()
     
@@ -48,7 +48,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate {
         let button = UIButton(type: .system)
         button.setTitle("LOG IN", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        button.setTitleColor(UIColor.mainBlue(), for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = .white
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         button.layer.cornerRadius = 5
@@ -108,6 +108,10 @@ class LoginController: UIViewController, GIDSignInUIDelegate {
         super.viewDidLoad()
         db = Firestore.firestore()
         configureViewComponents()
+        
+//        super.modalPresentationStyle = .fullScreen
+//        self.modalPresentationStyle = .fullScreen
+        fullScreen()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,7 +119,11 @@ class LoginController: UIViewController, GIDSignInUIDelegate {
         
         GIDSignIn.sharedInstance()?.uiDelegate = self
         GIDSignIn.sharedInstance()?.delegate = self
+        
+        fullScreen()
     }
+    
+    
     
     // MARK: - Selectors
     
@@ -161,10 +169,11 @@ class LoginController: UIViewController, GIDSignInUIDelegate {
     // MARK: - Helper Functions
     
     func configureViewComponents() {
-        view.backgroundColor = UIColor.mainBlue()
+        view.backgroundColor = UIColor.lightGray
         navigationController?.navigationBar.isHidden = true
         
         view.addSubview(logoImageView)
+        
         logoImageView.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 60, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 150, height: 150)
         logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
@@ -235,7 +244,7 @@ extension LoginController: GIDSignInDelegate {
                         guard let controller = navController.viewControllers[0] as? HomeController else { return }
                         controller.configureViewComponents()
                         
-                        // forgot to add this in video
+                        
                         controller.loadUserData()
                         
                         self.dismiss(animated: true, completion: nil)

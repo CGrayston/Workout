@@ -16,6 +16,7 @@ class WorkoutTableViewCell: UITableViewCell {
     
     var workout: Workout? {
         didSet {
+            layoutIfNeeded()
             updateWorkoutCell()
         }
     }
@@ -29,8 +30,10 @@ class WorkoutTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-        backgroundCellView.layer.cornerRadius = 5
+        if backgroundCellView != nil {
+            backgroundCellView.layer.cornerRadius = 5
+        }
+        self.selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

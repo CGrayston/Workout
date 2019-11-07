@@ -257,7 +257,12 @@ class CompletedExerciseController {
     func fetchExerciseHistory(with compeltedExercise: CompletedExercise, completion: @escaping ([CompletedExercise]) -> (Void)) {
         var completedExercises: [CompletedExercise] = []
         
-        let query = db.collection(DatabaseReference.completedExerciseDatabase).whereField("exerciseUID", isEqualTo: compeltedExercise.exerciseUID)
+        let query = db.collection(DatabaseReference.completedExerciseDatabase)
+            //.order(by: "dateCompleted", descending: true)
+            .whereField("exerciseUID", isEqualTo: compeltedExercise.exerciseUID)
+            .whereField("userUID", isEqualTo: userUID)
+        
+//        let query = db.collection(DatabaseReference.completedExerciseDatabase).whereField("exerciseUID", isEqualTo: compeltedExercise.exerciseUID)
         
         query.getDocuments { (querySnapshot, error) in
             if let error = error {
@@ -272,7 +277,8 @@ class CompletedExerciseController {
                 guard let completedExercise = CompletedExercise(document: document) else { return }
                 completedExercises.append(completedExercise)
             }
-            completion(completedExercises)
+            let returnArray = completedExercises.sorted(by: {$0.dateCompleted > $1.dateCompleted})
+            completion(returnArray)
         }
     }
 }

@@ -28,10 +28,11 @@ class CompletedExerciseCellTableViewCell: UITableViewCell {
         nameLabel.text = completedExercise.name
         setsLabel.text = completedExercise.sets
         repsLabel.text = completedExercise.reps
-        exerciseImageView.image = UIImage(named: "300-Pound-Bench")
+        exerciseImageView.image = UIImage(named: "TheLogo")
         
-        self.backgroundColor = completedExercise.isCompleted ? UIColor.green : UIColor.darkGray
-        print("Color: \(self.backgroundColor?.description ?? "No Color"). Exercise isOn: \(completedExercise.isCompleted)")
+        completedExerciseView.layer.cornerRadius = 5
+        //self.backgroundColor = completedExercise.isCompleted ? UIColor.green : UIColor.white
+        //print("Color: \(self.backgroundColor?.description ?? "No Color"). Exercise isOn: \(completedExercise.isCompleted)")
     }
     
     override func awakeFromNib() {

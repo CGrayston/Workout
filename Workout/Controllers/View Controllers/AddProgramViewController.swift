@@ -155,7 +155,7 @@ class AddProgramViewController: UIViewController {
         
         programNameLabel.text = program.name
         programDescription.text = program.description
-        programImageView.image = UIImage(named: "300-Pound-Bench")
+        programImageView.image = UIImage(named: "TheLogo")
     }
     
 }

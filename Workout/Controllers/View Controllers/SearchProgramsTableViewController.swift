@@ -32,7 +32,8 @@ class SearchProgramsTableViewController: UITableViewController, UISearchBarDeleg
         self.hideKeyboardWhenTappedAround()
         
         self.tableView.rowHeight = UIScreen.main.bounds.height * 0.2
-        
+        self.tableView.backgroundColor = .white
+        self.tableView.separatorStyle = .none
     }
     
     // MARK: - Table view data source

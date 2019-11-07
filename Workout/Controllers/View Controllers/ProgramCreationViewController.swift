@@ -21,6 +21,7 @@ class ProgramCreationViewController: UIViewController, UITableViewDataSource, UI
     // MARK: - Landing Pad
     var program: Program? {
         didSet {
+            
             loadViewIfNeeded()
             updateViews()
         }
@@ -49,6 +50,8 @@ class ProgramCreationViewController: UIViewController, UITableViewDataSource, UI
         programImageView.isUserInteractionEnabled = true
         programImageView.addGestureRecognizer(tapGestureRecognizer)
         
+        self.tableView.backgroundColor = .white
+        self.tableView.separatorStyle = .none
         
     }
     
@@ -103,7 +106,7 @@ class ProgramCreationViewController: UIViewController, UITableViewDataSource, UI
         }
         
         if program.photoURL == "" {
-            programImageView.image = UIImage(named: "300-Pound-Bench")
+            programImageView.image = UIImage(named: "TheLogo")
         } else {
             
         }
@@ -164,19 +167,21 @@ class ProgramCreationViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath) as UITableViewCell
-        let workout = WorkoutController.shared.workouts[indexPath.row]
-        if workout.name == "" {
-            cell.textLabel?.text = "Enter Workout Name..."
-        } else {
-            cell.textLabel?.text = workout.name
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath) as? WorkoutTableViewCell else { return UITableViewCell() }
         
-        if workout.description == "" {
-            cell.detailTextLabel?.text = "Enter Workout Description..."
-        } else {
-            cell.detailTextLabel?.text = workout.description
-        }
+        let workout = WorkoutController.shared.workouts[indexPath.row]
+//        if workout.name == "" {
+//            cell.textLabel?.text = "Enter Workout Name..."
+//        } else {
+//            cell.textLabel?.text = workout.name
+//        }
+//
+//        if workout.description == "" {
+//            cell.detailTextLabel?.text = "Enter Workout Description..."
+//        } else {
+//            cell.detailTextLabel?.text = workout.description
+//        }
+        cell.workout = workout
         
         return cell
     }

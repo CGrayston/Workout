@@ -36,6 +36,8 @@ class EnterExerciseSetTableViewCell: UITableViewCell, UITextFieldDelegate {
         
         weightInputTextField.keyboardType = UIKeyboardType.decimalPad
         repsInputTextField.keyboardType = UIKeyboardType.numberPad
+        
+        background.layer.cornerRadius = 5
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

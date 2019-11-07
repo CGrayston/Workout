@@ -201,7 +201,9 @@ class CompletedWorkoutController {
     // MARK: - Load workouts for currentUsers specified Program
     func loadCompletedWorkouts(completion: @escaping () -> ()) {
         db.collection(DatabaseReference.completedWorkoutDatabase).whereField("userUID", isEqualTo: userUID)
+            //.order(by: "dateCompleted", descending: true)
             .addSnapshotListener { (querySnapshot, error) in
+                
                 if let error = error {
                     print("Error loading data: \(error.localizedDescription)")
                     return completion()
@@ -216,6 +218,8 @@ class CompletedWorkoutController {
                     }
                     self.completedWorkouts.append(completedWorkout)
                 }
+                //let sortedArray =
+                self.completedWorkouts = self.completedWorkouts.sorted(by: {$0.dateCompleted > $1.dateCompleted})
                 completion()
         }
     }

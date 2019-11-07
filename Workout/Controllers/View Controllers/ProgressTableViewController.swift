@@ -12,22 +12,21 @@ class ProgressTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.red]
+        self.tableView.backgroundColor = .white
+        self.tableView.separatorStyle = .none
+        //navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.red]
+
+    }
+    
+
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         CompletedWorkoutController.shared.loadCompletedWorkouts {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-//        CompletedWorkoutController.shared.loadCompletedWorkouts {
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
     }
 
     // MARK: - Table view data source

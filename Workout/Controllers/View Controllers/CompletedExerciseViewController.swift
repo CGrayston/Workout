@@ -38,6 +38,8 @@ class CompletedExerciseViewController: UIViewController, UITableViewDelegate, UI
         tableView.dataSource = self
         
         tableView.rowHeight = 75
+        self.tableView.backgroundColor = .white
+        self.tableView.separatorStyle = .none
     }
     
     // MARK: - TableView Delegate Methods
@@ -61,7 +63,7 @@ class CompletedExerciseViewController: UIViewController, UITableViewDelegate, UI
     func uploadViews() {
         guard let completedExercise = completedExercise else { return }
         exerciseNameLabel.text = completedExercise.name
-        exerciseImageView.image = UIImage(named: "300-Pound-Bench")
+        exerciseImageView.image = UIImage(named: "TheLogo")
         setsLabel.text = completedExercise.sets
         repsLabel.text = completedExercise.reps
         

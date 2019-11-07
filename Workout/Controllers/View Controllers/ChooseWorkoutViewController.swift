@@ -34,6 +34,9 @@ class ChooseWorkoutViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         
+        self.tableView.backgroundColor = .white
+        self.tableView.separatorStyle = .none
+        
         // Resign keyboard on tap
         self.hideKeyboardWhenTappedAround()
     }

@@ -58,6 +58,11 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         
         contentViewHeight.constant = finalHeight
         
+        self.tableView.backgroundColor = .white
+        self.tableView.separatorStyle = .none
+        
+        self.tableView.rowHeight = UIScreen.main.bounds.height * 0.08
+        
 //        let newFrame: CGRect = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: screenWidth, height: screenHeight + 3)
 //
 //        self.view.frame = newFrame
@@ -127,7 +132,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         setsLabel.text = completedExercise.sets
         repsLabel.text = completedExercise.reps
         
-        exerciseImageView.image = UIImage(named: "300-Pound-Bench")
+        exerciseImageView.image = UIImage(named: "TheLogo")
         
     }
     

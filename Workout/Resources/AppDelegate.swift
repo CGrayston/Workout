@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         
-
+        
         
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
         
@@ -27,7 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         let navController = UINavigationController(rootViewController: HomeController())
         navController.navigationBar.barStyle = .black
+        
+        //navController.modalPresentationStyle = .fullScreen
+        
         window?.rootViewController = navController
+        //window?.rootViewController?.modalPresentationStyle = .fullScreen
         
         return true
     }

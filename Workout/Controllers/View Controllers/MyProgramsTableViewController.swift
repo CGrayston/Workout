@@ -28,6 +28,8 @@ class MyProgramsTableViewController: UITableViewController {
         super.viewDidLoad()
 
         self.tableView.rowHeight = UIScreen.main.bounds.height * 0.15
+        self.tableView.backgroundColor = .white
+        self.tableView.separatorStyle = .none
         
         // Resign keyboard on tap
         self.hideKeyboardWhenTappedAround()
@@ -70,6 +72,9 @@ class MyProgramsTableViewController: UITableViewController {
         }
     }
     
+
+    
+
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 && ProgramController.shared.followedPrograms.count > 0 {

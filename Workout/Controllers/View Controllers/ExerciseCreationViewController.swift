@@ -33,7 +33,7 @@ class ExerciseCreationViewController: UIViewController, UITableViewDelegate, UIT
     func updateViews() {
         guard let exercise = exercise  else { return }
         nameTextField.text = exercise.name
-        photoImageView.image = UIImage(named: "300-Pound-Bench")
+        photoImageView.image = UIImage(named: "TheLogo")
         setsLabel.text = "\(exercise.setsCount)"
         repsTextField.text = exercise.reps
         setsCount = exercise.setsCount
@@ -45,6 +45,10 @@ class ExerciseCreationViewController: UIViewController, UITableViewDelegate, UIT
         // Set delegates
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.rowHeight = UIScreen.main.bounds.height * 0.1
+        self.tableView.backgroundColor = .white
+        self.tableView.separatorStyle = .none
         
         self.hideKeyboardWhenTappedAround()
         
@@ -105,7 +109,9 @@ class ExerciseCreationViewController: UIViewController, UITableViewDelegate, UIT
             let reps = repsTextField.text else { return }
         ExerciseController.shared.updateExercise(exercise: exercise, name: name, description: "", sets: sets, setsCount: setsCount, reps: reps, photoURL: "") { (success) in
             if success {
-                // TODO present alert
+                let alert = UIAlertController(title: "Saved!", message: "Successfully updated exercise", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true)
             }
         }
     }

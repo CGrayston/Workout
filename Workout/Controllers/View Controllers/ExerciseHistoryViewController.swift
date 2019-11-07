@@ -38,7 +38,9 @@ class ExerciseHistoryViewController: UIViewController, UITableViewDelegate, UITa
         tableView.delegate = self
         tableView.dataSource = self
         
-        // Do any additional setup after loading the view.
+        tableView.rowHeight = UIScreen.main.bounds.height * 0.08
+        self.tableView.backgroundColor = .white
+        self.tableView.separatorStyle = .none
     }
     
     // MARK: - TableView Delegate Methods
@@ -74,7 +76,7 @@ class ExerciseHistoryViewController: UIViewController, UITableViewDelegate, UITa
         guard let completedExercise = completedExercises?.first else { return }
         
         exerciseNameLabel.text = completedExercise.name
-        exerciseImageView.image = UIImage(named: "300-Pound-Bench")
+        exerciseImageView.image = UIImage(named: "TheLogo")
         setsLabel.text = completedExercise.sets
         repsLabel.text = completedExercise.reps
         

@@ -13,13 +13,11 @@ class AccountViewController: UIViewController {
 
     var window: UIWindow?
     
+    @IBOutlet weak var userProfileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.googleRed()]
     }
     
     override func viewWillAppear(_ animated: Bool) {

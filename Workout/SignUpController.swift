@@ -19,7 +19,7 @@ class SignUpController: UIViewController, GIDSignInUIDelegate {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.image = #imageLiteral(resourceName: "firebase-logo")
+        iv.image = UIImage(named: "TheLogo")
         return iv
     }()
     
@@ -118,8 +118,15 @@ class SignUpController: UIViewController, GIDSignInUIDelegate {
         super.viewDidLoad()
         db = Firestore.firestore()
         configureViewComponents()
-        
+//        super.modalPresentationStyle = .fullScreen
+//        self.modalPresentationStyle = .fullScreen
+        fullScreen()
+        self.navigationController!.modalPresentationStyle = .fullScreen
         GIDSignIn.sharedInstance()?.uiDelegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fullScreen()
     }
     
     // MARK: - Selectors
@@ -183,7 +190,7 @@ class SignUpController: UIViewController, GIDSignInUIDelegate {
     // MARK: - Helper Functions
     
     func configureViewComponents() {
-        view.backgroundColor = UIColor.mainBlue()
+        view.backgroundColor = UIColor.lightGray
         navigationController?.navigationBar.isHidden = true
         
         view.addSubview(logoImageView)

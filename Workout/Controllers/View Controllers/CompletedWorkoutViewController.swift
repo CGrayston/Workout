@@ -31,6 +31,10 @@ class CompletedWorkoutViewController: UIViewController, UITableViewDelegate, UIT
         // Set delegate and data source
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.rowHeight = UIScreen.main.bounds.height * 0.2
+        self.tableView.backgroundColor = .white
+        self.tableView.separatorStyle = .none
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -61,7 +65,7 @@ class CompletedWorkoutViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "completedExerciseCell2", for: indexPath) as? CompletedExerciseCellTableViewCell, let completedExercise = completedExercises?[indexPath.row] else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "completedExerciseCell", for: indexPath) as? CompletedExerciseCellTableViewCell, let completedExercise = completedExercises?[indexPath.row] else { return UITableViewCell() }
         
         cell.completedExercise = completedExercise
         

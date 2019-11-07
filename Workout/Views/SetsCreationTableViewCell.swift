@@ -11,6 +11,7 @@ import UIKit
 class SetsCreationTableViewCell: UITableViewCell {
 
     
+    @IBOutlet weak var setBackgroundView: UIView!
     @IBOutlet weak var setLabel: UILabel!
     
     
@@ -28,7 +29,7 @@ class SetsCreationTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+        setBackgroundView.layer.cornerRadius = 5
         
     }
 

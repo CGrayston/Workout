@@ -17,8 +17,8 @@ class WorkoutViewController: UIViewController, UITableViewDelegate, UITableViewD
     var completedWorkout: CompletedWorkout? {
         didSet {
             loadViewIfNeeded()
-            tableView.reloadData()
             updateViews()
+            tableView.reloadData()
         }
     }
     
@@ -30,10 +30,13 @@ class WorkoutViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - Life Cylce Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loadViewIfNeeded()
         // Set delegate and data source
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = UIScreen.main.bounds.height * 0.2
+        self.tableView.backgroundColor = .white
+        self.tableView.separatorStyle = .none
      
     }
     
@@ -55,18 +58,8 @@ class WorkoutViewController: UIViewController, UITableViewDelegate, UITableViewD
         let completedExercise = CompletedExerciseController.shared.completedExercises[indexPath.row]
         cell.completedExercise = completedExercise
         
-        cell.backgroundColor = completedExercise.isCompleted ? UIColor.green : UIColor.darkGray
-        print("Color: \(String(describing: cell.backgroundColor?.description)). Exercise isOn: \(completedExercise.isCompleted)")
-        
-
-        
-//        if let completedExercises = completedExercises {
-//            let completedExercise = completedExercises[indexPath.row]
-//            cell.completedExercise = completedExercise
-//
-//            cell.backgroundColor = completedExercise.isCompleted ? UIColor.green : UIColor.darkGray
-//            print("Color: \(String(describing: cell.backgroundColor?.description)). Exercise isOn: \(completedExercise.isCompleted)")
-//        }
+        //cell.backgroundColor = completedExercise.isCompleted ? UIColor.green : UIColor.darkGray
+//        print("Color: \(String(describing: cell.backgroundColor?.description)). Exercise isOn: \(completedExercise.isCompleted)")
         
         return cell
     }
@@ -147,6 +140,28 @@ class WorkoutViewController: UIViewController, UITableViewDelegate, UITableViewD
         guard let completedWorkout = completedWorkout else { return }
         
         let completedExercises = CompletedExerciseController.shared.completedExercises
+        
+        // Make sure each exercise was saved
+        var didNotSave = ""
+        for exercise in completedExercises {
+            if (exercise.setsCount != exercise.repsCompleted.count) &&
+                (exercise.setsCount != exercise.weightsCompleted.count) {
+                didNotSave = didNotSave + "\(exercise.name), "
+            }
+
+        }
+        // Forgot to save if string is not empty
+        if didNotSave != "" {
+            if didNotSave.last == " " {
+                didNotSave.remove(at: didNotSave.index(before: didNotSave.endIndex))
+                didNotSave.remove(at: didNotSave.index(before: didNotSave.endIndex))
+                //let message = didNotSave
+            }
+            let alert = UIAlertController(title: "Some exercise not saved!", message: "You did not save \(didNotSave)", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
         
         let dispatchGroup = DispatchGroup()
         

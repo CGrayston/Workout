@@ -42,7 +42,7 @@ class CreatedProgramTableViewCell: UITableViewCell {
         guard let program = program else { return }
         
         if program.photoURL == "" {
-            programImageView.image = UIImage(named: "300-Pound-Bench")
+            programImageView.image = UIImage(named: "TheLogo")
         } else {
             // TODO
             DispatchQueue.main.async {

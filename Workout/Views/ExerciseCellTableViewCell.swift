@@ -14,6 +14,7 @@ class ExerciseCellTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var setsLabel: UILabel!
     @IBOutlet weak var repsLabel: UILabel!
+    @IBOutlet weak var exerciseBackground: UIView!
     
     var exercise: Exercise? {
         didSet{
@@ -27,7 +28,7 @@ class ExerciseCellTableViewCell: UITableViewCell {
         nameLabel.text = exercise.name
         setsLabel.text = exercise.sets
         repsLabel.text = exercise.reps
-        exerciseImageView.image = UIImage(named: "300-Pound-Bench")
+        exerciseImageView.image = UIImage(named: "TheLogo")
         
         self.backgroundColor = exercise.isCompleted ? UIColor.green : UIColor.darkGray
         print("Color: \(self.backgroundColor?.description ?? "No Color"). Exercise isOn: \(exercise.isCompleted)")
@@ -36,6 +37,9 @@ class ExerciseCellTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        exerciseBackground.layer.cornerRadius = 5
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

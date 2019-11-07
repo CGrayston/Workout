@@ -1,63 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PBK-yY-Dwx">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PBK-yY-Dwx">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Account-->
         <scene sceneID="i2j-FJ-ZfK">
             <objects>
-                <viewController id="Dkb-UJ-9le" customClass="AccountViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="Dkb-UJ-9le" customClass="AccountViewController" customModule="Workout" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="db0-b2-6y0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(username)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kl7-Uz-YLj">
-                                <rect key="frame" x="53" y="101" width="281" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(username)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kl7-Uz-YLj">
+                                <rect key="frame" x="41.5" y="285.5" width="331" height="26.5"/>
+                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(email)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3j-nA-aRU">
-                                <rect key="frame" x="53" y="153" width="281" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0sk-pp-WIK">
-                                <rect key="frame" x="149" y="457" width="89" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign Out"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0sk-pp-WIK">
+                                <rect key="frame" x="41.5" y="386.5" width="331" height="39"/>
+                                <color key="backgroundColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="0.89338077910000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="22"/>
+                                <state key="normal" title="Sign Out">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="signOutButtonTapped:" destination="Dkb-UJ-9le" eventType="touchUpInside" id="gTE-BN-d5f"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wavingguy" translatesAutoresizingMaskIntoConstraints="NO" id="nLV-id-2ic">
+                                <rect key="frame" x="124" y="104" width="166" height="165.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="nLV-id-2ic" secondAttribute="height" multiplier="1:1" id="uMF-jz-Ysq"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(email)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3j-nA-aRU">
+                                <rect key="frame" x="41.5" y="328" width="331" height="26.5"/>
+                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0sk-pp-WIK" firstAttribute="width" secondItem="db0-b2-6y0" secondAttribute="width" multiplier="0.8" id="0KN-2j-OtN"/>
+                            <constraint firstItem="nLV-id-2ic" firstAttribute="top" secondItem="fd1-Bm-5Iy" secondAttribute="top" constant="16" id="AIk-kd-JaS"/>
+                            <constraint firstItem="kl7-Uz-YLj" firstAttribute="centerX" secondItem="fd1-Bm-5Iy" secondAttribute="centerX" id="D1z-gl-4s2"/>
+                            <constraint firstItem="kl7-Uz-YLj" firstAttribute="width" secondItem="db0-b2-6y0" secondAttribute="width" multiplier="0.8" id="XeC-4H-nMc"/>
+                            <constraint firstItem="nLV-id-2ic" firstAttribute="width" secondItem="db0-b2-6y0" secondAttribute="width" multiplier="0.4" id="YoL-be-dUb"/>
+                            <constraint firstItem="0sk-pp-WIK" firstAttribute="top" secondItem="k3j-nA-aRU" secondAttribute="bottom" constant="32" id="cv9-WO-CH3"/>
+                            <constraint firstItem="k3j-nA-aRU" firstAttribute="centerX" secondItem="fd1-Bm-5Iy" secondAttribute="centerX" id="ebD-TC-EJy"/>
+                            <constraint firstItem="0sk-pp-WIK" firstAttribute="centerX" secondItem="fd1-Bm-5Iy" secondAttribute="centerX" id="gpC-JA-nwD"/>
+                            <constraint firstItem="k3j-nA-aRU" firstAttribute="top" secondItem="kl7-Uz-YLj" secondAttribute="bottom" constant="16" id="k0k-Rt-Tag"/>
+                            <constraint firstItem="kl7-Uz-YLj" firstAttribute="top" secondItem="nLV-id-2ic" secondAttribute="bottom" constant="16" id="pDC-wM-dSo"/>
+                            <constraint firstItem="nLV-id-2ic" firstAttribute="centerX" secondItem="fd1-Bm-5Iy" secondAttribute="centerX" id="rKa-mg-Hbq"/>
+                            <constraint firstItem="k3j-nA-aRU" firstAttribute="width" secondItem="db0-b2-6y0" secondAttribute="width" multiplier="0.8" id="t1s-pX-jjQ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fd1-Bm-5Iy"/>
                     </view>
                     <navigationItem key="navigationItem" title="Account" id="31d-E8-wEr"/>
                     <connections>
                         <outlet property="emailLabel" destination="k3j-nA-aRU" id="m7B-HM-Neb"/>
+                        <outlet property="userProfileImageView" destination="nLV-id-2ic" id="Bvz-g5-Ree"/>
                         <outlet property="usernameLabel" destination="kl7-Uz-YLj" id="pn1-g3-zYS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xpt-Eb-Txa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2628" y="857.72113943028489"/>
+            <point key="canvasLocation" x="2626.0869565217395" y="857.14285714285711"/>
         </scene>
         <!--Account-->
         <scene sceneID="ch1-6N-2uW">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PBK-yY-Dwx" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="PBK-yY-Dwx" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Account" image="account" id="CcN-x9-hpy"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -77,5 +102,6 @@
     </scenes>
     <resources>
         <image name="account" width="30" height="30"/>
+        <image name="wavingguy" width="512" height="512"/>
     </resources>
 </document>

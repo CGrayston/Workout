@@ -34,7 +34,10 @@ class WorkoutCreationViewController: UIViewController, UITableViewDelegate, UITa
         // Set delegates
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = UIScreen.main.bounds.height * 0.15
         
+        self.tableView.backgroundColor = .white
+        self.tableView.separatorStyle = .none
 
     }
 
@@ -161,6 +164,9 @@ class WorkoutCreationViewController: UIViewController, UITableViewDelegate, UITa
         
         WorkoutController.shared.updateWorkout(workout: workout, name: name, description: description) { (success) in
             if success {
+                let alert = UIAlertController(title: "Saved!", message: "Successfully updated workout!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }

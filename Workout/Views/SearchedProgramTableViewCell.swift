@@ -27,7 +27,7 @@ class SearchedProgramTableViewCell: UITableViewCell {
     
     func updateCell() {
         guard let program = program else { return }
-        programPhotoImageView.image = UIImage(named: "300-Pound-Bench")
+        programPhotoImageView.image = UIImage(named: "TheLogo")
         programNameLabel.text = program.name
         programDescription.text = program.description
     }

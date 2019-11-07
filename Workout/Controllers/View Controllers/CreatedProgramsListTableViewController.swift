@@ -17,7 +17,6 @@ class CreatedProgramsListTableViewController: UITableViewController {
         self.tableView.rowHeight = UIScreen.main.bounds.height * 0.15
         self.tableView.backgroundColor = .white
         self.tableView.separatorStyle = .none
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,7 +51,6 @@ class CreatedProgramsListTableViewController: UITableViewController {
     }
     
     
-    // TODO Deletion of Programs
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {

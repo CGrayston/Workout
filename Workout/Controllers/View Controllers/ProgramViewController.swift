@@ -24,11 +24,18 @@ class ProgramViewController: UIViewController {
     
     var workouts: [Workout] = []
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Resign keyboard on tap
         self.hideKeyboardWhenTappedAround()
+        
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        programDescriptionLabel.sizeToFit()
     }
     
 
@@ -39,7 +46,7 @@ class ProgramViewController: UIViewController {
         programDescriptionLabel.text = program.description
         
         if program.photoURL == "" {
-            programImageView.image = UIImage(named: "300-Pound-Bench")
+            programImageView.image = UIImage(named: "TheLogo")
         }
     }
     

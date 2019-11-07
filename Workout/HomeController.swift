@@ -31,19 +31,22 @@ class HomeController: UIViewController {
         
         authenticateUserAndConfigureView()
         
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fullScreen()
     }
     
     // MARK: - Selectors
     
-    @objc func handleSignOut() {
-        let alertController = UIAlertController(title: nil, message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { (_) in
-            self.signOut()
-        }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alertController, animated: true, completion: nil)
-    }
+//    @objc func handleSignOut() {
+//        let alertController = UIAlertController(title: nil, message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
+//        alertController.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { (_) in
+//            self.signOut()
+//        }))
+//        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//        present(alertController, animated: true, completion: nil)
+//    }
     
     // MARK: - API
     
@@ -80,54 +83,7 @@ class HomeController: UIViewController {
             let tabbarViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar")
             self.present(tabbarViewController, animated: true, completion: nil)
         }
-        
-//        UserController.shared.loadUser {
-//            let tabbarViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar")
-//            self.present(tabbarViewController, animated: true, completion: nil)
-//        }
-        
-//        let docRef = db.collection(DatabaseReference.userDatabase).document(uid)
-//
-//        docRef.getDocument { (document, error) in
-//            if let document = document, document.exists {
-//                //guard let username = document["username"] as? String else { return }
-//                //self.welcomeLabel.text = "Welcome, \(username)"
-//
-////                UIView.animate(withDuration: 0.5, animations: {
-////                    self.welcomeLabel.alpha = 1
-////                })
-//
-//                UserController.shared.loadUser() {
-//                    guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
-//                    guard let controller = navController.viewControllers[0] as? HomeController else { return }
-//                }
-//                // Present Main Tabbar
-////                guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
-////                guard let controller = navController.viewControllers[0] as? HomeController else { return }
-////
-////                let tabbarViewController = UIStoryboard(name: "Tabbar", bundle: nil).instantiateViewController(withIdentifier: "Tabbar")
-////
-////                guard let tabController = UIApplication.shared.keyWindow?.resignKey() as UITabBarController else { return }
-////                guard let controller = tabBarController?.viewControllers[0] as
-////
-////                if let tabBar = self.tabBarController {
-////
-////                    self.present(tabBar, animated: true, completion: nil)
-////                }
-//                let tabbarViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar")
-//                self.present(tabbarViewController, animated: true, completion: nil)
-//
-//            } else {
-//                print("Document does not exist")
-//            }
-//        }
-//
-//        guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
-//        guard let controller = navController.viewControllers[0] as? HomeController else { return }
-//
-//        controller.present(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
-//
-        
+   
     }
     
     func signOut() {
@@ -154,16 +110,17 @@ class HomeController: UIViewController {
         }
     }
     
+    
     // MARK: - Helper Functions
     
     func configureViewComponents() {
-        view.backgroundColor = UIColor.mainBlue()
+        view.backgroundColor = UIColor.googleRed()
         
-        navigationItem.title = "Firebase Login"
+        //navigationItem.title = "Login"
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_arrow_back_white_24dp"), style: .plain, target: self, action: #selector(handleSignOut))
+        //navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_arrow_back_white_24dp"), style: .plain, target: self, action: #selector(handleSignOut))
         navigationItem.leftBarButtonItem?.tintColor = .white
-        navigationController?.navigationBar.barTintColor = UIColor.mainBlue()
+        navigationController?.navigationBar.barTintColor = UIColor.googleRed()
         
         view.addSubview(welcomeLabel)
         welcomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
